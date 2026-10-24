@@ -1,0 +1,76 @@
+---
+// Reusable LocalBusiness JSON-LD. Industry-agnostic — pass `businessType`
+// for a more specific schema.org type where one exists (MovingCompany,
+// Dentist, Electrician, LegalService, etc.); falls back to LocalBusiness.
+//
+// NAP (name, address, phone) is the thing this component exists to get
+// right — never fabricate a street address to fill this in. If streetAddress
+// isn't known yet, omit the `address` prop entirely rather than guessing;
+// an incomplete-but-honest schema is fine, a wrong address is not.
+interface Props {
+  name: string;
+  url: string;
+  businessType?: string;
+  phone?: string;
+  email?: string;
+  streetAddress?: string;
+  addressLocality?: string;
+  addressRegion?: string;
+  postalCode?: string;
+  areaServed?: string[];
+  logo?: string;
+  image?: string;
+  sameAs?: string[];
+  priceRange?: string;
+  /** e.g. "Mo-Su 00:00-23:59" for 24/7. Omit if hours aren't confirmed. */
+  openingHours?: string;
+}
+
+const {
+  name,
+  url,
+  businessType = 'LocalBusiness',
+  phone,
+  email,
+  streetAddress,
+  addressLocality,
+  addressRegion,
+  postalCode,
+  areaServed,
+  logo,
+  image,
+  sameAs,
+  priceRange,
+  openingHours,
+} = Astro.props;
+
+const schema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': businessType,
+  name,
+  url,
+};
+
+if (phone) schema.telephone = phone;
+if (email) schema.email = email;
+if (logo) schema.logo = logo;
+if (image) schema.image = image;
+if (priceRange) schema.priceRange = priceRange;
+if (openingHours) schema.openingHours = openingHours;
+if (sameAs && sameAs.length > 0) schema.sameAs = sameAs;
+if (areaServed && areaServed.length > 0) {
+  schema.areaServed = areaServed.map((place) => ({ '@type': 'City', name: place }));
+}
+if (streetAddress && addressLocality && addressRegion) {
+  schema.address = {
+    '@type': 'PostalAddress',
+    streetAddress,
+    addressLocality,
+    addressRegion,
+    ...(postalCode ? { postalCode } : {}),
+    addressCountry: 'US',
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

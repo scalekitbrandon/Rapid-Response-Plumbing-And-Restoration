@@ -1,0 +1,68 @@
+/*
+  Rapid Response Plumbing & Restoration: locked style guide (2026-10-24).
+  Source: the client's logo and van wrap (brand-source/). Fire vs. water, chrome, dark base.
+  Token NAMES are the starter-kit contract. Components reference these and never use raw hex.
+  Fonts (Saira + Barlow) are loaded in BaseLayout <head>.
+*/
+:root {
+  /* Core brand */
+  --color-fire: #e3202b;        /* "RAPID RESPONSE" red: primary CTAs */
+  --color-fire-dark: #b5121c;
+  --color-flame: #ff7a1a;       /* flame orange: highlights, glows */
+  --color-water: #1e8bff;       /* "PLUMBING" electric blue: secondary CTAs, links */
+  --color-water-dark: #0f63c9;
+  --color-chrome: #c9ced6;      /* chrome silver: outlines, phone numbers */
+  --color-mold: #2e9e3e;        /* mold-remediation icon only, never a UI color */
+
+  /* Surfaces */
+  --color-black: #05070d;
+  --color-navy: #0a1a3f;
+  --color-navy-2: #10275a;
+
+  /* Starter-kit contract mapping */
+  --color-bg: #ffffff;
+  --color-fg: #0b1220;
+  --color-primary: var(--color-fire);
+  --color-primary-fg: #ffffff;
+  --color-accent: var(--color-water);
+  --color-muted: #f2f4f8;
+  --color-border: #dfe3ea;
+
+  /* Signature gradients and glows */
+  --gradient-fire-water: linear-gradient(90deg, var(--color-fire) 0%, var(--color-flame) 35%, var(--color-water) 65%, #5fb4ff 100%);
+  --gradient-chrome: linear-gradient(180deg, #ffffff 0%, var(--color-chrome) 55%, #8d95a3 100%);
+  --glow-fire: 0 0 24px rgba(227, 32, 43, 0.55);
+  --glow-water: 0 0 24px rgba(30, 139, 255, 0.55);
+
+  /* Type: Saira ExtraBold Italic (expanded) for headlines, Barlow for body */
+  --font-heading: 'Saira', 'Arial Black', sans-serif;
+  --font-body: 'Barlow', system-ui, -apple-system, sans-serif;
+  --font-weight-max: 800;
+  --font-weight-button: 700;
+  --heading-style: italic;
+  --heading-stretch: 112.5%;
+  --heading-tracking: -0.01em;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  --container-max: 1280px;
+}
+
+[data-theme='dark'] {
+  --color-bg: var(--color-black);
+  --color-fg: #f4f6fa;
+  --color-muted: var(--color-navy);
+  --color-border: #1f2b48;
+}

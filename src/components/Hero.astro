@@ -1,0 +1,182 @@
+---
+/*
+  Hero: full-bleed background with a dark overlay, a centered 2-line headline,
+  a welcome line, a tagline, and two pill CTAs (call + estimate).
+  Layout was copied from a reference screenshot (structure only). Colors, fonts and copy are Rapid Response's.
+*/
+import { getImage } from 'astro:assets';
+import heroBg from '../assets/hero-bg.png';
+
+interface Props {
+  headlineLead?: string;
+  headlinePlumbing?: string;
+  headlineJoin?: string;
+  headlineRestoration?: string;
+  headlineLocation?: string;
+  welcome?: string;
+  tagline?: string;
+  phoneDisplay?: string;
+  phoneHref?: string;
+  estimateLabel?: string;
+  estimateHref?: string;
+}
+
+const {
+  headlineLead = '24/7',
+  headlinePlumbing = 'Plumbing',
+  headlineJoin = '&',
+  headlineRestoration = 'Restoration',
+  headlineLocation = 'in Victorville & the High Desert',
+  welcome = 'Welcome to Rapid Response Plumbing & Restoration',
+  tagline = 'We Respond Fast. We Restore Right.',
+  phoneDisplay = '855-47-RAPID',
+  phoneHref = 'tel:+18554772743',
+  estimateLabel = 'Request Free Inspection',
+  estimateHref = '/contact-us/',
+} = Astro.props;
+
+const bg = await getImage({ src: heroBg, width: 1920, format: 'webp', quality: 72 });
+const bgMobile = await getImage({ src: heroBg, width: 900, format: 'webp', quality: 68 });
+---
+
+<section class="hero" style={`--hero-bg: url(${bg.src}); --hero-bg-mobile: url(${bgMobile.src});`}>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <h1>
+      <span class="line">
+        {headlineLead} <span class="water">{headlinePlumbing}</span> {headlineJoin}
+        <span class="fire">{headlineRestoration}</span>
+      </span>
+      <span class="line location">{headlineLocation}</span>
+    </h1>
+    <p class="welcome">{welcome}</p>
+    <p class="tagline">{tagline}</p>
+    <div class="ctas">
+      <a class="btn btn-call" href={phoneHref}>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        {phoneDisplay}
+      </a>
+      <a class="btn btn-estimate" href={estimateHref}>{estimateLabel}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: clamp(560px, 78vh, 760px);
+    background: var(--color-black) var(--hero-bg) center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(5, 7, 13, 0.55) 0%, rgba(5, 7, 13, 0.25) 70%),
+      linear-gradient(180deg, rgba(5, 7, 13, 0.35) 0%, rgba(5, 7, 13, 0.15) 50%, rgba(5, 7, 13, 0.7) 100%);
+  }
+  .hero-inner {
+    position: relative;
+    padding-block: var(--space-8);
+    max-width: 1100px;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.9rem);
+    line-height: 1.12;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  }
+  h1 .line {
+    display: block;
+  }
+  h1 .water {
+    color: var(--color-water);
+    text-shadow: var(--glow-water);
+  }
+  h1 .fire {
+    color: var(--color-fire);
+    text-shadow: var(--glow-fire);
+  }
+  h1 .location {
+    background: var(--gradient-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.6));
+  }
+
+  .welcome {
+    margin: var(--space-5) 0 var(--space-2);
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+    font-weight: 600;
+  }
+  .tagline {
+    margin: 0;
+    font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+    font-weight: 500;
+    color: var(--color-chrome);
+  }
+
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 60px;
+    padding: 0 36px;
+    border-radius: var(--radius-pill);
+    font-weight: var(--font-weight-button);
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+  .btn-call {
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    box-shadow: var(--glow-fire);
+  }
+  .btn-call:hover {
+    background: var(--color-fire-dark);
+  }
+  .btn-estimate {
+    background: var(--color-water);
+    color: #fff;
+    box-shadow: var(--glow-water);
+  }
+  .btn-estimate:hover {
+    background: var(--color-water-dark);
+  }
+  .btn:focus-visible {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 700px) {
+    .hero {
+      background-image: var(--hero-bg-mobile);
+      min-height: 520px;
+    }
+    .hero-inner { padding-block: var(--space-7); }
+    .ctas { flex-direction: column; align-items: stretch; gap: var(--space-3); }
+    .btn { font-size: 1.1rem; }
+  }
+</style>

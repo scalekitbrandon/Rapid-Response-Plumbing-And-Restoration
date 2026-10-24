@@ -1,0 +1,29 @@
+---
+// Matches the visible breadcrumb trail already on a page to a BreadcrumbList
+// JSON-LD block, so search results can render the breadcrumb path in the
+// SERP snippet. Pass items in order, Home first.
+interface Crumb {
+  label: string;
+  /** Absolute URL. Build with `new URL(path, Astro.site)` at the call site. */
+  url: string;
+}
+
+interface Props {
+  items: Crumb[];
+}
+
+const { items } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.label,
+    item: item.url,
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

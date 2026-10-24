@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import { primaryNav, utilityLinks, business } from '../data/site';
+---
+
+<BaseLayout
+  title="24/7 Plumbing & Restoration in Victorville, CA | Rapid Response"
+  description="Emergency plumbing, water damage, flood, mold and fire restoration across Victorville, Apple Valley, Hesperia and the High Desert. Call 855-47-RAPID, 24/7."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    reviewUrl={business.reviewUrl}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <Hero phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+</BaseLayout>

@@ -1,0 +1,405 @@
+---
+/*
+  Header: black utility bar plus the main nav bar. The circular logo overlaps both bars.
+  Layout was copied from a reference screenshot (structure only). Colors, fonts and copy are Rapid Response's.
+  Desktop dropdowns open on hover/focus. Mobile uses a toggle button with accordion submenus.
+*/
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+
+interface NavChild {
+  label: string;
+  href: string;
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  children?: NavChild[];
+}
+
+interface UtilityLink {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  businessName?: string;
+  nav?: NavItem[];
+  utilityLinks?: UtilityLink[];
+  reviewUrl?: string;
+  phoneDisplay?: string;
+  phoneHref?: string;
+}
+
+const {
+  businessName = 'Rapid Response Plumbing & Restoration',
+  nav = [],
+  utilityLinks = [],
+  reviewUrl,
+  phoneDisplay = '855-47-RAPID',
+  phoneHref = 'tel:+18554772743',
+} = Astro.props;
+
+const current = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="utility-bar">
+    <div class="container utility-inner">
+      <ul class="utility-links">
+        {utilityLinks.map((item) => (
+          <li>{item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}</li>
+        ))}
+      </ul>
+      {reviewUrl && (
+        <a class="utility-icon" href={reviewUrl} target="_blank" rel="noopener" aria-label="Review us on Google">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21.35 11.1H12v3.2h5.35c-.23 1.4-1.66 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.95S8.78 6.5 12 6.5c1.83 0 3.06.78 3.76 1.45l2.57-2.47C16.68 3.94 14.55 3 12 3 7.03 3 3 7.03 3 12s4.03 9 9 9c5.2 0 8.64-3.65 8.64-8.8 0-.59-.06-1.04-.29-1.1z"/></svg>
+        </a>
+      )}
+    </div>
+  </div>
+
+  <div class="main-bar">
+    <div class="container main-inner">
+      <a class="logo" href="/" aria-label={`${businessName} home`}>
+        <Image src={logo} alt={businessName} width={150} height={150} densities={[1, 2]} loading="eager" />
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span class="sr-only">Menu</span>
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+        <ul class="nav-list">
+          {nav.map((item) => (
+            <li class={item.children ? 'has-children' : undefined}>
+              <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+                {item.label}
+                {item.children && (
+                  <svg class="chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+                )}
+              </a>
+              {item.children && (
+                <>
+                  <button class="sub-toggle" type="button" aria-expanded="false" aria-label={`Show ${item.label} links`}>
+                    <svg viewBox="0 0 12 12" width="14" height="14" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+                  </button>
+                  <ul class="dropdown">
+                    {item.children.map((child) => (
+                      <li><a href={child.href}>{child.label}</a></li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <a class="header-phone" href={phoneHref}>
+        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        <span>{phoneDisplay}</span>
+      </a>
+    </div>
+    <div class="fire-water-line" aria-hidden="true"></div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('.site-header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    header?.classList.toggle('nav-open', !open);
+  });
+  header?.querySelectorAll<HTMLButtonElement>('.sub-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.parentElement?.classList.toggle('sub-open', !open);
+    });
+  });
+</script>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 50;
+    font-family: var(--font-body);
+  }
+
+  /* Utility bar */
+  .utility-bar {
+    background: var(--color-black);
+    color: #fff;
+  }
+  .utility-inner {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-5);
+    height: 44px;
+  }
+  .utility-links {
+    display: flex;
+    gap: var(--space-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .utility-links a,
+  .utility-icon {
+    color: #fff;
+    text-decoration: none;
+  }
+  .utility-links a:hover,
+  .utility-icon:hover {
+    color: var(--color-flame);
+  }
+  .utility-icon {
+    display: inline-flex;
+  }
+
+  /* Main bar */
+  .main-bar {
+    position: relative;
+    background: linear-gradient(180deg, var(--color-navy-2) 0%, var(--color-navy) 100%);
+  }
+  .main-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    height: 84px;
+  }
+  .fire-water-line {
+    height: 3px;
+    background: var(--gradient-fire-water);
+  }
+
+  /* Logo hangs up into the utility bar */
+  .logo {
+    position: relative;
+    align-self: flex-start;
+    flex: none;
+    width: 150px;
+    height: 84px;
+  }
+  .logo :global(img) {
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    width: 150px;
+    height: 150px;
+    /* Logo art has black square corners; a 57% circle keeps the phone line and trims most of each corner */
+    clip-path: circle(57% at 50% 50%);
+  }
+
+  .primary-nav {
+    margin-left: auto;
+  }
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-list > li {
+    position: relative;
+  }
+  .nav-list > li > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 30px 10px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+  .nav-list > li > a:hover,
+  .nav-list > li > a[aria-current='page'] {
+    color: var(--color-water);
+  }
+  .sub-toggle {
+    display: none;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 240px;
+    margin: 0;
+    padding: var(--space-2) 0;
+    list-style: none;
+    background: var(--color-black);
+    border-top: 3px solid var(--color-fire);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.15s, transform 0.15s, visibility 0.15s;
+  }
+  .has-children:hover > .dropdown,
+  .has-children:focus-within > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .dropdown a {
+    display: block;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .dropdown a:hover,
+  .dropdown a:focus-visible {
+    background: var(--color-navy);
+    color: var(--color-water);
+  }
+
+  .header-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: none;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: 0.01em;
+  }
+  .header-phone svg {
+    color: var(--color-fire);
+    filter: drop-shadow(0 0 6px rgba(227, 32, 43, 0.6));
+  }
+  .header-phone:hover span {
+    color: var(--color-water);
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Medium screens: tighten */
+  @media (max-width: 1240px) {
+    .main-inner { gap: var(--space-3); }
+    .nav-list > li > a { font-size: 1rem; padding-inline: 7px; }
+    .header-phone { font-size: 1.3rem; }
+    .header-phone svg { width: 24px; height: 24px; }
+  }
+
+  /* Mobile: hamburger + accordion */
+  @media (max-width: 1024px) {
+    .utility-inner { height: 36px; gap: var(--space-3); }
+    .utility-links { gap: var(--space-3); font-size: 0.8rem; }
+    .main-inner { height: 72px; }
+    .logo { width: 104px; height: 72px; }
+    .logo :global(img) { width: 104px; height: 104px; bottom: -14px; }
+
+    .header-phone { margin-left: auto; font-size: 1.15rem; }
+    .header-phone svg { width: 20px; height: 20px; }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      order: 3;
+      background: none;
+      border: 2px solid var(--color-chrome);
+      border-radius: var(--radius-md);
+      color: #fff;
+      cursor: pointer;
+    }
+    .bars,
+    .bars::before,
+    .bars::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      position: relative;
+    }
+    .bars::before,
+    .bars::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+    .bars::before { top: -6px; }
+    .bars::after { top: 6px; }
+
+    .primary-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      background: var(--color-black);
+      border-top: 3px solid var(--color-fire);
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+    }
+    .nav-open .primary-nav { display: block; }
+    .nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: var(--space-2) 0; }
+    .nav-list > li { display: flex; flex-wrap: wrap; border-bottom: 1px solid #1a2238; }
+    .nav-list > li > a { flex: 1; padding: 14px 20px; }
+    .nav-list .chev { display: none; }
+    .sub-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      background: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+    }
+    .sub-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
+    .dropdown {
+      position: static;
+      flex-basis: 100%;
+      display: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: 0;
+      border-radius: 0;
+      background: var(--color-navy);
+    }
+    .has-children:hover > .dropdown { display: none; }
+    .sub-open > .dropdown,
+    .sub-open:hover > .dropdown { display: block; }
+    .dropdown a { padding-left: 36px; }
+  }
+
+  @media (max-width: 520px) {
+    .utility-links li:nth-child(n + 2) { display: none; }
+    .header-phone span { display: none; }
+    .header-phone svg { width: 28px; height: 28px; }
+  }
+</style>
