@@ -57,7 +57,6 @@ export const primaryNav = [
 ];
 
 export const utilityLinks = [
-  { label: '24/7 Emergency Service' },
+  { label: '24/7 Emergency Response – 1 Hour or Less' },
   { label: 'Free Inspections', href: '/contact-us/' },
-  { label: 'Leave a Review', href: business.reviewUrl },
 ];
