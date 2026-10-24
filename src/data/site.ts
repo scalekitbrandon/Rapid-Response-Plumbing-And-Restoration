@@ -7,8 +7,9 @@ export const business = {
   phoneDigits: '855-477-2743',
   phoneHref: 'tel:+18554772743',
   reviewUrl: 'https://g.page/r/CZU8FEaOlw9ZEAI/review',
-  googlePlaceId: 'ChIJV7kjZcpgw4ARtQv8bCQy2cY',
-  googleReviewsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJV7kjZcpgw4ARtQv8bCQy2cY',
+  // Google Business Profile (verified 2026-10-24: "Rapid Response Plumbing & Restoration", 5.0, service-area business)
+  googleCid: '2658138234312743476',
+  googleReviewsUrl: 'https://www.google.com/maps?cid=2658138234312743476',
   tagline: 'We Respond Fast. We Restore Right.',
 };
 

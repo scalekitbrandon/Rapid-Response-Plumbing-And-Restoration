@@ -26,3 +26,10 @@ Build type: reference-site mimic from screenshots, built one section at a time.
 ## Service areas (each has its own page)
 Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs, Helendale; hub page at /locations/
 URLs are mixed: /victorville/ and the other plain city slugs, except /property-restoration-apple-valley/ and /property-restoration-adelanto/
+
+## Google Business Profile (verified 2026-10-24)
+- Listing: "Rapid Response Plumbing & Restoration". Primary category: Water damage restoration service. Rating 5.0. Open 24 hours. (855) 477-2743
+- Service-area business: no public address
+- GBP service areas also include **Daggett** (not on the current website)
+- Link: https://www.google.com/maps?cid=2658138234312743476  |  Write review: https://g.page/r/CZU8FEaOlw9ZEAI/review
+- WARNING: the reference site 855gotclog.com is Cisneros Brothers (Hesperia), a direct competitor. Never pull reviews, IDs or data from it.

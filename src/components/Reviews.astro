@@ -13,7 +13,7 @@ interface Props {
 
 const { googleReviewsUrl, writeReviewUrl } = Astro.props;
 const hasReviews = reviews.length > 0;
-const shown = reviews.slice(0, 6);
+const shown = reviews.slice(0, 8);
 const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null;
 ---
 
@@ -154,7 +154,7 @@ const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-4);
     margin: 0;
     padding: 0;
@@ -175,7 +175,7 @@ const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null
   }
   blockquote {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1.6;
     color: #2a3245;
   }
@@ -268,6 +268,7 @@ const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null
   @media (max-width: 600px) {
     .reviews { padding-block: var(--space-7); }
     .grid { grid-template-columns: 1fr; }
+    .card:nth-child(n + 5) { display: none; }
     .empty { padding: var(--space-5) var(--space-4); }
     .btn { width: 100%; justify-content: center; }
   }
