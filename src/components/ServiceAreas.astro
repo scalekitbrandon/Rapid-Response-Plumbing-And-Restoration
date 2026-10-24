@@ -1,0 +1,232 @@
+---
+/*
+  Service Areas: 8 linked town cards on the fire/water brand background (a "pop" section),
+  plus a 24/7 emergency card. Each card links to its town page, for local SEO internal linking.
+  Town blurbs are adapted from the client's current homepage.
+*/
+import { fireWaterBg } from '../lib/fireWaterBg';
+import { serviceAreas } from '../data/site';
+
+interface Props {
+  phoneDisplay?: string;
+  phoneHref?: string;
+}
+
+const { phoneDisplay = '855-47-RAPID', phoneHref = 'tel:+18554772743' } = Astro.props;
+const bgVars = await fireWaterBg();
+---
+
+<section class="areas" style={bgVars} aria-labelledby="areas-heading">
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="container inner">
+    <div class="head">
+      <span class="eyebrow">Service Areas</span>
+      <h2 id="areas-heading">
+        Plumbing &amp; Restoration <span class="accent">Across the High Desert</span>
+      </h2>
+      <p>
+        Local crews ready 24/7 for homes, rentals and businesses in eight Southern California High Desert
+        communities.
+      </p>
+    </div>
+
+    <ul class="grid">
+      {serviceAreas.map((a) => (
+        <li>
+          <a class="town" href={`/${a.slug}/`}>
+            <span class="pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+            </span>
+            <span class="name">{a.name}, CA</span>
+            <span class="blurb">{a.blurb}</span>
+            <span class="go">View {a.name} <span aria-hidden="true">→</span></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="emergency">
+      <div>
+        <p class="em-title">Near one of these cities?</p>
+        <p class="em-text">If you are close to our service area, call. Tell us what happened and where, and we will help you take the next step.</p>
+      </div>
+      <a class="call" href={phoneHref}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        {phoneDisplay}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-8);
+    background: var(--color-black) var(--fw-bg) center / cover no-repeat;
+    color: #fff;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(5, 7, 13, 0.85) 0%, rgba(10, 26, 63, 0.7) 50%, rgba(5, 7, 13, 0.88) 100%);
+  }
+  .inner {
+    position: relative;
+  }
+
+  .head {
+    max-width: 780px;
+    margin: 0 auto var(--space-6);
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-flame);
+  }
+  h2 {
+    font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+  h2 .accent {
+    color: var(--color-water);
+    text-shadow: var(--glow-water);
+  }
+  .head p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-chrome);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .town {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    height: 100%;
+    padding: var(--space-4);
+    border: 1px solid rgba(201, 206, 214, 0.22);
+    border-radius: var(--radius-lg);
+    background: rgba(5, 7, 13, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    text-decoration: none;
+    transition: border-color 0.15s, transform 0.15s, background 0.15s;
+  }
+  .town:hover,
+  .town:focus-visible {
+    border-color: var(--color-water);
+    background: rgba(10, 26, 63, 0.75);
+    transform: translateY(-3px);
+  }
+  .pin {
+    color: var(--color-fire);
+  }
+  li:nth-child(even) .pin {
+    color: var(--color-water);
+  }
+  .name {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
+  .blurb {
+    font-size: 0.97rem;
+    line-height: 1.5;
+    color: #cfd4dd;
+  }
+  .go {
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-flame);
+  }
+
+  .emergency {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+    padding: var(--space-4) var(--space-5);
+    border-radius: var(--radius-lg);
+    background: rgba(227, 32, 43, 0.14);
+    border: 1px solid rgba(227, 32, 43, 0.5);
+  }
+  .em-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.3rem;
+  }
+  .em-text {
+    margin: 4px 0 0;
+    color: #d9dde5;
+  }
+  .call {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 30px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .call:hover {
+    background: var(--color-fire-dark);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .emergency { flex-direction: column; align-items: stretch; text-align: center; }
+    .call { justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .areas { background-image: var(--fw-bg-mobile); padding-block: var(--space-7); }
+    .grid { grid-template-columns: 1fr; gap: var(--space-2); }
+    .town { padding: var(--space-3) var(--space-4); }
+    .blurb { display: none; }
+    .town { display: grid; grid-template-columns: auto 1fr auto; align-items: center; column-gap: var(--space-3); }
+    .go { margin: 0; padding: 0; font-size: 0; }
+    .go span { font-size: 1.2rem; }
+  }
+</style>

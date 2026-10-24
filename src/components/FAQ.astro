@@ -1,0 +1,243 @@
+---
+/*
+  FAQ: two columns. On the left, a sticky heading and call card. On the right, an accordion
+  built with native <details>/<summary> (no JS). It also outputs FAQPage JSON-LD.
+  Most answers are adapted from the client's current site. Items marked TODO(client) need confirmation.
+*/
+interface QA {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items?: QA[];
+  phoneDisplay?: string;
+  phoneHref?: string;
+}
+
+const {
+  items = [
+    { q: 'Do you provide 24/7 emergency service?', a: 'Yes. Rapid Response provides 24/7 emergency response for urgent water, flood, plumbing, mold, fire and smoke damage, when waiting would let the damage keep spreading.' },
+    // TODO(client): confirm the 1-hour response time holds across the full service area.
+    { q: 'How fast can you get to my property?', a: 'We respond in 1 hour or less across our High Desert service area, day or night. Call 855-47-RAPID and a crew gets moving right away.' },
+    // TODO(client): confirm they repair the source plumbing issue, not only the resulting damage.
+    { q: 'Can you fix the leak and the water damage it caused?', a: 'Yes. As a plumbing and restoration company, we can stop the leak at its source and handle the water extraction, drying and cleanup it caused, so you are not coordinating two different companies.' },
+    { q: 'What areas do you serve?', a: 'We serve Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale in Southern California’s High Desert. If you are near one of these cities, call and ask.' },
+    { q: 'Do you work with my insurance company?', a: 'We work with all major insurance carriers. We document the damage with photos and moisture readings, keep you updated as mitigation progresses, and keep the restoration side of your claim organized.' },
+    { q: 'Do I need to know exactly what service I need?', a: 'No. Tell us what happened and what you can see. You do not need to diagnose the property or pick a restoration category before calling.' },
+    { q: 'Should I wait if the damage looks small?', a: 'Damage often extends farther than what you can see. Water travels behind walls and under flooring, and moisture can lead to mold. If you are unsure how serious it is, calling early helps you understand what needs attention.' },
+    { q: 'Do you handle commercial properties?', a: 'Yes. We work with homes and commercial properties, including offices, retail spaces, warehouses, rentals and managed multi-unit buildings.' },
+  ],
+  phoneDisplay = '855-47-RAPID',
+  phoneHref = 'tel:+18554772743',
+} = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<section class="faq" aria-labelledby="faq-heading">
+  <div class="container layout">
+    <div class="side">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-heading">
+        Questions We <span class="accent">Hear the Most</span>
+      </h2>
+      <p>Straight answers about emergency response, insurance and what to expect when you call.</p>
+
+      <div class="card">
+        <p class="card-title">Still have a question?</p>
+        <p class="card-text">Talk to a real person, 24/7.</p>
+        <a class="call" href={phoneHref}>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+          {phoneDisplay}
+        </a>
+      </div>
+    </div>
+
+    <div class="list">
+      {items.map((item, i) => (
+        <details open={i === 0}>
+          <summary>
+            <span>{item.q}</span>
+            <span class="icon" aria-hidden="true"></span>
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</section>
+
+<style>
+  .faq {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .side {
+    position: sticky;
+    top: var(--space-5);
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-water);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+  }
+  h2 .accent {
+    color: var(--color-fire);
+  }
+  .side > p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+
+  .card {
+    margin-top: var(--space-5);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-navy-2) 0%, var(--color-black) 100%);
+    color: #fff;
+    box-shadow: inset 0 3px 0 var(--color-fire), 0 16px 32px rgba(10, 26, 63, 0.18);
+  }
+  .card-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.35rem;
+  }
+  .card-text {
+    margin: 6px 0 var(--space-4);
+    color: var(--color-chrome);
+  }
+  .call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 28px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .call:hover {
+    background: var(--color-fire-dark);
+    transform: translateY(-2px);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  details {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  details[open] {
+    border-color: var(--color-water);
+    box-shadow: 0 8px 24px rgba(10, 26, 63, 0.08);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    font-size: 1.12rem;
+    color: var(--color-fg);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:focus-visible {
+    outline: 3px solid var(--color-water);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+  .icon {
+    position: relative;
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--color-muted);
+  }
+  .icon::before,
+  .icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2.5px;
+    background: var(--color-fire);
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s;
+  }
+  .icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+  details[open] .icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  details p {
+    margin: 0;
+    padding: 0 var(--space-4) var(--space-4);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #3a4356;
+  }
+
+  @media (max-width: 1000px) {
+    .layout { grid-template-columns: 1fr; gap: var(--space-5); }
+    .side { position: static; }
+    .card { display: none; }
+  }
+  @media (max-width: 600px) {
+    .faq { padding-block: var(--space-7); }
+    summary { padding: var(--space-3); font-size: 1.02rem; }
+    details p { padding: 0 var(--space-3) var(--space-3); }
+  }
+</style>

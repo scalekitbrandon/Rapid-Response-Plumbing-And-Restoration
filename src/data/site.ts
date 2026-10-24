@@ -7,18 +7,20 @@ export const business = {
   phoneDigits: '855-477-2743',
   phoneHref: 'tel:+18554772743',
   reviewUrl: 'https://g.page/r/CZU8FEaOlw9ZEAI/review',
+  googlePlaceId: 'ChIJV7kjZcpgw4ARtQv8bCQy2cY',
+  googleReviewsUrl: 'https://www.google.com/maps/place/?q=place_id:ChIJV7kjZcpgw4ARtQv8bCQy2cY',
   tagline: 'We Respond Fast. We Restore Right.',
 };
 
 export const serviceAreas = [
-  { name: 'Victorville', slug: 'victorville' },
-  { name: 'Apple Valley', slug: 'apple-valley' },
-  { name: 'Hesperia', slug: 'hesperia' },
-  { name: 'Barstow', slug: 'barstow' },
-  { name: 'Adelanto', slug: 'adelanto' },
-  { name: 'Yermo', slug: 'yermo' },
-  { name: 'Newberry Springs', slug: 'newberry-springs' },
-  { name: 'Helendale', slug: 'helendale' },
+  { name: 'Victorville', slug: 'victorville', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
+  { name: 'Apple Valley', slug: 'apple-valley', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
+  { name: 'Hesperia', slug: 'hesperia', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
+  { name: 'Barstow', slug: 'barstow', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
+  { name: 'Adelanto', slug: 'adelanto', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
+  { name: 'Yermo', slug: 'yermo', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
+  { name: 'Newberry Springs', slug: 'newberry-springs', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
+  { name: 'Helendale', slug: 'helendale', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
 ];
 
 export const restorationServices = [
