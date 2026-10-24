@@ -1,107 +1,233 @@
 ---
-interface LinkGroup {
-  heading: string;
-  links: { label: string; href: string }[];
-}
+/*
+  Site footer: a black base with the fire/water line along the top.
+  Columns: brand + contact, Restoration links, Plumbing links, Service Areas. The bottom bar has the copyright,
+  legal links and the required ScaleKit credit.
+  NAP: name + phone only. The Google profile is a service-area business with no public address,
+  so no address is shown. TODO(client): add the CSLB license # once provided.
+*/
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { business, restorationServices, plumbingServices, serviceAreas } from '../data/site';
+import { reviewSummary } from '../data/reviews';
 
-interface Props {
-  logoText?: string;
-  groups?: LinkGroup[];
-  /** NAP block — omit any field that isn't confirmed yet rather than guessing. */
-  phone?: string;
-  email?: string;
-  address?: string;
-}
-
-const { logoText = 'Logo', groups = [], phone, email, address } = Astro.props;
 const year = new Date().getFullYear();
-const hasNap = Boolean(phone || email || address);
 ---
 
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      {logoText}
-      {hasNap && (
-        <ul class="footer-nap">
-          {address && <li>{address}</li>}
-          {phone && <li><a href={`tel:${phone.replace(/[^\d+]/g, '')}`}>{phone}</a></li>}
-          {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
-        </ul>
+  <div class="fire-water-line" aria-hidden="true"></div>
+  <div class="container top">
+    <div class="brand">
+      <a href="/" class="logo" aria-label={`${business.name} home`}>
+        <Image src={logo} alt={business.name} width={110} height={110} densities={[1, 2]} loading="lazy" />
+      </a>
+      <p class="tagline">{business.tagline}</p>
+      <a class="phone" href={business.phoneHref}>{business.phoneDisplay}</a>
+      <p class="phone-digits">{business.phoneDigits}</p>
+      <ul class="meta">
+        <li>Open 24 hours, 7 days a week</li>
+        <li>Serving Southern California&rsquo;s High Desert</li>
+      </ul>
+      {reviewSummary.rating !== null && (
+        <a class="rating" href={business.googleReviewsUrl} target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          {reviewSummary.rating.toFixed(1)} on Google
+        </a>
       )}
     </div>
-    <div class="footer-groups">
-      {groups.map((group) => (
-        <div class="footer-group">
-          <h4>{group.heading}</h4>
-          <ul>
-            {group.links.map((link) => (
-              <li><a href={link.href}>{link.label}</a></li>
-            ))}
-          </ul>
-        </div>
-      ))}
+
+    <nav class="col" aria-label="Restoration services">
+      <p class="heading">Restoration</p>
+      <ul>
+        {restorationServices.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <nav class="col" aria-label="Plumbing services">
+      <p class="heading">Plumbing</p>
+      <ul>
+        {plumbingServices.map((s) => <li><a href={s.href}>{s.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <nav class="col" aria-label="Service areas">
+      <p class="heading">Service Areas</p>
+      <ul class="areas">
+        {serviceAreas.map((a) => <li><a href={`/${a.slug}/`}>{a.name}, CA</a></li>)}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="bottom">
+    <div class="container bottom-inner">
+      <p class="copy">&copy; {year} {business.name}. All rights reserved.</p>
+      <ul class="legal">
+        <li><a href="/about-us/">About Us</a></li>
+        <li><a href="/#request-inspection">Contact</a></li>
+        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+      </ul>
     </div>
-    <p class="footer-copyright">&copy; {year} {logoText}. All rights reserved.</p>
-    {/* Standing rule for every site built from this starter kit — do not
-        remove or make optional. See astro-dept SKILL.md Universal Standards. */}
+    {/* Standing rule for every site built from the starter kit. Do not remove, reword or make this optional. */}
     <p class="built-by">Website and Local SEO by <a href="https://scalekit.io" target="_blank" rel="noopener noreferrer">ScaleKit.io</a></p>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    border-top: 1px solid var(--color-border);
-    padding-block: var(--space-6);
-    background: var(--color-muted);
+    background: var(--color-black);
+    color: #cfd4dd;
   }
-  .footer-nap {
-    list-style: none;
-    margin: var(--space-2) 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 0.85rem;
-    opacity: 0.75;
+  .fire-water-line {
+    height: 3px;
+    background: var(--gradient-fire-water);
   }
-  .footer-nap a {
-    color: inherit;
-    text-decoration: none;
-  }
-  .footer-groups {
-    display: flex;
+  .top {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
     gap: var(--space-6);
-    margin-block: var(--space-4);
+    padding-block: var(--space-7);
   }
-  .footer-group h4 {
-    font-weight: var(--font-weight-button);
-    margin-bottom: var(--space-2);
+
+  .logo {
+    display: inline-block;
   }
-  .footer-group ul {
-    list-style: none;
+  .logo :global(img) {
+    display: block;
+    width: 110px;
+    height: 110px;
+    clip-path: circle(57% at 50% 50%);
+  }
+  .tagline {
+    margin: var(--space-3) 0 var(--space-2);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    color: #fff;
+  }
+  .phone {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: var(--color-fire);
+    text-decoration: none;
+    text-shadow: var(--glow-fire);
+  }
+  .phone:hover {
+    color: #fff;
+  }
+  .phone-digits {
+    margin: 2px 0 0;
+    font-weight: 600;
+    color: var(--color-chrome);
+  }
+  .meta {
+    margin: var(--space-3) 0 0;
     padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    list-style: none;
+    display: grid;
+    gap: 4px;
+    font-size: 0.95rem;
   }
-  .footer-group a {
-    color: var(--color-fg);
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: var(--space-3);
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(201, 206, 214, 0.3);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
     text-decoration: none;
   }
-  .footer-copyright {
-    font-size: 0.85rem;
-    color: var(--color-fg);
-    opacity: 0.6;
+  .rating .stars {
+    color: #f5b301;
+    letter-spacing: 1px;
+  }
+
+  .heading {
+    margin: 0 0 var(--space-3);
+    padding-left: 10px;
+    border-left: 3px solid var(--color-fire);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .col:nth-of-type(2) .heading { border-left-color: var(--color-water); }
+  .col:nth-of-type(3) .heading { border-left-color: var(--color-flame); }
+  .col ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .col a {
+    color: #cfd4dd;
+    text-decoration: none;
+    font-size: 0.98rem;
+  }
+  .col a:hover {
+    color: var(--color-water);
+  }
+
+  .bottom {
+    border-top: 1px solid #1a2238;
+    padding-block: var(--space-4);
+  }
+  .bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .copy {
+    margin: 0;
+    font-size: 0.88rem;
+  }
+  .legal {
+    display: flex;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.88rem;
+  }
+  .legal a {
+    color: #cfd4dd;
+    text-decoration: none;
+  }
+  .legal a:hover {
+    color: #fff;
   }
   .built-by {
-    font-size: 0.8rem;
-    color: var(--color-fg);
-    opacity: 0.5;
-    margin-top: var(--space-2);
+    margin: var(--space-3) 0 0;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #8d95a3;
   }
   .built-by a {
     color: inherit;
+  }
+
+  @media (max-width: 1000px) {
+    .top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .top { gap: var(--space-5) var(--space-4); padding-block: var(--space-6); }
+    .brand { grid-column: 1 / -1; }
+    .col:last-child { grid-column: 1 / -1; }
+    .areas { grid-template-columns: 1fr 1fr; }
+    .bottom-inner { flex-direction: column; align-items: flex-start; }
+    .built-by { text-align: left; padding-inline: var(--space-4); }
   }
 </style>

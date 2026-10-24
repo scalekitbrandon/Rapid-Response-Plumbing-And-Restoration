@@ -1,0 +1,442 @@
+---
+/*
+  Request an Inspection: two columns on the fire/water brand background (a "pop" section).
+  On the left: heading, urgency copy, contact facts and the Google rating. On the right: a white lead form card.
+  Submits via src/scripts/lead.ts to the GHL webhook when FORMS_LIVE is true (same pattern as M.C. Movers).
+  In demo mode (FORMS_LIVE = false) it validates, shows a note and sends nothing.
+*/
+import { fireWaterBg } from '../lib/fireWaterBg';
+import { FORMS_LIVE, LEAD_WEBHOOK, business, serviceAreas, damageTypes } from '../data/site';
+import { reviewSummary } from '../data/reviews';
+
+const bgVars = await fireWaterBg();
+const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
+---
+
+<section id="request-inspection" class="inspection" style={bgVars} aria-labelledby="inspection-heading">
+  <div class="overlay" aria-hidden="true"></div>
+  <div class="container layout">
+    <div class="pitch">
+      <span class="eyebrow">Free Inspection</span>
+      <h2 id="inspection-heading">
+        Request Your <span class="accent">Free Inspection</span>
+      </h2>
+      <p class="lead">
+        Tell us what happened and where. We will call you back fast to get eyes on the damage. For active water,
+        flooding or fire damage, call now. Every minute counts.
+      </p>
+
+      <a class="call" href={business.phoneHref}>
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        <span>
+          <small>Emergency? Call 24/7</small>
+          {business.phoneDisplay}
+        </span>
+      </a>
+
+      <ul class="facts">
+        <li><strong>24/7</strong> emergency response, 1 hour or less</li>
+        <li><strong>Free</strong> inspections, no obligation</li>
+        <li><strong>All major</strong> insurance carriers</li>
+        <li><strong>Homes &amp; businesses</strong> across the High Desert</li>
+      </ul>
+
+      {reviewSummary.rating !== null && (
+        <a class="rating" href={business.googleReviewsUrl} target="_blank" rel="noopener">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span><strong>{reviewSummary.rating.toFixed(1)}</strong> on Google</span>
+        </a>
+      )}
+    </div>
+
+    <div class="card">
+      <form
+        class="lead-form"
+        method="post"
+        action={live ? LEAD_WEBHOOK : '#request-inspection'}
+        data-lead={live ? '' : undefined}
+        data-demo={live ? undefined : 'true'}
+        data-endpoint={LEAD_WEBHOOK}
+        data-success="/thank-you/"
+        data-form-name="Free inspection form"
+      >
+        <p class="form-title">Get help now</p>
+        <p class="form-sub">Fields marked * are required.</p>
+
+        <div class="hp" aria-hidden="true">
+          <label for="i-website">Website</label>
+          <input id="i-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="fields">
+          <div class="f">
+            <label for="i-name">Full name *</label>
+            <input id="i-name" name="name" type="text" autocomplete="name" required />
+          </div>
+          <div class="f">
+            <label for="i-phone">Phone *</label>
+            <input id="i-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required />
+          </div>
+          <div class="f">
+            <label for="i-email">Email</label>
+            <input id="i-email" name="email" type="email" autocomplete="email" />
+          </div>
+          <div class="f">
+            <label for="i-city">City *</label>
+            <select id="i-city" name="city" required>
+              <option value="" selected disabled>Choose your city</option>
+              {serviceAreas.map((a) => <option value={a.name}>{a.name}</option>)}
+              <option value="Other / nearby">Other / nearby</option>
+            </select>
+          </div>
+          <div class="f full">
+            <label for="i-type">What happened? *</label>
+            <select id="i-type" name="damage_type" required>
+              <option value="" selected disabled>Choose the closest match</option>
+              {damageTypes.map((d) => <option value={d}>{d}</option>)}
+            </select>
+          </div>
+          <fieldset class="f full urgency">
+            <legend>Is water or damage still active right now?</legend>
+            <label class="radio"><input type="radio" name="urgency" value="Active now" /> Yes, it is happening now</label>
+            <label class="radio"><input type="radio" name="urgency" value="Not active" /> No, it has stopped</label>
+          </fieldset>
+          <div class="f full">
+            <label for="i-details">Details</label>
+            <textarea id="i-details" name="details" rows="3" placeholder="Where is the damage, and what do you see?"></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="submit">Request Free Inspection</button>
+
+        <p class="lead-error" role="alert" hidden>
+          Something went wrong sending your request. Please call {business.phoneDisplay} and we will help right away.
+        </p>
+        <p class="demo-note" role="status" hidden>
+          Preview mode: this form is not connected yet, so nothing was sent. Please call {business.phoneDisplay}.
+        </p>
+
+        <p class="consent">
+          By submitting, you agree that {business.name} may contact you by phone, text or email about your request.
+          Message and data rates may apply. Reply STOP to opt out. See our <a href="/privacy-policy/">Privacy Policy</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { wireLeadForms } from '../scripts/lead';
+  wireLeadForms();
+
+  // Demo mode: keep browser validation, but never send anything.
+  document.querySelectorAll<HTMLFormElement>('form[data-demo]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const note = form.querySelector<HTMLElement>('.demo-note');
+      if (note) note.hidden = false;
+    });
+  });
+</script>
+
+<style>
+  .inspection {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-8);
+    background: var(--color-black) var(--fw-bg) center / cover no-repeat;
+    color: #fff;
+    scroll-margin-top: 0;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(5, 7, 13, 0.92) 0%, rgba(5, 7, 13, 0.7) 50%, rgba(10, 26, 63, 0.75) 100%);
+  }
+  .layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: var(--space-7);
+    align-items: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-flame);
+  }
+  h2 {
+    font-size: clamp(2rem, 3.6vw, 3rem);
+    line-height: 1.1;
+  }
+  h2 .accent {
+    color: var(--color-fire);
+    text-shadow: var(--glow-fire);
+  }
+  .lead {
+    margin: var(--space-3) 0 var(--space-5);
+    max-width: 52ch;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #d9dde5;
+  }
+
+  .call {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 14px 32px 14px 24px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .call:hover {
+    background: var(--color-fire-dark);
+    transform: translateY(-2px);
+  }
+  .call span {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 1.7rem;
+    line-height: 1.05;
+  }
+  .call small {
+    font-family: var(--font-body);
+    font-style: normal;
+    font-stretch: normal;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    opacity: 0.9;
+  }
+
+  .facts {
+    display: grid;
+    gap: 10px;
+    margin: var(--space-5) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .facts li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 1.05rem;
+    color: #e6e9ef;
+  }
+  .facts li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-water);
+    box-shadow: var(--glow-water);
+  }
+  .facts strong {
+    color: #fff;
+  }
+
+  .rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--space-4);
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(201, 206, 214, 0.3);
+    color: #fff;
+    text-decoration: none;
+  }
+  .rating .stars {
+    color: #f5b301;
+    letter-spacing: 2px;
+  }
+  .rating:hover {
+    border-color: #f5b301;
+  }
+
+  /* Form card */
+  .card {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    color: var(--color-fg);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    border-top: 5px solid transparent;
+    border-image: var(--gradient-fire-water) 1;
+    border-image-slice: 1 0 0 0;
+  }
+  .form-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+  }
+  .form-sub {
+    margin: 4px 0 var(--space-4);
+    font-size: 0.9rem;
+    color: #5a6478;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+  .f {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+  .full {
+    grid-column: 1 / -1;
+  }
+  label,
+  legend {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #2a3245;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    border: 1.5px solid #cdd3dd;
+    border-radius: var(--radius-md);
+    background: #fff;
+    color: var(--color-fg);
+    font: inherit;
+    font-size: 1rem;
+  }
+  textarea {
+    min-height: 88px;
+    resize: vertical;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-water);
+    box-shadow: 0 0 0 3px rgba(30, 139, 255, 0.2);
+  }
+  .urgency {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+  }
+  .urgency legend {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+  .radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .radio input {
+    width: 20px;
+    min-height: 20px;
+    height: 20px;
+    accent-color: var(--color-fire);
+  }
+
+  .submit {
+    width: 100%;
+    min-height: 58px;
+    margin-top: var(--space-4);
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--glow-fire);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .submit:hover {
+    background: var(--color-fire-dark);
+    transform: translateY(-1px);
+  }
+  .submit:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .submit:focus-visible {
+    outline: 3px solid var(--color-water);
+    outline-offset: 3px;
+  }
+  .lead-error,
+  .demo-note {
+    margin: var(--space-3) 0 0;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .lead-error {
+    background: #fdecec;
+    color: #8f1018;
+  }
+  .demo-note {
+    background: #eaf3ff;
+    color: #0f4fa0;
+  }
+  .consent {
+    margin: var(--space-3) 0 0;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #6b7487;
+  }
+  .consent a {
+    color: inherit;
+  }
+
+  @media (max-width: 1000px) {
+    .layout { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+  @media (max-width: 600px) {
+    .inspection { background-image: var(--fw-bg-mobile); padding-block: var(--space-7); }
+    .call { width: 100%; justify-content: center; }
+    .call span { font-size: 1.45rem; }
+    .card { padding: var(--space-4); }
+    .fields { grid-template-columns: 1fr; }
+  }
+</style>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { primaryNav, utilityLinks, business } from '../data/site';
+---
+
+<BaseLayout title="Thank You | Rapid Response Plumbing & Restoration" description="We received your inspection request." noindex>
+  <Header slot="header" businessName={business.name} nav={primaryNav} utilityLinks={utilityLinks} phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+
+  <section class="thanks">
+    <div class="container">
+      <h1>Request <span class="accent">Received</span></h1>
+      <p>Thanks for reaching out. A member of our team will call you back shortly to set up your free inspection.</p>
+      <p>If water, flooding or fire damage is still active, do not wait. Call us now.</p>
+      <a class="call" href={business.phoneHref}>Call {business.phoneDisplay}</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .thanks {
+    padding-block: var(--space-8);
+    text-align: center;
+    background: var(--color-muted);
+  }
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+  }
+  .accent {
+    color: var(--color-fire);
+  }
+  p {
+    max-width: 56ch;
+    margin: var(--space-3) auto 0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+  .call {
+    display: inline-flex;
+    margin-top: var(--space-5);
+    padding: 16px 34px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+  }
+</style>

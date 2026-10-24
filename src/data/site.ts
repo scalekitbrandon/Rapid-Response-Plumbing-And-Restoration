@@ -1,6 +1,15 @@
 // Single source for business details and navigation.
 // Facts come from rapidresponsefloodrestoration.com (pulled 2026-10-24); see CLIENT-NOTES.md.
 
+/**
+ * Lead forms
+ * - FORMS_LIVE: true = the inspection form POSTs leads (JSON) to LEAD_WEBHOOK (a GHL Inbound Webhook).
+ *   false = demo mode: the form validates and shows a "not connected yet" note but sends nothing.
+ * TODO(client): create the GHL inbound webhook, paste its URL below, then set FORMS_LIVE = true.
+ */
+export const FORMS_LIVE = false;
+export const LEAD_WEBHOOK = '';
+
 export const business = {
   name: 'Rapid Response Plumbing & Restoration',
   phoneDisplay: '855-47-RAPID',
@@ -61,5 +70,16 @@ export const primaryNav = [
 
 export const utilityLinks = [
   { label: '24/7 Emergency Response – 1 Hour or Less' },
-  { label: 'Free Inspections', href: '/contact-us/' },
+  { label: 'Free Inspections', href: '/#request-inspection' },
+];
+
+export const damageTypes = [
+  'Water damage / leak',
+  'Burst pipe / plumbing problem',
+  'Flooding',
+  'Sewage backup',
+  'Mold',
+  'Fire & smoke damage',
+  'Commercial property',
+  'Not sure / other',
 ];

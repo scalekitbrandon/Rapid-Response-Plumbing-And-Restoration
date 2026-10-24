@@ -8,9 +8,11 @@ interface Props {
   canonicalPath?: string;
   /** Absolute URL to an image for Open Graph / Twitter Card previews. */
   ogImage?: string;
+  /** true = keep this page out of search results (thank-you pages, etc.). */
+  noindex?: boolean;
 }
 
-const { title, description = '', canonicalPath, ogImage } = Astro.props;
+const { title, description = '', canonicalPath, ogImage, noindex = false } = Astro.props;
 
 const canonicalURL = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : undefined;
@@ -25,6 +27,7 @@ const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : unde
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,800&family=Saira:ital,wdth,wght@1,112.5,700;1,112.5,800;1,112.5,900&display=swap" />

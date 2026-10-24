@@ -10,6 +10,8 @@ import Process from '../components/Process.astro';
 import Reviews from '../components/Reviews.astro';
 import ServiceAreas from '../components/ServiceAreas.astro';
 import FAQ from '../components/FAQ.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import Footer from '../components/Footer.astro';
 import { primaryNav, utilityLinks, business } from '../data/site';
 ---
 
@@ -35,4 +37,7 @@ import { primaryNav, utilityLinks, business } from '../data/site';
   <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} />
   <ServiceAreas phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
   <FAQ phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+  <InspectionForm />
+
+  <Footer slot="footer" />
 </BaseLayout>
