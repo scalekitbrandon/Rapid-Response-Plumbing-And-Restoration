@@ -1,0 +1,252 @@
+---
+/*
+  Insurance Carriers: a centered heading over a 5x2 grid of carrier logo cards, then a 4-point
+  "how we help with your claim" checklist and a call CTA.
+  Logos and the list of carriers come from the client's current site. Checklist wording comes from
+  their commercial page (documentation, moisture tracking, material communication, progress updates).
+*/
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import stateFarm from '../assets/carriers/state-farm.png';
+import allstate from '../assets/carriers/allstate.webp';
+import farmers from '../assets/carriers/farmers.png';
+import libertyMutual from '../assets/carriers/liberty-mutual.png';
+import progressive from '../assets/carriers/progressive.webp';
+import nationwide from '../assets/carriers/nationwide.png';
+import hartford from '../assets/carriers/the-hartford.png';
+import americanFamily from '../assets/carriers/american-family.webp';
+import chubb from '../assets/carriers/chubb.webp';
+import bearRiver from '../assets/carriers/bear-river-mutual.webp';
+
+interface Carrier {
+  name: string;
+  logo: ImageMetadata;
+}
+
+interface Props {
+  eyebrow?: string;
+  headlineLead?: string;
+  headlineAccent?: string;
+  body?: string;
+  carriers?: Carrier[];
+  steps?: string[];
+  phoneDisplay?: string;
+  phoneHref?: string;
+}
+
+const {
+  eyebrow = 'Insurance Claims',
+  headlineLead = 'We Work With',
+  headlineAccent = 'All Major Insurance Carriers',
+  body = 'Property damage claims have a lot of moving pieces. We keep the restoration side organized and documented, so you understand the work and your claim keeps moving.',
+  carriers = [
+    { name: 'State Farm', logo: stateFarm },
+    { name: 'Allstate', logo: allstate },
+    { name: 'Farmers Insurance', logo: farmers },
+    { name: 'Liberty Mutual', logo: libertyMutual },
+    { name: 'Progressive', logo: progressive },
+    { name: 'Nationwide', logo: nationwide },
+    { name: 'The Hartford', logo: hartford },
+    { name: 'American Family Insurance', logo: americanFamily },
+    { name: 'Chubb', logo: chubb },
+    { name: 'Bear River Mutual', logo: bearRiver },
+  ],
+  steps = [
+    'Photo documentation of the damage and affected areas',
+    'Moisture readings tracked through the drying process',
+    'Clear communication about damaged materials',
+    'Progress updates as mitigation moves forward',
+  ],
+  phoneDisplay = '855-47-RAPID',
+  phoneHref = 'tel:+18554772743',
+} = Astro.props;
+---
+
+<section class="carriers" aria-labelledby="carriers-heading">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 id="carriers-heading">
+        {headlineLead} <span class="accent">{headlineAccent}</span>
+      </h2>
+      <p>{body}</p>
+    </div>
+
+    <ul class="logos">
+      {carriers.map((c) => (
+        <li>
+          <Image src={c.logo} alt={c.name} width={220} densities={[1, 2]} format="webp" loading="lazy" />
+        </li>
+      ))}
+    </ul>
+
+    <div class="help">
+      <ul class="steps">
+        {steps.map((s) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor" /><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            <span>{s}</span>
+          </li>
+        ))}
+      </ul>
+      <a class="call" href={phoneHref}>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+        {phoneDisplay}
+      </a>
+    </div>
+
+    <p class="disclaimer">
+      Carrier names and logos are trademarks of their respective owners. Rapid Response works with
+      policyholders of these carriers and is not affiliated with or endorsed by them.
+    </p>
+  </div>
+</section>
+
+<style>
+  .carriers {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+
+  .head {
+    max-width: 820px;
+    margin: 0 auto var(--space-6);
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-water);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  h2 .accent {
+    color: var(--color-fire);
+  }
+  .head p {
+    margin: var(--space-3) auto 0;
+    max-width: 62ch;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .logos li {
+    display: grid;
+    place-items: center;
+    height: 120px;
+    padding: var(--space-3) var(--space-4);
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .logos li:hover {
+    border-color: var(--color-water);
+    box-shadow: 0 8px 24px rgba(10, 26, 63, 0.08);
+  }
+  .logos :global(img) {
+    max-width: 100%;
+    max-height: 76px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* hides off-white boxes baked into some logo files */
+  }
+
+  .help {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    padding: var(--space-5) var(--space-6);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(120deg, var(--color-navy-2) 0%, var(--color-navy) 60%, var(--color-black) 100%);
+    color: #fff;
+    box-shadow: inset 0 3px 0 var(--color-fire), inset 0 -3px 0 var(--color-water);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3) var(--space-6);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+  .steps svg {
+    flex: none;
+    margin-top: 1px;
+    color: var(--color-water);
+  }
+  .call {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 60px;
+    padding: 0 32px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .call:hover {
+    background: var(--color-fire-dark);
+    transform: translateY(-2px);
+  }
+
+  .disclaimer {
+    margin: var(--space-4) 0 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #7a8396;
+  }
+
+  @media (max-width: 1000px) {
+    .logos { grid-template-columns: repeat(3, 1fr); }
+    .help { flex-direction: column; align-items: stretch; }
+    .call { justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .carriers { padding-block: var(--space-7); }
+    .logos { grid-template-columns: repeat(2, 1fr); gap: var(--space-2); }
+    .logos li { height: 96px; padding: var(--space-2) var(--space-3); }
+    .logos :global(img) { max-height: 60px; }
+    .help { padding: var(--space-4); }
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>

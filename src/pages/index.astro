@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import CoreServices from '../components/CoreServices.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import RealWork from '../components/RealWork.astro';
+import InsuranceCarriers from '../components/InsuranceCarriers.astro';
 import { primaryNav, utilityLinks, business } from '../data/site';
 ---
 
@@ -25,4 +26,5 @@ import { primaryNav, utilityLinks, business } from '../data/site';
   <CoreServices phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
   <TrustStrip />
   <RealWork />
+  <InsuranceCarriers phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
 </BaseLayout>
