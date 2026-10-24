@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
+import CoreServices from '../components/CoreServices.astro';
 import { primaryNav, utilityLinks, business } from '../data/site';
 ---
 
@@ -19,4 +20,5 @@ import { primaryNav, utilityLinks, business } from '../data/site';
   />
 
   <Hero phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+  <CoreServices phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
 </BaseLayout>
