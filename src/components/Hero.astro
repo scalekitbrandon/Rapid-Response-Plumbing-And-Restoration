@@ -27,8 +27,8 @@ const {
   headlineLead = '24/7',
   headlinePlumbing = 'Plumbing',
   headlineJoin = '&',
-  headlineRestoration = 'Restoration',
-  headlineLocation = 'in Victorville & the High Desert',
+  headlineRestoration = 'Water Damage Restoration',
+  headlineLocation = 'in Victorville, CA',
   welcome = 'Welcome to Rapid Response Plumbing & Restoration',
   tagline = 'We Respond Fast. We Restore Right.',
   phoneDisplay = '855-47-RAPID',
@@ -85,7 +85,7 @@ const bgMobile = await getImage({ src: heroBg, width: 900, format: 'webp', quali
   .hero-inner {
     position: relative;
     padding-block: var(--space-8);
-    max-width: 1100px;
+    max-width: 1240px;
   }
 
   .eyebrow {
@@ -114,6 +114,9 @@ const bgMobile = await getImage({ src: heroBg, width: 900, format: 'webp', quali
   h1 .water {
     color: var(--color-water);
     text-shadow: var(--glow-water);
+  }
+  @media (min-width: 701px) {
+    h1 .fire { white-space: nowrap; }
   }
   h1 .fire {
     color: var(--color-fire);
