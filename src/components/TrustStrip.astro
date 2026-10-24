@@ -1,0 +1,126 @@
+---
+/*
+  Trust strip: a dark band with 4 big proof points (value + label + one line).
+  Layout follows the reference site's stats band (structure only). Values are client promises, not counts.
+  TODO(client): confirm "1 hour or less" holds across the full service area before launch.
+*/
+interface Item {
+  value: string;
+  label: string;
+  text: string;
+  tone: 'fire' | 'water' | 'chrome';
+}
+
+interface Props {
+  items?: Item[];
+}
+
+const {
+  items = [
+    { value: '24/7', label: 'Emergency Response', text: 'Nights, weekends and holidays. A real person answers.', tone: 'fire' },
+    { value: '1 HR', label: 'Or Less To Your Door', text: 'Crews on the way fast across the High Desert.', tone: 'water' },
+    { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' },
+    { value: 'CLAIMS', label: 'Insurance Help', text: 'We document the damage and work with your carrier.', tone: 'fire' },
+  ],
+} = Astro.props;
+---
+
+<section class="trust-strip" aria-label="Why property owners call Rapid Response">
+  <div class="fire-water-line" aria-hidden="true"></div>
+  <div class="container">
+    <ul class="items">
+      {items.map((item) => (
+        <li class={`item tone-${item.tone}`}>
+          <span class="value">{item.value}</span>
+          <span class="label">{item.label}</span>
+          <span class="text">{item.text}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+  <div class="fire-water-line" aria-hidden="true"></div>
+</section>
+
+<style>
+  .trust-strip {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(227, 32, 43, 0.18), transparent 55%),
+      radial-gradient(ellipse at 85% 100%, rgba(30, 139, 255, 0.2), transparent 55%),
+      linear-gradient(180deg, var(--color-navy) 0%, var(--color-black) 100%);
+    color: #fff;
+  }
+  .fire-water-line {
+    height: 3px;
+    background: var(--gradient-fire-water);
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0;
+    padding: var(--space-7) 0;
+    list-style: none;
+  }
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 var(--space-4);
+    text-align: center;
+  }
+  .item + .item {
+    border-left: 1px solid rgba(201, 206, 214, 0.18);
+  }
+
+  .value {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: clamp(2.6rem, 4.4vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .tone-fire .value {
+    color: var(--color-fire);
+    text-shadow: var(--glow-fire);
+  }
+  .tone-water .value {
+    color: var(--color-water);
+    text-shadow: var(--glow-water);
+  }
+  .tone-chrome .value {
+    background: var(--gradient-chrome);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .label {
+    margin-top: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .text {
+    margin-top: var(--space-2);
+    max-width: 24ch;
+    color: var(--color-chrome);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .items { grid-template-columns: repeat(2, 1fr); row-gap: var(--space-6); padding-block: var(--space-6); }
+    .item:nth-child(3) { border-left: 0; }
+  }
+  @media (max-width: 480px) {
+    .items { grid-template-columns: 1fr; row-gap: 0; padding-block: var(--space-3); }
+    .item { padding: var(--space-4) 0; }
+    .item + .item { border-left: 0; border-top: 1px solid rgba(201, 206, 214, 0.18); }
+  }
+</style>
