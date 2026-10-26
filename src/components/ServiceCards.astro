@@ -1,0 +1,181 @@
+---
+/*
+  Service overview cards for category hub pages (/plumbing/, /restoration/): icon, H3, blurb, CTA.
+  A card links to its service page only if that page exists (liveHrefs). Otherwise it shows a call CTA,
+  so the hub never links to a 404 while pages are still being built.
+*/
+import ServiceIcon from './ServiceIcon.astro';
+import type { IconName } from '../lib/icons';
+import { business } from '../data/site';
+
+interface Item {
+  label: string;
+  href: string;
+  icon: IconName;
+  blurb: string;
+}
+
+interface Props {
+  heading: string;
+  intro: string;
+  items: Item[];
+  liveHrefs: string[];
+}
+
+const { heading, intro, items, liveHrefs } = Astro.props;
+---
+
+<section class="cards" aria-labelledby="cards-heading">
+  <div class="container">
+    <div class="head">
+      <h2 id="cards-heading">{heading}</h2>
+      <p>{intro}</p>
+    </div>
+    <ul class="grid">
+      {items.map((s) => {
+        const live = liveHrefs.includes(s.href);
+        return (
+          <li class:list={['card', `icon-${s.icon}`, { live }]}>
+            <span class="icon" aria-hidden="true"><ServiceIcon name={s.icon} /></span>
+            <h3>{live ? <a href={s.href}>{s.label}</a> : s.label}</h3>
+            <p>{s.blurb}</p>
+            {live ? (
+              <span class="more" aria-hidden="true">Learn more →</span>
+            ) : (
+              <a class="call" href={business.phoneHref}>Call {business.phoneDisplay}</a>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cards {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+  .head {
+    max-width: 760px;
+    margin-bottom: var(--space-6);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  .head p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-water);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    transition: box-shadow 0.15s, transform 0.15s;
+  }
+  .card.live:hover {
+    box-shadow: 0 16px 32px rgba(10, 26, 63, 0.1);
+    transform: translateY(-3px);
+  }
+  .icon {
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-3);
+    color: var(--color-water);
+  }
+  .icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .icon-valve,
+  .icon-heater {
+    border-top-color: var(--color-fire);
+  }
+  .icon-valve .icon,
+  .icon-heater .icon {
+    color: var(--color-fire);
+  }
+  h3 {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Whole card is clickable via the heading link. */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+  }
+  h3 a:focus-visible {
+    outline: none;
+  }
+  h3 a:focus-visible::after {
+    outline: 3px solid var(--color-water);
+    outline-offset: 3px;
+  }
+  .card p {
+    flex: 1;
+    margin: var(--space-2) 0 var(--space-4);
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .more {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-fire);
+  }
+  .card.live:hover .more {
+    color: var(--color-water);
+  }
+  .call {
+    align-self: flex-start;
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    border: 2px solid var(--color-fire);
+    color: var(--color-fire);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .call:hover {
+    background: var(--color-fire);
+    color: #fff;
+  }
+
+  @media (max-width: 1000px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .cards { padding-block: var(--space-7); }
+    .grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .card { padding: var(--space-4); }
+  }
+</style>

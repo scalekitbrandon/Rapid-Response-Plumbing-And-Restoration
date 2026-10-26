@@ -1,3 +1,5 @@
+import type { IconName } from '../lib/icons';
+
 // Single source for business details and navigation.
 // Facts come from rapidresponsefloodrestoration.com (pulled 2026-10-24); see CLIENT-NOTES.md.
 
@@ -43,13 +45,13 @@ export const restorationServices = [
 
 // TODO(client): placeholder plumbing list. The current site has no plumbing services.
 // Replace with the client's real list before launch.
-export const plumbingServices = [
-  { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber/' },
-  { label: 'Leak Detection', href: '/plumbing/leak-detection/' },
-  { label: 'Slab Leak Repair', href: '/plumbing/slab-leak-repair/' },
-  { label: 'Water Heaters', href: '/plumbing/water-heaters/' },
-  { label: 'Drain Cleaning', href: '/plumbing/drain-cleaning/' },
-  { label: 'Repiping', href: '/plumbing/repiping/' },
+export const plumbingServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
+  { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber/', icon: 'valve', blurb: '24/7 response for burst pipes, major leaks, water heater failures and sewer backups. On the way in 1 hour or less.' },
+  { label: 'Leak Detection', href: '/plumbing/leak-detection/', icon: 'drop', blurb: 'Track down hidden leaks in walls, ceilings and under floors before they cause bigger damage.' },
+  { label: 'Slab Leak Repair', href: '/plumbing/slab-leak-repair/', icon: 'slab', blurb: 'Find and fix leaks under your foundation, then dry out any water that spread into the home.' },
+  { label: 'Water Heaters', href: '/plumbing/water-heaters/', icon: 'heater', blurb: 'Repair and replacement for leaking, noisy or failed tank and tankless water heaters.' },
+  { label: 'Drain Cleaning', href: '/plumbing/drain-cleaning/', icon: 'drain', blurb: 'Clear clogged sinks, tubs, toilets and main lines, and stop backups before they overflow.' },
+  { label: 'Repiping', href: '/plumbing/repiping/', icon: 'pipe', blurb: 'Replace old, corroded or leak-prone supply lines with new piping built to last.' },
 ];
 
 export const primaryNav = [

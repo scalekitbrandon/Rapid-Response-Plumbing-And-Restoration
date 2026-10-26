@@ -1,0 +1,211 @@
+---
+/*
+  /plumbing/: the plumbing category hub. Targets "plumber Victorville" / "plumbing services Victorville CA".
+  It links down to every plumbing service page (cards switch from "call" to a link as each page is built)
+  and across to restoration. Schema: BreadcrumbList, plus Plumber with an OfferCatalog of the services.
+*/
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import InnerHero from '../../components/InnerHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import ServiceSplit from '../../components/ServiceSplit.astro';
+import Process from '../../components/Process.astro';
+import ProseSection from '../../components/ProseSection.astro';
+import Reviews from '../../components/Reviews.astro';
+import FAQ from '../../components/FAQ.astro';
+import AreaLinks from '../../components/AreaLinks.astro';
+import InspectionForm from '../../components/InspectionForm.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, plumbingServices, serviceAreas } from '../../data/site';
+import drywall from '../../assets/work/removing-wet-drywall.jpg';
+
+const entries = await getCollection('plumbing');
+const liveHrefs = entries.map((e) => `/plumbing/${e.slug}/`);
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL('/plumbing/', site).toString();
+
+const faqs = [
+  {
+    q: 'Do you offer 24/7 plumbing service in Victorville?',
+    a: 'Yes. We answer 24/7, including nights, weekends and holidays, and send a crew in 1 hour or less across Victorville and our High Desert service area.',
+  },
+  {
+    q: 'What plumbing services do you offer?',
+    a: 'We handle emergency plumbing, leak detection, slab leak repair, water heater repair and replacement, drain cleaning and repiping for homes and businesses.',
+  },
+  {
+    q: 'How do I know if I have a hidden leak?',
+    a: 'Common signs include a water bill that jumps for no reason, the sound of running water when everything is off, warm or damp spots on the floor, musty odors, and stains or bubbling paint on walls and ceilings. If you notice any of these, call and we will track down the source.',
+  },
+  {
+    q: 'Can you fix the water damage a leak caused?',
+    a: 'Yes. We are a plumbing and restoration company, so after we fix the leak we can extract water, dry out walls and floors, check for mold and document the damage for your insurance claim.',
+  },
+  {
+    q: 'Which cities do you serve?',
+    a: 'We serve Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. If you are nearby, call and ask.',
+  },
+  {
+    q: 'Do you work on commercial plumbing?',
+    a: 'Yes. We work with offices, retail spaces, warehouses, rentals and multi-unit buildings, and with property managers and landlords.',
+  },
+];
+
+const plumberSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: business.name,
+  url: new URL('/', site).toString(),
+  telephone: '+1-855-477-2743',
+  openingHours: 'Mo-Su 00:00-23:59',
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Plumbing Services',
+    url: pageUrl,
+    itemListElement: plumbingServices.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.label,
+        description: s.blurb,
+        ...(liveHrefs.includes(s.href) ? { url: new URL(s.href, site).toString() } : {}),
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Plumber in Victorville, CA | 24/7 Plumbing | Rapid Response"
+  description="Need a plumber in Victorville? Rapid Response handles leaks, slab leaks, water heaters, drains and repiping 24/7 across the High Desert. Call 855-47-RAPID."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Plumbing' }]}
+    eyebrow="Plumbing Services"
+    h1="Plumbing Services in Victorville, CA"
+    h1Accent="Plumbing Services"
+    sub="From emergency leaks to water heaters, drains and slab leaks, Rapid Response is the High Desert plumber that fixes the problem and handles any water damage it left behind."
+    bullets={[
+      '24/7 service, on the way in 1 hour or less',
+      'Plumbing repair and water damage cleanup in one call',
+      'Homes, rentals and businesses across the High Desert',
+    ]}
+  />
+  <TrustStrip />
+
+  <ServiceCards
+    heading="Plumbing Services We Offer"
+    intro="Whatever the plumbing problem, our crews diagnose it, explain what they found and fix it. Choose a service to learn more, or call and tell us what is going on."
+    items={plumbingServices}
+    liveHrefs={liveHrefs}
+  />
+
+  <ServiceSplit
+    heading="Your Plumber"
+    accent="and Your Restoration Team"
+    text="Leaks rarely stay inside the pipe. When water has already reached floors, walls or ceilings, most plumbers leave the cleanup to you. Our crews repair the plumbing and restore the damage, so one company handles the whole job from the first call to the final dry-out."
+    points={[
+      'Repair the leak, fixture or water heater that failed',
+      'Find hidden moisture with meters before it turns into mold',
+      'Extract water and set up professional drying equipment',
+      'Photo and moisture documentation for your insurance claim',
+    ]}
+    image={drywall}
+    imageAlt="Rapid Response technician cutting out water-damaged drywall after a plumbing leak"
+    linkLabel="Water damage restoration"
+    linkHref="/water-damage-restoration/"
+  />
+
+  <Process
+    eyebrow="How It Works"
+    headlineLead="How Our"
+    headlineAccent="Plumbing Service Works"
+    body="Simple, clear and fast, from the first call to the finished repair."
+    steps={[
+      { title: 'Call or Book Online', text: 'Call 855-47-RAPID 24/7 or send a request. Tell us what is happening and where.' },
+      { title: 'Diagnose & Explain', text: 'We find the source of the problem and explain what we found and the repair options.' },
+      { title: 'Repair It Right', text: 'We fix the pipe, fixture, drain or water heater and test that everything is working.' },
+      { title: 'Check for Damage', text: 'If water spread, we measure moisture and handle drying and cleanup so nothing is left behind.' },
+    ]}
+  />
+
+  <ProseSection heading="A Local Plumber for Victorville and the High Desert">
+    <p>
+      Looking for a reliable <strong>plumber in Victorville</strong>? Rapid Response Plumbing &amp; Restoration
+      serves homes and businesses across Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry
+      Springs and Helendale. We answer 24/7, and for urgent problems a crew is on the way in 1 hour or less.
+    </p>
+    <h3>Plumbing repair for homes, rentals and businesses</h3>
+    <p>
+      We handle the plumbing problems High Desert property owners call about most: hidden leaks, slab leaks, water
+      heater failures, clogged drains and main lines, and aging pipes that need replacing. Homeowners, landlords,
+      property managers and business owners all get the same fast response and clear communication.
+    </p>
+    <h3>When to call a plumber right away</h3>
+    <p>
+      If water is actively leaking, sewage is backing up, or your water heater is leaking, it is an emergency. Shut
+      off the water if you can and call our <a href="/plumbing/emergency-plumber/">24/7 emergency plumber</a> line.
+      Waiting even a few hours lets water soak into flooring and drywall and raises the risk of mold.
+    </p>
+    <h3>Why High Desert plumbing takes local know-how</h3>
+    <p>
+      Freezing winter nights crack exposed pipes. Hard water wears out water heaters and fixtures early. Many homes
+      sit on concrete slabs, where a leak under the floor can go unnoticed for weeks. We work on these problems
+      every week across the High Desert, so we know where to look.
+    </p>
+    <h3>One company for the leak and the damage</h3>
+    <p>
+      Because we are also a <a href="/water-damage-restoration/">water damage restoration</a> company, you never
+      have to coordinate a plumber and a separate cleanup crew. We fix the source, dry out the structure, check for
+      <a href="/mold-remediation/">mold</a> and document everything for your insurance carrier.
+    </p>
+  </ProseSection>
+
+  <Reviews
+    googleReviewsUrl={business.googleReviewsUrl}
+    writeReviewUrl={business.reviewUrl}
+    headingLead="What Customers Say About"
+    headingAccent="Rapid Response"
+    tags={['Burst Pipe', 'Water Damage']}
+    limit={4}
+  />
+  <FAQ headingLead="Plumbing" headingAccent="FAQs" intro="Answers to common questions about our plumbing services in Victorville and the High Desert." items={faqs} />
+  <AreaLinks
+    heading="Plumber Near You in the High Desert"
+    intro="Fast 24/7 plumbing across Southern California's High Desert. Choose your city for local service details."
+    service="Plumber"
+  />
+  <InspectionForm
+    eyebrow="24/7 Plumbing"
+    headingLead="Request a"
+    headingAccent="Plumber Today"
+    lead="Tell us what is going on and where. We will call you right back. If water is actively leaking, shut it off if you can and call now."
+    formName="Plumbing hub form"
+    submitLabel="Request a Plumber"
+    defaultDamageType="Burst pipe / plumbing problem"
+  />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema
+    items={[
+      { label: 'Home', url: new URL('/', site).toString() },
+      { label: 'Plumbing', url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(plumberSchema)} />
+</BaseLayout>

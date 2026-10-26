@@ -23,6 +23,7 @@ import Reviews from '../components/Reviews.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import AreaLinks from '../components/AreaLinks.astro';
+import ProseSection from '../components/ProseSection.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
@@ -96,21 +97,9 @@ const serviceSchema = {
     steps={d.process}
   />
 
-  <section class="body" aria-labelledby="body-heading">
-    <div class="container body-layout">
-      <article class="prose">
-        <h2 id="body-heading">{d.bodyHeading}</h2>
-        <Content />
-      </article>
-      <aside class="side-card" aria-label="Call now">
-        <p class="side-title">Need help right now?</p>
-        <p class="side-text">Call 24/7. Crews on the way in 1 hour or less.</p>
-        <a class="side-phone" href={business.phoneHref}>{business.phoneDisplay}</a>
-        <p class="side-digits">{business.phoneDigits}</p>
-        <a class="side-form" href="#request-inspection">Or request service online</a>
-      </aside>
-    </div>
-  </section>
+  <ProseSection heading={d.bodyHeading}>
+    <Content />
+  </ProseSection>
 
   <Reviews
     googleReviewsUrl={business.googleReviewsUrl}
@@ -144,114 +133,3 @@ const serviceSchema = {
   />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 </BaseLayout>
-
-<style>
-  .body {
-    background: #fff;
-    padding-block: var(--space-8);
-  }
-  .body-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: var(--space-7);
-    align-items: start;
-  }
-  .prose {
-    max-width: 72ch;
-    color: #2a3245;
-    font-size: 1.1rem;
-    line-height: 1.75;
-  }
-  .prose h2 {
-    margin-bottom: var(--space-4);
-    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
-    line-height: 1.15;
-    color: var(--color-fg);
-    text-wrap: balance;
-  }
-  .prose :global(h3) {
-    margin: var(--space-5) 0 var(--space-2);
-    font-size: 1.35rem;
-    line-height: 1.25;
-    color: var(--color-fg);
-  }
-  .prose :global(p) {
-    margin: 0 0 var(--space-3);
-  }
-  .prose :global(ul) {
-    margin: 0 0 var(--space-3);
-    padding-left: 1.2em;
-  }
-  .prose :global(li) {
-    margin-bottom: 6px;
-  }
-  .prose :global(li::marker) {
-    color: var(--color-fire);
-  }
-  .prose :global(a) {
-    color: var(--color-water-dark);
-    font-weight: 600;
-  }
-  .prose :global(strong) {
-    color: var(--color-fg);
-  }
-
-  .side-card {
-    position: sticky;
-    top: var(--space-5);
-    padding: var(--space-5);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--color-navy-2) 0%, var(--color-black) 100%);
-    color: #fff;
-    text-align: center;
-    box-shadow: inset 0 3px 0 var(--color-fire), 0 16px 32px rgba(10, 26, 63, 0.18);
-  }
-  .side-title {
-    margin: 0;
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-weight: 800;
-    font-size: 1.35rem;
-  }
-  .side-text {
-    margin: 6px 0 var(--space-3);
-    color: var(--color-chrome);
-  }
-  .side-phone {
-    display: block;
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-stretch: var(--heading-stretch);
-    font-weight: 900;
-    font-size: 2rem;
-    color: var(--color-fire);
-    text-decoration: none;
-    text-shadow: var(--glow-fire);
-  }
-  .side-digits {
-    margin: 2px 0 var(--space-4);
-    color: var(--color-chrome);
-    font-weight: 600;
-  }
-  .side-form {
-    display: inline-block;
-    padding: 12px 22px;
-    border-radius: var(--radius-pill);
-    background: var(--color-water);
-    color: #fff;
-    font-weight: 700;
-    text-decoration: none;
-  }
-  .side-form:hover {
-    background: var(--color-water-dark);
-  }
-
-  @media (max-width: 1000px) {
-    .body-layout { grid-template-columns: 1fr; }
-    .side-card { display: none; }
-  }
-  @media (max-width: 600px) {
-    .body { padding-block: var(--space-7); }
-    .prose { font-size: 1.04rem; }
-  }
-</style>

@@ -1,0 +1,21 @@
+---
+/*
+  Shared line icons for service cards and problem grids. Colors come from currentColor.
+*/
+import type { IconName } from '../lib/icons';
+
+interface Props {
+  name: IconName;
+}
+
+const { name } = Astro.props;
+---
+
+{name === 'pipe' && <svg viewBox="0 0 48 48"><path d="M4 18h18v12H4zM26 18h18v12H26z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M22 14l4 8-4 4 4 8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="42" r="3" fill="currentColor"/></svg>}
+{name === 'drop' && <svg viewBox="0 0 48 48"><path d="M24 4S9 21 9 31a15 15 0 0 0 30 0C39 21 24 4 24 4z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M17 31a7 7 0 0 0 7 7" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>}
+{name === 'heater' && <svg viewBox="0 0 48 48"><rect x="12" y="4" width="24" height="38" rx="6" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 22c3 3 4 5 4 7a4 4 0 0 1-8 0c0-2 1-4 4-7z" fill="currentColor"/><path d="M18 46h12" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>}
+{name === 'slab' && <svg viewBox="0 0 48 48"><path d="M4 28h40v12H4z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M10 34h28" stroke="currentColor" stroke-width="3" stroke-dasharray="4 4"/><path d="M24 8s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z" fill="currentColor"/></svg>}
+{name === 'drain' && <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 6v36M6 24h36M11 11l26 26M37 11L11 37" stroke="currentColor" stroke-width="2.5" opacity=".6"/><circle cx="24" cy="24" r="5" fill="currentColor"/></svg>}
+{name === 'toilet' && <svg viewBox="0 0 48 48"><path d="M10 6h14v14H10zM6 20h36c0 9-7 15-15 15h-6C13 35 6 29 6 20zM16 35l-2 9h20l-2-9" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>}
+{name === 'freeze' && <svg viewBox="0 0 48 48"><path d="M24 4v40M7 14l34 20M41 14L7 34" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M19 7l5 5 5-5M19 41l5-5 5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+{name === 'valve' && <svg viewBox="0 0 48 48"><path d="M4 30h40" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M24 30V16" stroke="currentColor" stroke-width="3.5"/><path d="M12 12h24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="30" r="6" fill="currentColor"/></svg>}
