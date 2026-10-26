@@ -10,12 +10,18 @@ interface QA {
 }
 
 interface Props {
+  headingLead?: string;
+  headingAccent?: string;
+  intro?: string;
   items?: QA[];
   phoneDisplay?: string;
   phoneHref?: string;
 }
 
 const {
+  headingLead = 'Questions We',
+  headingAccent = 'Hear the Most',
+  intro = 'Straight answers about emergency response, insurance and what to expect when you call.',
   items = [
     { q: 'Do you provide 24/7 emergency service?', a: 'Yes. Rapid Response provides 24/7 emergency response for urgent water, flood, plumbing, mold, fire and smoke damage, when waiting would let the damage keep spreading.' },
     // TODO(client): confirm the 1-hour response time holds across the full service area.
@@ -48,9 +54,9 @@ const schema = {
     <div class="side">
       <span class="eyebrow">FAQ</span>
       <h2 id="faq-heading">
-        Questions We <span class="accent">Hear the Most</span>
+        {headingLead} <span class="accent">{headingAccent}</span>
       </h2>
-      <p>Straight answers about emergency response, insurance and what to expect when you call.</p>
+      <p>{intro}</p>
 
       <div class="card">
         <p class="card-title">Still have a question?</p>

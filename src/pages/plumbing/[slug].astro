@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+import ServicePageLayout from '../../layouts/ServicePageLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('plumbing');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ServicePageLayout entry={entry} category={{ label: 'Plumbing', href: '/plumbing/' }} providerType="Plumber" />

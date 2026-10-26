@@ -1,0 +1,83 @@
+---
+/*
+  Light "service + city" link strip for service pages: the heading carries the service keyword, and each
+  chip links to a town page. Internal links that tie the service to every town we serve.
+*/
+import { serviceAreas } from '../data/site';
+
+interface Props {
+  heading: string;
+  intro: string;
+  service: string; // e.g. "Emergency plumber". Used in each chip's accessible label.
+}
+
+const { heading, intro, service } = Astro.props;
+---
+
+<section class="area-links" aria-labelledby="area-links-heading">
+  <div class="container">
+    <h2 id="area-links-heading">{heading}</h2>
+    <p>{intro}</p>
+    <ul>
+      {serviceAreas.map((a) => (
+        <li>
+          <a href={`/${a.slug}/`} aria-label={`${service} in ${a.name}, CA`}>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+            {a.name}, CA
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .area-links {
+    background: #fff;
+    padding-block: var(--space-7);
+    text-align: center;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    line-height: 1.2;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  p {
+    max-width: 62ch;
+    margin: var(--space-3) auto var(--space-5);
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 46px;
+    padding: 0 18px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    color: var(--color-fg);
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  a svg {
+    color: var(--color-fire);
+  }
+  a:hover {
+    border-color: var(--color-water);
+    background: #f2f8ff;
+    color: var(--color-water-dark);
+  }
+</style>

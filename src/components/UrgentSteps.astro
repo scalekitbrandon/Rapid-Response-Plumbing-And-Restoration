@@ -1,0 +1,149 @@
+---
+/*
+  "Do this right now" emergency callout: a numbered checklist plus a call button. Written to be
+  snippet-friendly (an ordered list under a question-style H2) and genuinely useful mid-emergency.
+*/
+import { business } from '../data/site';
+
+interface Props {
+  heading: string;
+  intro: string;
+  steps: string[];
+}
+
+const { heading, intro, steps } = Astro.props;
+---
+
+<section class="urgent" aria-labelledby="urgent-heading">
+  <div class="container">
+    <div class="box">
+      <div class="copy">
+        <p class="tag">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2 1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2V9h2v4z"/></svg>
+          Emergency checklist
+        </p>
+        <h2 id="urgent-heading">{heading}</h2>
+        <p class="intro">{intro}</p>
+        <ol>
+          {steps.map((s) => <li>{s}</li>)}
+        </ol>
+      </div>
+      <div class="cta">
+        <p>Then call us. We pick up 24/7.</p>
+        <a class="call" href={business.phoneHref}>
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+          {business.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .urgent {
+    background: #fff;
+    padding-bottom: var(--space-8);
+  }
+  .box {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--space-6);
+    align-items: center;
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-navy-2) 0%, var(--color-navy) 55%, var(--color-black) 100%);
+    color: #fff;
+    box-shadow: inset 4px 0 0 var(--color-fire), 0 20px 40px rgba(10, 26, 63, 0.2);
+  }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 var(--space-3);
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(227, 32, 43, 0.18);
+    color: #ff8a8f;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    line-height: 1.15;
+  }
+  .intro {
+    margin: var(--space-2) 0 var(--space-4);
+    color: var(--color-chrome);
+    font-size: 1.05rem;
+  }
+  ol {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+  li {
+    position: relative;
+    padding-left: 46px;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    counter-increment: step;
+  }
+  li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-fire);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 900;
+  }
+  .cta {
+    text-align: center;
+  }
+  .cta p {
+    margin: 0 0 var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.2rem;
+  }
+  .call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 60px;
+    padding: 0 32px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+  }
+  .call:hover {
+    background: var(--color-fire-dark);
+  }
+
+  @media (max-width: 900px) {
+    .box { grid-template-columns: 1fr; padding: var(--space-5) var(--space-4); }
+    .call { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 600px) {
+    .urgent { padding-bottom: var(--space-7); }
+  }
+</style>

@@ -119,8 +119,11 @@ const {
     .item:nth-child(3) { border-left: 0; }
   }
   @media (max-width: 480px) {
-    .items { grid-template-columns: 1fr; row-gap: 0; padding-block: var(--space-3); }
-    .item { padding: var(--space-4) 0; }
-    .item + .item { border-left: 0; border-top: 1px solid rgba(201, 206, 214, 0.18); }
+    .items { row-gap: var(--space-5); padding-block: var(--space-5); }
+    .item { padding: 0 var(--space-2); }
+    .item:nth-child(odd) { border-left: 0; }
+    .value { font-size: 2.2rem; }
+    .label { margin-top: var(--space-2); font-size: 0.82rem; letter-spacing: 0.04em; }
+    .text { font-size: 0.85rem; }
   }
 </style>

@@ -6,7 +6,9 @@ import mdx from '@astrojs/mdx';
 // an adapter (@astrojs/vercel, @astrojs/netlify, @astrojs/cloudflare)
 // when the hosting target is chosen. Defaults to static output.
 export default defineConfig({
-  site: 'https://example.com',
+  // TODO(launch): switch to the final domain if the business moves to a new one for the rebrand.
+  site: 'https://rapidresponsefloodrestoration.com',
+  trailingSlash: 'always',
   integrations: [sitemap(), mdx()],
   output: 'static',
 });

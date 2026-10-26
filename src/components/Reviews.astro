@@ -9,11 +9,25 @@ import { reviews, reviewSummary } from '../data/reviews';
 interface Props {
   googleReviewsUrl: string;
   writeReviewUrl?: string;
+  headingLead?: string;
+  headingAccent?: string;
+  /** Show only reviews with these service tags (falls back to all reviews if none match). */
+  tags?: string[];
+  limit?: number;
 }
 
-const { googleReviewsUrl, writeReviewUrl } = Astro.props;
-const hasReviews = reviews.length > 0;
-const shown = reviews.slice(0, 8);
+const {
+  googleReviewsUrl,
+  writeReviewUrl,
+  headingLead = 'What High Desert Property Owners',
+  headingAccent = 'Say About Us',
+  tags = [],
+  limit = 8,
+} = Astro.props;
+const tagged = tags.length ? reviews.filter((r) => r.service && tags.includes(r.service)) : reviews;
+const pool = tagged.length ? tagged : reviews;
+const hasReviews = pool.length > 0;
+const shown = pool.slice(0, limit);
 const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null;
 ---
 
@@ -23,7 +37,7 @@ const hasSummary = reviewSummary.rating !== null || reviewSummary.count !== null
       <div>
         <span class="eyebrow">Reviews</span>
         <h2 id="reviews-heading">
-          What High Desert Property Owners <span class="accent">Say About Us</span>
+          {headingLead} <span class="accent">{headingAccent}</span>
         </h2>
       </div>
 

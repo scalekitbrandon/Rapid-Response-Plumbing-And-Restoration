@@ -1,0 +1,108 @@
+---
+/*
+  Related services cards (internal links between sibling service pages). Pass hrefs, and labels are looked up
+  from the site's service lists so links stay in sync with the nav.
+*/
+import { plumbingServices, restorationServices } from '../data/site';
+
+interface Props {
+  heading?: string;
+  hrefs: string[];
+}
+
+const { heading = 'Related Services', hrefs } = Astro.props;
+const all = [
+  ...plumbingServices.map((s) => ({ ...s, group: 'Plumbing' })),
+  ...restorationServices.map((s) => ({ ...s, group: 'Restoration' })),
+];
+const items = hrefs.map((h) => all.find((s) => s.href === h)).filter((s): s is (typeof all)[number] => Boolean(s));
+---
+
+{items.length > 0 && (
+  <section class="related" aria-labelledby="related-heading">
+    <div class="container">
+      <h2 id="related-heading">{heading}</h2>
+      <ul>
+        {items.map((s) => (
+          <li>
+            <a href={s.href} class={s.group === 'Plumbing' ? 'plumb' : 'resto'}>
+              <span class="group">{s.group}</span>
+              <span class="label">{s.label}</span>
+              <span class="go" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+<style>
+  .related {
+    background: var(--color-muted);
+    padding-block: var(--space-7);
+  }
+  h2 {
+    margin-bottom: var(--space-5);
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    color: var(--color-fg);
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    height: 100%;
+    padding: var(--space-4) var(--space-6) var(--space-4) var(--space-4);
+    border-radius: var(--radius-md);
+    background: #fff;
+    border-left: 4px solid var(--color-water);
+    box-shadow: 0 6px 18px rgba(10, 26, 63, 0.06);
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  a.resto {
+    border-left-color: var(--color-fire);
+  }
+  a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(10, 26, 63, 0.12);
+  }
+  .group {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7487;
+  }
+  .label {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-fg);
+  }
+  .go {
+    position: absolute;
+    right: var(--space-4);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.3rem;
+    color: var(--color-fire);
+  }
+
+  @media (max-width: 1000px) {
+    ul { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    ul { grid-template-columns: 1fr; }
+  }
+</style>

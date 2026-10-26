@@ -44,7 +44,7 @@ export const restorationServices = [
 // TODO(client): placeholder plumbing list. The current site has no plumbing services.
 // Replace with the client's real list before launch.
 export const plumbingServices = [
-  { label: 'Emergency Plumbing', href: '/plumbing/emergency-plumbing/' },
+  { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber/' },
   { label: 'Leak Detection', href: '/plumbing/leak-detection/' },
   { label: 'Slab Leak Repair', href: '/plumbing/slab-leak-repair/' },
   { label: 'Water Heaters', href: '/plumbing/water-heaters/' },
@@ -54,6 +54,8 @@ export const plumbingServices = [
 
 export const primaryNav = [
   { label: 'Home', href: '/' },
+  { label: 'Plumbing', href: '/plumbing/', children: plumbingServices },
+  { label: 'Restoration', href: '/restoration/', children: restorationServices },
   {
     label: 'Locations',
     href: '/locations/',
@@ -62,10 +64,8 @@ export const primaryNav = [
       ...serviceAreas.map((a) => ({ label: a.name, href: `/${a.slug}/` })),
     ],
   },
-  { label: 'Plumbing', href: '/plumbing/', children: plumbingServices },
-  { label: 'Restoration', href: '/restoration/', children: restorationServices },
   { label: 'About Us', href: '/about-us/' },
-  { label: 'Contact', href: '/contact-us/' },
+  { label: 'Contact', href: '/#request-inspection' },
 ];
 
 export const utilityLinks = [

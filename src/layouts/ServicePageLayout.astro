@@ -1,0 +1,257 @@
+---
+/*
+  Shared template for every service page (plumbing now, restoration next).
+  Built to rank and convert:
+  - Keyword in title, H1, first paragraph, H2s and URL; long-tail variants as H3s (IssueGrid)
+  - Above the fold: H1, 24/7 promise, tap-to-call, form CTA and the Google rating
+  - Useful content: emergency checklist, process, long-form body and FAQ (with FAQPage schema)
+  - Proof: trust strip, real job photo, service-matched reviews
+  - Internal links: breadcrumbs, related services, service area chips
+  - JSON-LD: Service (with provider and areaServed), BreadcrumbList, FAQPage (in FAQ.astro)
+*/
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import InnerHero from '../components/InnerHero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import IssueGrid from '../components/IssueGrid.astro';
+import UrgentSteps from '../components/UrgentSteps.astro';
+import ServiceSplit from '../components/ServiceSplit.astro';
+import Process from '../components/Process.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import AreaLinks from '../components/AreaLinks.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
+
+interface Props {
+  entry: CollectionEntry<'plumbing'>;
+  category: { label: string; href: string };
+  providerType: string; // schema.org type for the provider, e.g. "Plumber"
+}
+
+const { entry, category, providerType } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(Astro.url.pathname, site).toString();
+const crumbs = [
+  { label: 'Home', href: '/' },
+  { label: category.label, href: category.href },
+  { label: d.navLabel },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: d.h1,
+  serviceType: d.navLabel,
+  description: d.description,
+  url: pageUrl,
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  provider: {
+    '@type': providerType,
+    name: business.name,
+    telephone: '+1-855-477-2743',
+    url: new URL('/', site).toString(),
+    openingHours: 'Mo-Su 00:00-23:59',
+    areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  },
+};
+---
+
+<BaseLayout title={d.title} description={d.description}>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero crumbs={crumbs} eyebrow={d.eyebrow} h1={d.h1} h1Accent={d.h1Accent} sub={d.heroSub} bullets={d.heroBullets} />
+  <TrustStrip />
+  <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
+  {d.urgent && <UrgentSteps heading={d.urgent.heading} intro={d.urgent.intro} steps={d.urgent.steps} />}
+  <ServiceSplit
+    heading={d.split.heading}
+    accent={d.split.accent}
+    text={d.split.text}
+    points={d.split.points}
+    image={d.split.image}
+    imageAlt={d.split.imageAlt}
+    linkLabel="Water damage restoration"
+    linkHref="/water-damage-restoration/"
+  />
+  <Process
+    eyebrow="How It Works"
+    headlineLead={d.processHeading}
+    headlineAccent={d.processAccent}
+    body="What happens from the moment you call."
+    steps={d.process}
+  />
+
+  <section class="body" aria-labelledby="body-heading">
+    <div class="container body-layout">
+      <article class="prose">
+        <h2 id="body-heading">{d.bodyHeading}</h2>
+        <Content />
+      </article>
+      <aside class="side-card" aria-label="Call now">
+        <p class="side-title">Need help right now?</p>
+        <p class="side-text">Call 24/7. Crews on the way in 1 hour or less.</p>
+        <a class="side-phone" href={business.phoneHref}>{business.phoneDisplay}</a>
+        <p class="side-digits">{business.phoneDigits}</p>
+        <a class="side-form" href="#request-inspection">Or request service online</a>
+      </aside>
+    </div>
+  </section>
+
+  <Reviews
+    googleReviewsUrl={business.googleReviewsUrl}
+    writeReviewUrl={business.reviewUrl}
+    headingLead="What Customers Say About"
+    headingAccent="Our Emergency Response"
+    tags={d.reviewTags}
+    limit={4}
+  />
+  <FAQ headingLead={d.navLabel} headingAccent="FAQs" intro={`Common questions about ${d.navLabel.toLowerCase()} service in Victorville and the High Desert.`} items={d.faqs} />
+  <RelatedServices hrefs={d.related} />
+  <AreaLinks heading={d.areasHeading} intro="Fast 24/7 response across Southern California's High Desert. Choose your city for local service details." service={d.navLabel} />
+  <InspectionForm
+    eyebrow="24/7 Service"
+    headingLead={d.formHeading}
+    headingAccent={d.formAccent}
+    lead="Tell us what is going on and where. We will call you right back. If water is actively leaking, shut it off if you can and call now."
+    formName={`${d.navLabel} form`}
+    submitLabel="Request Service Now"
+    defaultDamageType={d.formDamageType}
+  />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema
+    items={[
+      { label: 'Home', url: new URL('/', site).toString() },
+      { label: category.label, url: new URL(category.href, site).toString() },
+      { label: d.navLabel, url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</BaseLayout>
+
+<style>
+  .body {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+  .body-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .prose {
+    max-width: 72ch;
+    color: #2a3245;
+    font-size: 1.1rem;
+    line-height: 1.75;
+  }
+  .prose h2 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  .prose :global(h3) {
+    margin: var(--space-5) 0 var(--space-2);
+    font-size: 1.35rem;
+    line-height: 1.25;
+    color: var(--color-fg);
+  }
+  .prose :global(p) {
+    margin: 0 0 var(--space-3);
+  }
+  .prose :global(ul) {
+    margin: 0 0 var(--space-3);
+    padding-left: 1.2em;
+  }
+  .prose :global(li) {
+    margin-bottom: 6px;
+  }
+  .prose :global(li::marker) {
+    color: var(--color-fire);
+  }
+  .prose :global(a) {
+    color: var(--color-water-dark);
+    font-weight: 600;
+  }
+  .prose :global(strong) {
+    color: var(--color-fg);
+  }
+
+  .side-card {
+    position: sticky;
+    top: var(--space-5);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-navy-2) 0%, var(--color-black) 100%);
+    color: #fff;
+    text-align: center;
+    box-shadow: inset 0 3px 0 var(--color-fire), 0 16px 32px rgba(10, 26, 63, 0.18);
+  }
+  .side-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.35rem;
+  }
+  .side-text {
+    margin: 6px 0 var(--space-3);
+    color: var(--color-chrome);
+  }
+  .side-phone {
+    display: block;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--color-fire);
+    text-decoration: none;
+    text-shadow: var(--glow-fire);
+  }
+  .side-digits {
+    margin: 2px 0 var(--space-4);
+    color: var(--color-chrome);
+    font-weight: 600;
+  }
+  .side-form {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--color-water);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .side-form:hover {
+    background: var(--color-water-dark);
+  }
+
+  @media (max-width: 1000px) {
+    .body-layout { grid-template-columns: 1fr; }
+    .side-card { display: none; }
+  }
+  @media (max-width: 600px) {
+    .body { padding-block: var(--space-7); }
+    .prose { font-size: 1.04rem; }
+  }
+</style>

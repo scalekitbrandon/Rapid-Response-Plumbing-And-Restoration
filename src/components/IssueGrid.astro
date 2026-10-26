@@ -1,0 +1,128 @@
+---
+/*
+  "Problems we fix" grid for service pages: icon + H3 + short text cards (white section).
+  Each H3 is a long-tail variant of the page keyword (e.g. "Burst Pipe Repair").
+*/
+type Icon = 'pipe' | 'drop' | 'heater' | 'slab' | 'drain' | 'toilet' | 'freeze' | 'valve';
+
+interface Issue {
+  title: string;
+  text: string;
+  icon: Icon;
+}
+
+interface Props {
+  heading: string;
+  intro: string;
+  issues: Issue[];
+}
+
+const { heading, intro, issues } = Astro.props;
+---
+
+<section class="issues" aria-labelledby="issues-heading">
+  <div class="container">
+    <div class="head">
+      <h2 id="issues-heading">{heading}</h2>
+      <p>{intro}</p>
+    </div>
+    <ul class="grid">
+      {issues.map((i) => (
+        <li class={`card icon-${i.icon}`}>
+          <span class="icon" aria-hidden="true">
+            {i.icon === 'pipe' && <svg viewBox="0 0 48 48"><path d="M4 18h18v12H4zM26 18h18v12H26z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M22 14l4 8-4 4 4 8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="42" r="3" fill="currentColor"/></svg>}
+            {i.icon === 'drop' && <svg viewBox="0 0 48 48"><path d="M24 4S9 21 9 31a15 15 0 0 0 30 0C39 21 24 4 24 4z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M17 31a7 7 0 0 0 7 7" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>}
+            {i.icon === 'heater' && <svg viewBox="0 0 48 48"><rect x="12" y="4" width="24" height="38" rx="6" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 22c3 3 4 5 4 7a4 4 0 0 1-8 0c0-2 1-4 4-7z" fill="currentColor"/><path d="M18 46h12" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>}
+            {i.icon === 'slab' && <svg viewBox="0 0 48 48"><path d="M4 28h40v12H4z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/><path d="M10 34h28" stroke="currentColor" stroke-width="3" stroke-dasharray="4 4"/><path d="M24 8s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z" fill="currentColor"/></svg>}
+            {i.icon === 'drain' && <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M24 6v36M6 24h36M11 11l26 26M37 11L11 37" stroke="currentColor" stroke-width="2.5" opacity=".6"/><circle cx="24" cy="24" r="5" fill="currentColor"/></svg>}
+            {i.icon === 'toilet' && <svg viewBox="0 0 48 48"><path d="M10 6h14v14H10zM6 20h36c0 9-7 15-15 15h-6C13 35 6 29 6 20zM16 35l-2 9h20l-2-9" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>}
+            {i.icon === 'freeze' && <svg viewBox="0 0 48 48"><path d="M24 4v40M7 14l34 20M41 14L7 34" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/><path d="M19 7l5 5 5-5M19 41l5-5 5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>}
+            {i.icon === 'valve' && <svg viewBox="0 0 48 48"><path d="M4 30h40" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M24 30V16" stroke="currentColor" stroke-width="3.5"/><path d="M12 12h24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="24" cy="30" r="6" fill="currentColor"/></svg>}
+          </span>
+          <h3>{i.title}</h3>
+          <p>{i.text}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .issues {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+  .head {
+    max-width: 760px;
+    margin-bottom: var(--space-6);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  .head p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    padding: var(--space-5) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+  .card:hover {
+    border-color: var(--color-water);
+    box-shadow: 0 12px 28px rgba(10, 26, 63, 0.08);
+    transform: translateY(-3px);
+  }
+  .icon {
+    display: block;
+    width: 52px;
+    height: 52px;
+    margin-bottom: var(--space-3);
+    color: var(--color-water);
+  }
+  .icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .icon-heater .icon,
+  .icon-freeze .icon,
+  .icon-valve .icon {
+    color: var(--color-fire);
+  }
+  h3 {
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: var(--color-fg);
+    text-transform: uppercase;
+  }
+  .card p {
+    margin: var(--space-2) 0 0;
+    line-height: 1.55;
+    color: #3a4356;
+  }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .issues { padding-block: var(--space-7); }
+    .grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .card { display: grid; grid-template-columns: 44px 1fr; column-gap: var(--space-3); padding: var(--space-4); }
+    .icon { width: 44px; height: 44px; grid-row: span 2; margin: 0; }
+  }
+</style>

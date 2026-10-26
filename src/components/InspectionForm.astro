@@ -9,6 +9,27 @@ import { fireWaterBg } from '../lib/fireWaterBg';
 import { FORMS_LIVE, LEAD_WEBHOOK, business, serviceAreas, damageTypes } from '../data/site';
 import { reviewSummary } from '../data/reviews';
 
+interface Props {
+  eyebrow?: string;
+  headingLead?: string;
+  headingAccent?: string;
+  lead?: string;
+  formName?: string;
+  submitLabel?: string;
+  /** Preselects "What happened?" (must match one of damageTypes). */
+  defaultDamageType?: string;
+}
+
+const {
+  eyebrow = 'Free Inspection',
+  headingLead = 'Request Your',
+  headingAccent = 'Free Inspection',
+  lead = 'Tell us what happened and where. We will call you back fast to get eyes on the damage. For active water, flooding or fire damage, call now. Every minute counts.',
+  formName = 'Free inspection form',
+  submitLabel = 'Request Free Inspection',
+  defaultDamageType,
+} = Astro.props;
+
 const bgVars = await fireWaterBg();
 const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
 ---
@@ -17,14 +38,11 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
   <div class="overlay" aria-hidden="true"></div>
   <div class="container layout">
     <div class="pitch">
-      <span class="eyebrow">Free Inspection</span>
+      <span class="eyebrow">{eyebrow}</span>
       <h2 id="inspection-heading">
-        Request Your <span class="accent">Free Inspection</span>
+        {headingLead} <span class="accent">{headingAccent}</span>
       </h2>
-      <p class="lead">
-        Tell us what happened and where. We will call you back fast to get eyes on the damage. For active water,
-        flooding or fire damage, call now. Every minute counts.
-      </p>
+      <p class="lead">{lead}</p>
 
       <a class="call" href={business.phoneHref}>
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
@@ -58,7 +76,7 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
         data-demo={live ? undefined : 'true'}
         data-endpoint={LEAD_WEBHOOK}
         data-success="/thank-you/"
-        data-form-name="Free inspection form"
+        data-form-name={formName}
       >
         <p class="form-title">Get help now</p>
         <p class="form-sub">Fields marked * are required.</p>
@@ -92,8 +110,8 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
           <div class="f full">
             <label for="i-type">What happened? *</label>
             <select id="i-type" name="damage_type" required>
-              <option value="" selected disabled>Choose the closest match</option>
-              {damageTypes.map((d) => <option value={d}>{d}</option>)}
+              <option value="" selected={!defaultDamageType} disabled>Choose the closest match</option>
+              {damageTypes.map((d) => <option value={d} selected={d === defaultDamageType}>{d}</option>)}
             </select>
           </div>
           <fieldset class="f full urgency">
@@ -107,7 +125,7 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
           </div>
         </div>
 
-        <button type="submit" class="submit">Request Free Inspection</button>
+        <button type="submit" class="submit">{submitLabel}</button>
 
         <p class="lead-error" role="alert" hidden>
           Something went wrong sending your request. Please call {business.phoneDisplay} and we will help right away.
