@@ -63,7 +63,7 @@ const year = new Date().getFullYear();
       <p class="copy">&copy; {year} {business.name}. All rights reserved.</p>
       <ul class="legal">
         <li><a href="/about-us/">About Us</a></li>
-        <li><a href="/#request-inspection">Contact</a></li>
+        <li><a href="/contact-us/">Contact</a></li>
         <li><a href="/privacy-policy/">Privacy Policy</a></li>
       </ul>
     </div>
@@ -71,6 +71,22 @@ const year = new Date().getFullYear();
     <p class="built-by">Website and Local SEO by <a href="https://scalekit.io" target="_blank" rel="noopener noreferrer">ScaleKit.io</a></p>
   </div>
 </footer>
+
+<!-- Sticky tap-to-call bar on phones (every page renders the footer). -->
+<div class="mobile-call" role="region" aria-label="Call or request service">
+  <a class="mc-call" href={business.phoneHref}>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24 11.4 11.4 0 0 0 3.57.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+    Call 24/7
+  </a>
+  <a class="mc-form" href="#request-inspection">Request Service</a>
+</div>
+
+<script>
+  // Pages without the inspection form (privacy, 404, thank-you) send the button to the contact page instead.
+  if (!document.getElementById('request-inspection')) {
+    document.querySelector<HTMLAnchorElement>('.mc-form')?.setAttribute('href', '/contact-us/');
+  }
+</script>
 
 <style>
   .site-footer {
@@ -219,8 +235,51 @@ const year = new Date().getFullYear();
     color: inherit;
   }
 
+  .mobile-call {
+    display: none;
+  }
+
   @media (max-width: 1000px) {
     .top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .mobile-call {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 8px;
+      padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+      background: rgba(5, 7, 13, 0.96);
+      border-top: 2px solid var(--color-fire);
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
+    }
+    .mobile-call a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      border-radius: var(--radius-pill);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .mc-call {
+      background: var(--color-fire);
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.1rem;
+    }
+    .mc-form {
+      background: var(--color-water-ui);
+    }
+    :global(body) {
+      padding-bottom: calc(70px + env(safe-area-inset-bottom));
+    }
   }
   @media (max-width: 600px) {
     .top { gap: var(--space-5) var(--space-4); padding-block: var(--space-6); }

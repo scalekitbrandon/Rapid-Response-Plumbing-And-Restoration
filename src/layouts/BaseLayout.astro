@@ -15,7 +15,7 @@ interface Props {
 const { title, description = '', canonicalPath, ogImage, noindex = false } = Astro.props;
 
 const canonicalURL = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
-const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : undefined;
+const resolvedOgImage = new URL(ogImage ?? '/og-image.jpg', Astro.site).toString();
 ---
 
 <!doctype html>
@@ -23,13 +23,21 @@ const resolvedOgImage = ogImage ? new URL(ogImage, Astro.site).toString() : unde
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#05070d" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload the heading + body font files so they are ready at first paint (prevents headline reflow/CLS).
+         If Google updates these file URLs, the preload just goes unused; the stylesheet below still works. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/saira/v23/memhYa2wxmKQyNkiV50dulWP7s95AqZ6zbvQfS2svGaA.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E3t-4s51ostz0rdg.woff2" />
+    <!-- Blocking on purpose: non-blocking fonts caused layout shift (CLS 0.145) as headings reflowed. -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,800&family=Saira:ital,wdth,wght@1,112.5,700;1,112.5,800;1,112.5,900&display=swap" />
     {description && <meta name="description" content={description} />}
 

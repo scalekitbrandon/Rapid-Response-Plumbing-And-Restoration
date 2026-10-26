@@ -1,0 +1,119 @@
+---
+/*
+  /about-us/ (same URL as the old site). Copy adapted from the client's current About page,
+  updated for the Plumbing & Restoration rebrand. No individual names (none provided).
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import InnerHero from '../components/InnerHero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ServiceSplit from '../components/ServiceSplit.astro';
+import ValuesGrid from '../components/ValuesGrid.astro';
+import RealWork from '../components/RealWork.astro';
+import ProseSection from '../components/ProseSection.astro';
+import InsuranceCarriers from '../components/InsuranceCarriers.astro';
+import Reviews from '../components/Reviews.astro';
+import AreaLinks from '../components/AreaLinks.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business } from '../data/site';
+import drying from '../assets/work/structural-drying-air-movers.jpg';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+---
+
+<BaseLayout
+  title="About Rapid Response Plumbing & Restoration | High Desert, CA"
+  description="Rapid Response is a local High Desert plumbing and restoration company built around fast response, clear communication and real, hands-on work. Learn more."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'About Us' }]}
+    eyebrow="About Rapid Response"
+    h1="Built Around Real Plumbing and Restoration Work"
+    h1Accent="Real Plumbing and Restoration Work"
+    sub="Rapid Response Plumbing & Restoration is a local company serving homes, businesses, landlords and property managers across Southern California's High Desert. When something goes wrong, we show up, explain what is happening and do the work."
+    bullets={['Local to the High Desert', 'Plumbing and restoration under one roof', 'Homes, rentals and commercial properties']}
+    ctaLabel="Contact Us"
+    ctaHref="/contact-us/"
+    nowTitle="Need help right now?"
+  />
+  <TrustStrip />
+
+  <ServiceSplit
+    heading="A Company Built to Respond"
+    accent="When Things Go Wrong"
+    text="Property damage rarely happens at a convenient time. A pipe bursts. A room floods. Water travels under flooring. Mold shows up behind damaged materials. In those moments, you do not need a sales pitch. You need help understanding what happened, what is affected and what happens next, and a team ready to do the actual work."
+    points={[
+      'Fast emergency response, 24/7',
+      'Plumbing repair and property restoration in one call',
+      'Assessment, mitigation, drying, cleanup and stabilization',
+      'Real jobs, real equipment, photographed in the field',
+    ]}
+    image={drying}
+    imageAlt="Room with drywall removed and air movers drying the framing on a Rapid Response job"
+    linkLabel="See our restoration services"
+    linkHref="/restoration/"
+  />
+
+  <ValuesGrid
+    heading="The Standard We Bring"
+    accent="to Every Job"
+    intro="Property owners call us during stressful situations. How we respond, communicate and handle the work matters as much as the work itself."
+    values={[
+      { title: 'Respond With Urgency', text: 'Water, moisture, fire damage and plumbing failures keep getting worse. Every job starts with the understanding that time matters.' },
+      { title: 'Communicate Clearly', text: 'You deserve to know what is happening inside your property, what work is being done, why certain materials need attention and what comes next.' },
+      { title: 'Do Real Work', text: 'We do not make the surface look better while hidden damage remains. We work with the structure, the materials and the moisture in mind.' },
+      { title: 'Protect the Property', text: 'Good mitigation reduces additional damage, identifies affected materials and gives the property a better path to drying and repair.' },
+      { title: 'Treat Every Job Seriously', text: 'Whether it is one leaking pipe or a major commercial loss, you are dealing with a real disruption. Every job deserves attention and organization.' },
+      { title: 'Stay Local & Accountable', text: 'We serve the High Desert and build our reputation one job at a time, in the same communities where our customers live and work.' },
+    ]}
+  />
+
+  <ProseSection heading="Why We Do Plumbing and Restoration Together">
+    <p>
+      Rapid Response started as a property restoration company, handling water damage, flooding, mold, and fire and
+      smoke losses across the High Desert. Over and over, we saw the same thing: most water damage starts with a
+      plumbing problem, and property owners were stuck coordinating a plumber and a separate restoration company in
+      the middle of an emergency.
+    </p>
+    <p>
+      So we brought both under one roof. Today, Rapid Response Plumbing &amp; Restoration can repair the burst pipe,
+      slab leak or failed water heater that caused the damage, and then extract the water, dry the structure, handle
+      mold and document everything for your insurance claim. One call, one team, one point of contact.
+    </p>
+    <h3>What we do</h3>
+    <ul>
+      <li><a href="/plumbing/">Plumbing</a>: emergency repairs, leak detection, slab leaks, water heaters, drain cleaning and repiping</li>
+      <li><a href="/restoration/">Restoration</a>: water damage, flood cleanup, mold remediation, fire and smoke damage, and commercial restoration</li>
+    </ul>
+    <h3>Where we work</h3>
+    <p>
+      We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo and Newberry Springs. See all of
+      our <a href="/locations/">service areas</a>.
+    </p>
+  </ProseSection>
+
+  <RealWork />
+  <InsuranceCarriers phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
+  <AreaLinks
+    heading="Proudly Serving the High Desert"
+    intro="Local plumbing and restoration for the communities we live and work in."
+    service="Plumbing and restoration"
+  />
+  <InspectionForm formName="About page form" />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema items={[{ label: 'Home', url: new URL('/', site).toString() }, { label: 'About Us', url: new URL('/about-us/', site).toString() }]} />
+</BaseLayout>

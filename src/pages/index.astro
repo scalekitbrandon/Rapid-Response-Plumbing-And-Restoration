@@ -12,7 +12,10 @@ import ServiceAreas from '../components/ServiceAreas.astro';
 import FAQ from '../components/FAQ.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import Footer from '../components/Footer.astro';
-import { primaryNav, utilityLinks, business } from '../data/site';
+import LocalBusinessSchema from '../components/LocalBusinessSchema.astro';
+import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
 ---
 
 <BaseLayout
@@ -40,4 +43,17 @@ import { primaryNav, utilityLinks, business } from '../data/site';
   <InspectionForm />
 
   <Footer slot="footer" />
+
+  {/* Service-area business: no street address on purpose (none is public on the Google profile). */}
+  <LocalBusinessSchema
+    businessType="Plumber"
+    name={business.name}
+    url={new URL('/', site).toString()}
+    phone="+1-855-477-2743"
+    areaServed={serviceAreas.map((a) => `${a.name}, CA`)}
+    logo={new URL('/icon-192.png', site).toString()}
+    image={new URL('/og-image.jpg', site).toString()}
+    sameAs={[business.googleReviewsUrl]}
+    openingHours="Mo-Su 00:00-23:59"
+  />
 </BaseLayout>

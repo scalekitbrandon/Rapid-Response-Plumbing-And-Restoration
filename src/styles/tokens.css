@@ -14,6 +14,11 @@
   --color-chrome: #c9ced6;      /* chrome silver: outlines, phone numbers */
   --color-mold: #2e9e3e;        /* mold-remediation icon only, never a UI color */
 
+  /* Contrast-safe UI shades (WCAG AA 4.5:1 with white text / on white backgrounds).
+     Use for buttons, tags and small blue text on light sections. Keep --color-water for glows and large text on dark. */
+  --color-water-ui: #126ad6; /* 5.2:1 on white, 4.7:1 on the light gray sections */
+  --color-mold-ui: #23802f;
+
   /* Surfaces */
   --color-black: #05070d;
   --color-navy: #0a1a3f;

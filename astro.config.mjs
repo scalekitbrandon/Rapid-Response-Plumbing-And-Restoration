@@ -9,6 +9,8 @@ export default defineConfig({
   // TODO(launch): switch to the final domain if the business moves to a new one for the rebrand.
   site: 'https://rapidresponsefloodrestoration.com',
   trailingSlash: 'always',
-  integrations: [sitemap(), mdx()],
+  // Inline page CSS to avoid render-blocking stylesheet requests (Lighthouse).
+  build: { inlineStylesheets: 'always' },
+  integrations: [sitemap({ filter: (page) => !page.includes('/thank-you/') }), mdx()],
   output: 'static',
 });

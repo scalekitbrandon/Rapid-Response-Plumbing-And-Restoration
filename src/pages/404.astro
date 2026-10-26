@@ -1,0 +1,111 @@
+---
+/*
+  404 page: on-brand, noindex, with an emergency call button and links to the main sections.
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { fireWaterBg } from '../lib/fireWaterBg';
+import { primaryNav, utilityLinks, business } from '../data/site';
+
+const bgVars = await fireWaterBg();
+---
+
+<BaseLayout title="Page Not Found | Rapid Response Plumbing & Restoration" description="The page you are looking for could not be found." noindex>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <section class="nf" style={bgVars}>
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="container inner">
+      <p class="code">404</p>
+      <h1>This Page <span class="accent">Sprung a Leak</span></h1>
+      <p class="lead">We could not find the page you were looking for. If you have an emergency, call us now. We answer 24/7.</p>
+      <a class="call" href={business.phoneHref}>Call {business.phoneDisplay}</a>
+      <ul class="links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/plumbing/">Plumbing</a></li>
+        <li><a href="/restoration/">Restoration</a></li>
+        <li><a href="/locations/">Locations</a></li>
+        <li><a href="/contact-us/">Contact</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .nf {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--space-8);
+    background: var(--color-black) var(--fw-bg) center / cover no-repeat;
+    color: #fff;
+    text-align: center;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 7, 13, 0.72);
+  }
+  .inner {
+    position: relative;
+    max-width: 760px;
+  }
+  .code {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 900;
+    font-size: clamp(5rem, 14vw, 9rem);
+    line-height: 1;
+    background: var(--gradient-fire-water);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+  .accent {
+    color: var(--color-water);
+  }
+  .lead {
+    margin: var(--space-3) auto var(--space-5);
+    font-size: 1.15rem;
+    color: #dde1e8;
+  }
+  .call {
+    display: inline-block;
+    padding: 16px 34px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-5);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .links a {
+    color: #fff;
+    font-weight: 700;
+  }
+</style>

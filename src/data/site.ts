@@ -67,7 +67,7 @@ export const primaryNav = [
     ],
   },
   { label: 'About Us', href: '/about-us/' },
-  { label: 'Contact', href: '/#request-inspection' },
+  { label: 'Contact', href: '/contact-us/' },
 ];
 
 export const utilityLinks = [

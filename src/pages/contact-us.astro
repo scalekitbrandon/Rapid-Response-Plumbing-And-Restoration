@@ -1,0 +1,155 @@
+---
+/*
+  /contact-us/ (same URL as the old site). Contact cards, the lead form, contact FAQs (adapted from the
+  old Contact page) and service area links. No street address: the Google profile is a service-area business.
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import InnerHero from '../components/InnerHero.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import FAQ from '../components/FAQ.astro';
+import AreaLinks from '../components/AreaLinks.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business } from '../data/site';
+import { reviewSummary } from '../data/reviews';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+
+const faqs = [
+  { q: 'What number do I call?', a: 'Call 855-47-RAPID (855-477-2743) any time, day or night, for plumbing and property restoration help.' },
+  { q: 'Can I call for an emergency?', a: 'Yes. We provide 24/7 emergency response for plumbing failures and property damage, when waiting would let the damage keep spreading.' },
+  { q: 'Do I need to know exactly what service I need?', a: 'No. Tell us what happened and what you can see. You do not need to diagnose the problem or pick a service before calling.' },
+  { q: 'Do you handle commercial properties?', a: 'Yes. We work with homes and commercial properties, including businesses, rentals, managed properties, offices and retail spaces.' },
+  { q: 'Should I wait if the damage looks small?', a: 'Damage often extends farther than what is visible. If you are unsure how serious it is, calling early helps you understand what needs attention now.' },
+];
+---
+
+<BaseLayout
+  title="Contact Rapid Response | 24/7 Plumbing & Restoration"
+  description="Call Rapid Response Plumbing & Restoration 24/7 at 855-47-RAPID, or request service online. Serving Victorville, Hesperia, Apple Valley and the High Desert."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+    eyebrow="Contact Us"
+    h1="Contact Rapid Response Plumbing & Restoration"
+    h1Accent="Rapid Response"
+    sub="For emergencies, call. We answer 24/7. For everything else, call or send a request below and we will get right back to you."
+    bullets={['Answered 24/7, including nights and weekends', 'Free inspections', 'Serving the entire High Desert']}
+    ctaLabel="Send a Request"
+    nowTitle="Call us 24/7"
+    nowText="Plumbing emergency or property damage? Call now."
+  />
+
+  <section class="contact-cards" aria-label="Ways to reach us">
+    <div class="container">
+      <ul>
+        <li>
+          <p class="label">Call 24/7</p>
+          <a class="big" href={business.phoneHref}>{business.phoneDisplay}</a>
+          <p class="sub">{business.phoneDigits}</p>
+        </li>
+        <li>
+          <p class="label">Hours</p>
+          <p class="big">Open 24/7</p>
+          <p class="sub">Nights, weekends and holidays</p>
+        </li>
+        <li>
+          <p class="label">Service area</p>
+          <p class="big">High Desert, CA</p>
+          <p class="sub"><a href="/locations/">Victorville, Hesperia, Apple Valley and more</a></p>
+        </li>
+        <li>
+          <p class="label">Google reviews</p>
+          <p class="big">{reviewSummary.rating !== null ? `${reviewSummary.rating.toFixed(1)} ★★★★★` : 'Read reviews'}</p>
+          <p class="sub"><a href={business.googleReviewsUrl} target="_blank" rel="noopener">Read our reviews</a> · <a href={business.reviewUrl} target="_blank" rel="noopener">Leave a review</a></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <InspectionForm
+    eyebrow="Request Service"
+    headingLead="Tell Us"
+    headingAccent="What Happened"
+    lead="Share a few details and we will call you right back. For active leaks, flooding or fire damage, call 855-47-RAPID now."
+    formName="Contact page form"
+    submitLabel="Send Request"
+  />
+  <FAQ headingLead="Contact" headingAccent="Questions" intro="What to expect when you reach out." items={faqs} />
+  <AreaLinks heading="Serving the High Desert" intro="Choose your city for local service details." service="Plumbing and restoration" />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema items={[{ label: 'Home', url: new URL('/', site).toString() }, { label: 'Contact', url: new URL('/contact-us/', site).toString() }]} />
+</BaseLayout>
+
+<style>
+  .contact-cards {
+    background: #fff;
+    padding-block: var(--space-7);
+  }
+  .contact-cards ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .contact-cards li {
+    padding: var(--space-5) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-water);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  .contact-cards li:first-child {
+    border-top-color: var(--color-fire);
+  }
+  .label {
+    margin: 0;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7487;
+  }
+  .big {
+    display: block;
+    margin: var(--space-2) 0 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--color-fg);
+    text-decoration: none;
+  }
+  a.big {
+    color: var(--color-fire);
+  }
+  .sub {
+    margin: 6px 0 0;
+    color: #5a6478;
+  }
+  .sub a {
+    color: var(--color-water-dark);
+    font-weight: 600;
+  }
+  @media (max-width: 1000px) {
+    .contact-cards ul { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .contact-cards ul { grid-template-columns: 1fr; }
+  }
+</style>

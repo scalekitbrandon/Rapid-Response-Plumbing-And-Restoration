@@ -1,0 +1,168 @@
+---
+/*
+  /privacy-policy/ (same URL as the old site). A plain-language policy covering the lead form, SMS consent
+  (A2P 10DLC language GHL and carriers expect), cookies/analytics and CCPA basics.
+  TODO(client): have the client (or their attorney) review before launch, and add a contact email.
+  This is a template, not legal advice.
+*/
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { primaryNav, utilityLinks, business } from '../data/site';
+
+const effective = 'October 26, 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy | Rapid Response Plumbing & Restoration"
+  description="How Rapid Response Plumbing & Restoration collects, uses and protects information submitted through this website, including phone and text message consent."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <section class="policy">
+    <div class="container narrow">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <span aria-current="page">Privacy Policy</span></nav>
+      <h1>Privacy Policy</h1>
+      <p class="effective">Effective {effective}</p>
+
+      <p>
+        This Privacy Policy explains how {business.name} ("Rapid Response," "we," "us") collects, uses and protects
+        information when you visit this website or contact us. By using this website, you agree to this policy.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>When you submit a form, call us or otherwise contact us, we may collect:</p>
+      <ul>
+        <li>Your name, phone number and email address</li>
+        <li>Your city or property location</li>
+        <li>Details you share about your plumbing problem or property damage</li>
+      </ul>
+      <p>
+        We also automatically collect basic technical information when you visit the site, such as your browser type,
+        device, pages visited and general location, through cookies and similar tools.
+      </p>
+
+      <h2>How we use your information</h2>
+      <ul>
+        <li>To respond to your request and schedule service or inspections</li>
+        <li>To contact you by phone, text message or email about your request</li>
+        <li>To provide, document and follow up on the services we perform</li>
+        <li>To support insurance claims you ask us to help with</li>
+        <li>To improve our website and services</li>
+      </ul>
+
+      <h2>Text messages (SMS)</h2>
+      <p>
+        If you provide your phone number and agree to be contacted, you consent to receive text messages from
+        {business.name} about your service request, scheduling, updates and follow-up. Message frequency varies.
+        Message and data rates may apply. Reply <strong>STOP</strong> to opt out at any time, or <strong>HELP</strong> for help.
+        Consent to receive text messages is not a condition of purchase.
+      </p>
+      <p>
+        <strong>
+          No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.
+          Text messaging originator opt-in data and consent will not be shared with any third parties.
+        </strong>
+      </p>
+
+      <h2>How we share information</h2>
+      <p>We do not sell your personal information. We may share information only:</p>
+      <ul>
+        <li>With service providers who help us operate our business, such as our customer management and communication tools, under confidentiality obligations</li>
+        <li>With your insurance company or adjuster, when you ask us to help with a claim</li>
+        <li>When required by law, or to protect our rights, property or safety</li>
+      </ul>
+
+      <h2>Cookies and analytics</h2>
+      <p>
+        We may use cookies and analytics tools to understand how visitors use the site and to measure our advertising.
+        You can block or delete cookies in your browser settings. Some features may not work properly without them.
+      </p>
+
+      <h2>Data security and retention</h2>
+      <p>
+        We use reasonable safeguards to protect your information. No method of transmission or storage is completely
+        secure. We keep information only as long as needed for the purposes described here or as required by law.
+      </p>
+
+      <h2>Your California privacy rights</h2>
+      <p>
+        If you are a California resident, you may have the right to request access to, correction of or deletion of
+        your personal information, and to know how it is used and shared. We do not sell or share personal information
+        for cross-context behavioral advertising. To make a request, call us at {business.phoneDigits}.
+      </p>
+
+      <h2>Children's privacy</h2>
+      <p>This website is not directed to children under 13, and we do not knowingly collect their information.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>We may update this policy from time to time. The effective date above shows when it was last changed.</p>
+
+      <h2>Contact us</h2>
+      <p>
+        Questions about this policy? Call {business.name} at <a href={business.phoneHref}>{business.phoneDigits}</a>.
+      </p>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .policy {
+    background: #fff;
+    padding-block: var(--space-7) var(--space-8);
+  }
+  .narrow {
+    max-width: 820px;
+  }
+  .crumbs {
+    margin-bottom: var(--space-4);
+    font-size: 0.9rem;
+    color: #6b7487;
+  }
+  .crumbs a {
+    color: var(--color-water-dark);
+  }
+  h1 {
+    font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+    color: var(--color-fg);
+  }
+  .effective {
+    margin: var(--space-2) 0 var(--space-5);
+    color: #6b7487;
+    font-weight: 600;
+  }
+  h2 {
+    margin: var(--space-6) 0 var(--space-3);
+    font-size: 1.5rem;
+    color: var(--color-fg);
+  }
+  p,
+  li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #2a3245;
+  }
+  p {
+    margin: 0 0 var(--space-3);
+  }
+  ul {
+    margin: 0 0 var(--space-3);
+    padding-left: 1.2em;
+  }
+  li::marker {
+    color: var(--color-fire);
+  }
+  a {
+    color: var(--color-water-dark);
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,124 @@
+---
+/*
+  Numbered values/standards grid (About page): number, H3 and text cards on a light background.
+*/
+interface Value {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  accent: string;
+  intro: string;
+  values: Value[];
+}
+
+const { eyebrow = 'What Drives the Work', heading, accent, intro, values } = Astro.props;
+---
+
+<section class="values" aria-labelledby="values-heading">
+  <div class="container">
+    <div class="head">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 id="values-heading">{heading} <span class="accent">{accent}</span></h2>
+      <p>{intro}</p>
+    </div>
+    <ol class="grid">
+      {values.map((v, i) => (
+        <li class="card">
+          <span class="num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{v.title}</h3>
+          <p>{v.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .values {
+    background: var(--color-muted);
+    padding-block: var(--space-8);
+  }
+  .head {
+    max-width: 780px;
+    margin: 0 auto var(--space-6);
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-water-ui);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  h2 .accent {
+    color: var(--color-fire);
+  }
+  .head p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(10, 26, 63, 0.06);
+    border-top: 4px solid var(--color-fire);
+  }
+  .card:nth-child(even) {
+    border-top-color: var(--color-water);
+  }
+  .num {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-stretch: var(--heading-stretch);
+    font-weight: 900;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--color-fire);
+  }
+  .card:nth-child(even) .num {
+    color: var(--color-water);
+  }
+  h3 {
+    margin-top: var(--space-3);
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .card p {
+    margin: var(--space-2) 0 0;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  @media (max-width: 1000px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .values { padding-block: var(--space-7); }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

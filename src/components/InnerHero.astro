@@ -3,7 +3,7 @@
   Inner-page hero (service and town pages). Breadcrumbs, eyebrow, an H1 with an accent phrase, a subhead,
   3 trust bullets and 2 CTAs on the left. A "call now" card on the right. Uses the fire/water brand background.
 */
-import { fireWaterBg } from '../lib/fireWaterBg';
+import { fireWaterImages } from '../lib/fireWaterBg';
 import { business } from '../data/site';
 import { reviewSummary } from '../data/reviews';
 
@@ -42,10 +42,19 @@ const {
 const at = h1.indexOf(h1Accent);
 const before = at >= 0 ? h1.slice(0, at) : h1;
 const after = at >= 0 ? h1.slice(at + h1Accent.length) : '';
-const bgVars = await fireWaterBg();
+const bgImg = await fireWaterImages();
 ---
 
-<section class="inner-hero" style={bgVars}>
+<section class="inner-hero">
+  <img
+    class="bg-img"
+    src={bgImg.desktop}
+    srcset={`${bgImg.mobile} 900w, ${bgImg.desktop} 1920w`}
+    sizes="100vw"
+    alt=""
+    fetchpriority="high"
+    loading="eager"
+  />
   <div class="overlay" aria-hidden="true"></div>
   <div class="container layout">
     <div class="copy">
@@ -104,8 +113,15 @@ const bgVars = await fireWaterBg();
     position: relative;
     overflow: hidden;
     padding-block: var(--space-7) var(--space-8);
-    background: var(--color-black) var(--fw-bg) center / cover no-repeat;
+    background: var(--color-black);
     color: #fff;
+  }
+  .bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .overlay {
     position: absolute;
@@ -229,7 +245,7 @@ const bgVars = await fireWaterBg();
     background: var(--color-fire-dark);
   }
   .btn-alt {
-    background: var(--color-water);
+    background: var(--color-water-ui);
     color: #fff;
     box-shadow: var(--glow-water);
   }
@@ -322,7 +338,7 @@ const bgVars = await fireWaterBg();
     .now-card { display: none; }
   }
   @media (max-width: 600px) {
-    .inner-hero { background-image: var(--fw-bg-mobile); padding-block: var(--space-5) var(--space-7); }
+    .inner-hero { padding-block: var(--space-5) var(--space-7); }
     .crumbs ol { margin-bottom: var(--space-4); font-size: 0.82rem; }
     .sub { font-size: 1.08rem; }
     .ctas { flex-direction: column; }
