@@ -1,0 +1,149 @@
+---
+/*
+  /locations/: the service area hub. Links to every town page (the old site had this URL too).
+  Targets "plumbing and restoration High Desert" / "Victor Valley restoration company".
+  Schema: BreadcrumbList, plus Plumber with an areaServed list of every town.
+*/
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import InnerHero from '../../components/InnerHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceAreas from '../../components/ServiceAreas.astro';
+import ProseSection from '../../components/ProseSection.astro';
+import Reviews from '../../components/Reviews.astro';
+import FAQ from '../../components/FAQ.astro';
+import InspectionForm from '../../components/InspectionForm.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, serviceAreas } from '../../data/site';
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL('/locations/', site).toString();
+const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent('Victorville, CA')}&z=9&output=embed`;
+
+const faqs = [
+  {
+    q: 'What areas does Rapid Response serve?',
+    a: 'We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo and Newberry Springs in Southern California’s High Desert.',
+  },
+  {
+    q: 'Do you provide emergency service throughout the area?',
+    a: 'Yes. We are on call 24/7 across our entire service area. In the Victor Valley, crews are on the way in 1 hour or less. For Barstow, Yermo and Newberry Springs, we give you an arrival time as soon as you call.',
+  },
+  {
+    q: 'What if I am near one of these cities but not in it?',
+    a: 'Call and ask. If your property is close to our service area, there is a good chance we can help.',
+  },
+  {
+    q: 'Do you work on both residential and commercial properties?',
+    a: 'Yes. We serve homes, rentals, multi-unit buildings, offices, retail spaces, warehouses and other commercial properties throughout our service area.',
+  },
+  {
+    q: 'What types of damage do you handle?',
+    a: 'We handle plumbing repairs and emergencies, plus water damage, flood damage, mold, and fire and smoke damage restoration.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Plumber',
+  name: business.name,
+  url: new URL('/', site).toString(),
+  telephone: '+1-855-477-2743',
+  openingHours: 'Mo-Su 00:00-23:59',
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA`, url: new URL(`/${a.slug}/`, site).toString() })),
+};
+---
+
+<BaseLayout
+  title="Service Areas Across the High Desert | Rapid Response"
+  description="Rapid Response serves Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo and Newberry Springs with 24/7 plumbing and restoration."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations' }]}
+    eyebrow="Service Areas"
+    h1="Our High Desert Service Areas"
+    h1Accent="Service Areas"
+    sub="One local team for eight High Desert communities. Choose your city below for local service details, or call 855-47-RAPID any time."
+    bullets={[
+      '24/7 emergency response across the High Desert',
+      'Plumbing repair and restoration in one call',
+      'Homes, rentals and businesses',
+    ]}
+    nowTitle="Emergency near you?"
+    nowText="Call 24/7. We will get a crew moving and give you an arrival time."
+  />
+  <TrustStrip />
+  <ServiceAreas phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+
+  <section class="map-sec" aria-label="Service area map">
+    <div class="container">
+      <iframe src={mapSrc} title="Map of the Rapid Response High Desert service area" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <ProseSection heading="Local Coverage Is More Than a List of City Names" sideText="Call 24/7. We will get a crew moving and give you an arrival time.">
+    <p>
+      Rapid Response Plumbing &amp; Restoration is a High Desert company serving the Victor Valley and the communities
+      along I-15 and I-40. We know these towns: the cold winter nights that crack pipes, the hard water that wears out
+      water heaters, the slab foundations that hide leaks, and the monsoon storms that send water where it does not
+      belong.
+    </p>
+    <h3>The Victor Valley</h3>
+    <p>
+      In <a href="/victorville/">Victorville</a>, <a href="/apple-valley/">Apple Valley</a>,
+      <a href="/hesperia/">Hesperia</a>, <a href="/adelanto/">Adelanto</a> and <a href="/helendale/">Helendale</a>,
+      our crews are on the way in 1 hour or less for emergencies, 24/7.
+    </p>
+    <h3>Barstow and the I-15 and I-40 corridors</h3>
+    <p>
+      We also serve <a href="/barstow/">Barstow</a>, <a href="/yermo/">Yermo</a> and
+      <a href="/newberry-springs/">Newberry Springs</a>. We are on call 24/7 for these communities and will give you an
+      arrival time as soon as you call.
+    </p>
+    <h3>Every service, everywhere we work</h3>
+    <p>
+      Every community gets the same full range of services: <a href="/plumbing/">plumbing</a> from
+      <a href="/plumbing/emergency-plumber/">emergency repairs</a> to <a href="/plumbing/repiping/">repiping</a>, and
+      <a href="/restoration/">restoration</a> for <a href="/water-damage-restoration/">water damage</a>,
+      <a href="/flood-damage/">flooding</a>, <a href="/mold-remediation/">mold</a> and
+      <a href="/fire-smoke-damage-restoration/">fire and smoke damage</a>.
+    </p>
+  </ProseSection>
+
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
+  <FAQ headingLead="Service Area" headingAccent="FAQs" intro="Questions about where Rapid Response works." items={faqs} />
+  <InspectionForm formName="Locations hub form" />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema items={[{ label: 'Home', url: new URL('/', site).toString() }, { label: 'Locations', url: pageUrl }]} />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>
+
+<style>
+  .map-sec {
+    background: #fff;
+    padding-top: var(--space-7);
+  }
+  .map-sec iframe {
+    display: block;
+    width: 100%;
+    height: 440px;
+    border: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 16px 32px rgba(10, 26, 63, 0.14);
+  }
+  @media (max-width: 600px) {
+    .map-sec iframe { height: 320px; }
+  }
+</style>

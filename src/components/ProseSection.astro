@@ -8,9 +8,10 @@ import { business } from '../data/site';
 interface Props {
   heading: string;
   id?: string;
+  sideText?: string;
 }
 
-const { heading, id = 'body-heading' } = Astro.props;
+const { heading, id = 'body-heading', sideText = 'Call 24/7. Crews on the way in 1 hour or less.' } = Astro.props;
 ---
 
 <section class="body" aria-labelledby={id}>
@@ -21,7 +22,7 @@ const { heading, id = 'body-heading' } = Astro.props;
     </article>
     <aside class="side-card" aria-label="Call now">
       <p class="side-title">Need help right now?</p>
-      <p class="side-text">Call 24/7. Crews on the way in 1 hour or less.</p>
+      <p class="side-text">{sideText}</p>
       <a class="side-phone" href={business.phoneHref}>{business.phoneDisplay}</a>
       <p class="side-digits">{business.phoneDigits}</p>
       <a class="side-form" href="#request-inspection">Or request service online</a>

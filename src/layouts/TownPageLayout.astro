@@ -1,0 +1,187 @@
+---
+/*
+  Town (service area) page template. Built to rank for "[service] [town]" searches without being a thin
+  doorway page:
+  - Unique local copy (Markdown body), town-specific problem cards and town-specific FAQs per entry
+  - Town name in title, H1, intro, H2s, service link text, FAQ and form (city preselected)
+  - Map embed, ZIP codes, nearby-town links, breadcrumbs
+  - JSON-LD: Service (areaServed = this town), BreadcrumbList, FAQPage (in FAQ.astro)
+  For towns flagged fastResponse: false, no "1 hour or less" promise is made in town-specific copy.
+*/
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import InnerHero from '../components/InnerHero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import TownServices from '../components/TownServices.astro';
+import IssueGrid from '../components/IssueGrid.astro';
+import ProseSection from '../components/ProseSection.astro';
+import RealWork from '../components/RealWork.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
+
+interface Props {
+  entry: CollectionEntry<'towns'>;
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+const town = d.name;
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(Astro.url.pathname, site).toString();
+
+const nearby = d.nearby
+  .map((slug) => serviceAreas.find((a) => a.slug === slug))
+  .filter((a): a is (typeof serviceAreas)[number] => Boolean(a));
+
+const speedAnswer = d.fastResponse
+  ? `We respond in 1 hour or less across ${town} and our High Desert service area, day or night. Call 855-47-RAPID and a crew gets moving right away.`
+  : `Our crews are on call 24/7 for ${town}. Call 855-47-RAPID and we will give you an arrival time right away and walk you through what to do until we get there.`;
+
+const faqs = [
+  { q: `Do you provide plumbing and restoration services in ${town}?`, a: `Yes. Rapid Response provides 24/7 plumbing, water damage restoration, flood cleanup, mold remediation and fire and smoke damage cleanup for homes and businesses in ${town}, CA (${d.zips.join(', ')}).` },
+  { q: `How fast can you get to my property in ${town}?`, a: speedAnswer },
+  ...d.faqs,
+  { q: `Do you work with insurance for ${town} property damage claims?`, a: 'Yes. We work with all major insurance carriers and document the damage with photos and moisture readings to keep your claim organized and moving.' },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Plumbing & Restoration in ${town}, CA`,
+  serviceType: 'Plumbing and property damage restoration',
+  description: d.description,
+  url: pageUrl,
+  areaServed: { '@type': 'City', name: `${town}, CA` },
+  provider: {
+    '@type': 'Plumber',
+    name: business.name,
+    telephone: '+1-855-477-2743',
+    url: new URL('/', site).toString(),
+    openingHours: 'Mo-Su 00:00-23:59',
+  },
+};
+
+// Trust strip for far towns: same proof points, without the 1-hour promise.
+const farTrust = [
+  { value: '24/7', label: 'Emergency Response', text: 'Nights, weekends and holidays. A real person answers.', tone: 'fire' as const },
+  { value: 'LOCAL', label: 'High Desert Crews', text: `We make the drive to ${town} and know the area.`, tone: 'water' as const },
+  { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' as const },
+  { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' as const },
+];
+
+const bullets = d.fastResponse
+  ? ['On the way in 1 hour or less, 24/7', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers']
+  : ['On call 24/7 for emergencies', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers'];
+---
+
+<BaseLayout title={d.title} description={d.description}>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations', href: '/locations/' }, { label: `${town}, CA` }]}
+    eyebrow={`Serving ${town}, CA`}
+    h1={`Plumbing & Restoration in ${town}, CA`}
+    h1Accent="Plumbing & Restoration"
+    sub={d.heroSub}
+    bullets={bullets}
+    nowTitle={`Emergency in ${town}?`}
+    nowText={d.fastResponse ? 'Call 24/7. A crew heads your way in 1 hour or less.' : `Call 24/7. We will give you an arrival time for ${town} right away.`}
+  />
+  {d.fastResponse ? <TrustStrip /> : <TrustStrip items={farTrust} />}
+  <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} />
+  <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
+
+  <ProseSection heading={d.bodyHeading} sideText={d.fastResponse ? undefined : `Call 24/7 for ${town}. We will give you an arrival time right away.`}>
+    <Content />
+  </ProseSection>
+
+  <RealWork />
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
+  <FAQ headingLead={`${town}`} headingAccent="FAQs" intro={`Common questions from property owners in ${town}, CA.`} items={faqs} />
+
+  <section class="nearby" aria-labelledby="nearby-heading">
+    <div class="container">
+      <h2 id="nearby-heading">Also Serving Communities Near {town}</h2>
+      <ul>
+        {nearby.map((a) => (
+          <li><a href={`/${a.slug}/`}>Plumbing &amp; Restoration in {a.name}, CA <span aria-hidden="true">→</span></a></li>
+        ))}
+        <li><a href="/locations/">View all service areas <span aria-hidden="true">→</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <InspectionForm
+    eyebrow={`24/7 in ${town}`}
+    headingLead="Request Help in"
+    headingAccent={`${town} Today`}
+    lead={`Tell us what happened at your ${town} property. We will call you right back. If water is actively leaking, shut it off if you can and call now.`}
+    formName={`${town} town page form`}
+    defaultCity={town}
+    fastResponse={d.fastResponse}
+  />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema
+    items={[
+      { label: 'Home', url: new URL('/', site).toString() },
+      { label: 'Locations', url: new URL('/locations/', site).toString() },
+      { label: `${town}, CA`, url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</BaseLayout>
+
+<style>
+  .nearby {
+    background: var(--color-muted);
+    padding-block: var(--space-7);
+  }
+  .nearby h2 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    color: var(--color-fg);
+  }
+  .nearby ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .nearby a {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background: #fff;
+    border-left: 4px solid var(--color-fire);
+    box-shadow: 0 6px 18px rgba(10, 26, 63, 0.06);
+    color: var(--color-fg);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .nearby a:hover {
+    color: var(--color-water-dark);
+  }
+  .nearby a span {
+    color: var(--color-fire);
+  }
+</style>

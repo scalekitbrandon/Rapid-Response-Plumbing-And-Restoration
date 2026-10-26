@@ -18,6 +18,10 @@ interface Props {
   submitLabel?: string;
   /** Preselects "What happened?" (must match one of damageTypes). */
   defaultDamageType?: string;
+  /** Preselects the City field (must match a serviceAreas name). */
+  defaultCity?: string;
+  /** false = do not promise "1 hour or less" (far service-area towns). */
+  fastResponse?: boolean;
 }
 
 const {
@@ -28,6 +32,8 @@ const {
   formName = 'Free inspection form',
   submitLabel = 'Request Free Inspection',
   defaultDamageType,
+  defaultCity,
+  fastResponse = true,
 } = Astro.props;
 
 const bgVars = await fireWaterBg();
@@ -53,7 +59,7 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
       </a>
 
       <ul class="facts">
-        <li><strong>24/7</strong> emergency response, 1 hour or less</li>
+        <li><strong>24/7</strong> emergency response{fastResponse ? ', 1 hour or less' : ', on call around the clock'}</li>
         <li><strong>Free</strong> inspections, no obligation</li>
         <li><strong>All major</strong> insurance carriers</li>
         <li><strong>Homes &amp; businesses</strong> across the High Desert</li>
@@ -102,8 +108,8 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
           <div class="f">
             <label for="i-city">City *</label>
             <select id="i-city" name="city" required>
-              <option value="" selected disabled>Choose your city</option>
-              {serviceAreas.map((a) => <option value={a.name}>{a.name}</option>)}
+              <option value="" selected={!defaultCity} disabled>Choose your city</option>
+              {serviceAreas.map((a) => <option value={a.name} selected={a.name === defaultCity}>{a.name}</option>)}
               <option value="Other / nearby">Other / nearby</option>
             </select>
           </div>

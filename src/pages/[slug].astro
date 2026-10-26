@@ -1,17 +1,27 @@
 ---
 /*
-  Root-level dynamic pages. Restoration service pages live at the site root to keep the old site's URLs
-  (/water-damage-restoration/, /flood-damage/, /mold-remediation/, ...). Town pages will join this route later.
+  Root-level dynamic pages:
+  - Restoration service pages (/water-damage-restoration/, /flood-damage/, ...) keep the old site's URLs
+  - Town pages (/victorville/, /hesperia/, ...) match the Locations menu and the old town URLs
 */
 import { getCollection } from 'astro:content';
 import ServicePageLayout from '../layouts/ServicePageLayout.astro';
+import TownPageLayout from '../layouts/TownPageLayout.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('restoration');
-  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+  const restoration = await getCollection('restoration');
+  const towns = await getCollection('towns');
+  return [
+    ...restoration.map((entry) => ({ params: { slug: entry.slug }, props: { kind: 'restoration' as const, entry } })),
+    ...towns.map((entry) => ({ params: { slug: entry.slug }, props: { kind: 'town' as const, entry } })),
+  ];
 }
 
-const { entry } = Astro.props;
+const props = Astro.props;
 ---
 
-<ServicePageLayout entry={entry} category={{ label: 'Restoration', href: '/restoration/' }} providerType="HomeAndConstructionBusiness" />
+{props.kind === 'restoration' ? (
+  <ServicePageLayout entry={props.entry} category={{ label: 'Restoration', href: '/restoration/' }} providerType="HomeAndConstructionBusiness" />
+) : (
+  <TownPageLayout entry={props.entry} />
+)}

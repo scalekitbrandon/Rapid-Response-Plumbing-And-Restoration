@@ -69,4 +69,25 @@ const plumbing = defineCollection({ type: 'content', schema: serviceSchema });
 // Restoration pages render at the site root (/water-damage-restoration/ etc.) to keep the old site's URLs.
 const restoration = defineCollection({ type: 'content', schema: serviceSchema });
 
-export const collections = { plumbing, restoration };
+// Town pages render at /<slug>/ (slug must match serviceAreas in src/data/site.ts).
+// Unique local copy lives in the Markdown body. Frontmatter holds the structured, town-specific sections.
+const towns = defineCollection({
+  type: 'content',
+  schema: z.object({
+    name: z.string(),
+    title: z.string().max(65),
+    description: z.string().min(120).max(165),
+    heroSub: z.string(),
+    zips: z.array(z.string()).min(1),
+    mapQuery: z.string(), // Google Maps embed query, e.g. "Victorville, CA"
+    fastResponse: z.boolean().default(true), // false = do not promise "1 hour or less" for this town
+    bodyHeading: z.string(),
+    issuesHeading: z.string(),
+    issuesIntro: z.string(),
+    issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve', 'fire', 'mold', 'building', 'fan', 'home', 'flood']) })).length(4),
+    faqs: z.array(faq).min(2), // town-specific FAQs, merged with shared ones in the layout
+    nearby: z.array(z.string()).min(2), // slugs of nearby towns
+  }),
+});
+
+export const collections = { plumbing, restoration, towns };

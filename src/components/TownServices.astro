@@ -1,0 +1,187 @@
+---
+/*
+  Town page services block: a local intro and Google map on the left, and two linked lists on the right
+  (Plumbing and Restoration). Link text includes the town name, which ties each service page to the town.
+*/
+import ServiceIcon from './ServiceIcon.astro';
+import { plumbingServices, restorationServices } from '../data/site';
+
+interface Props {
+  town: string;
+  zips: string[];
+  mapQuery: string;
+}
+
+const { town, zips, mapQuery } = Astro.props;
+const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=11&output=embed`;
+---
+
+<section class="town-services" aria-labelledby="town-services-heading">
+  <div class="container">
+    <div class="head">
+      <h2 id="town-services-heading">Plumbing &amp; Restoration Services <span class="accent">in {town}</span></h2>
+      <p>
+        Every service we offer is available 24/7 in {town}, CA, including ZIP code{zips.length > 1 ? 's' : ''}
+        {' '}{zips.join(', ')}. Choose a service to learn more, or call and tell us what happened.
+      </p>
+    </div>
+
+    <div class="layout">
+      <div class="lists">
+        <div class="group plumb">
+          <h3>Plumbing in {town}</h3>
+          <ul>
+            {plumbingServices.map((s) => (
+              <li>
+                <a href={s.href}>
+                  <span class="ico" aria-hidden="true"><ServiceIcon name={s.icon} /></span>
+                  <span>{s.label} <span class="where">in {town}</span></span>
+                  <span class="go" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="group resto">
+          <h3>Restoration in {town}</h3>
+          <ul>
+            {restorationServices.map((s) => (
+              <li>
+                <a href={s.href}>
+                  <span class="ico" aria-hidden="true"><ServiceIcon name={s.icon} /></span>
+                  <span>{s.label} <span class="where">in {town}</span></span>
+                  <span class="go" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe
+          src={mapSrc}
+          title={`Map of ${town}, CA service area`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .town-services {
+    background: #fff;
+    padding-block: var(--space-8);
+  }
+  .head {
+    max-width: 780px;
+    margin-bottom: var(--space-6);
+  }
+  h2 {
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  h2 .accent {
+    color: var(--color-fire);
+  }
+  .head p {
+    margin: var(--space-3) 0 0;
+    font-size: 1.12rem;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+  .lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  h3 {
+    margin-bottom: var(--space-3);
+    padding-left: 10px;
+    border-left: 4px solid var(--color-water);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--color-fg);
+  }
+  .resto h3 {
+    border-left-color: var(--color-fire);
+  }
+  ul {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-fg);
+    font-weight: 700;
+    font-size: 0.98rem;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  a:hover {
+    border-color: var(--color-water);
+    background: #f2f8ff;
+  }
+  .ico {
+    width: 28px;
+    height: 28px;
+    color: var(--color-water);
+  }
+  .resto .ico {
+    color: var(--color-fire);
+  }
+  .ico :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .where {
+    font-weight: 500;
+    color: #5a6478;
+  }
+  .go {
+    color: var(--color-fire);
+  }
+  .map {
+    min-height: 420px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 16px 32px rgba(10, 26, 63, 0.14);
+    background: var(--color-muted);
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: 0;
+  }
+
+  @media (max-width: 1100px) {
+    .layout { grid-template-columns: 1fr; }
+    .map, iframe { min-height: 320px; }
+  }
+  @media (max-width: 640px) {
+    .town-services { padding-block: var(--space-7); }
+    .lists { grid-template-columns: 1fr; }
+  }
+</style>
