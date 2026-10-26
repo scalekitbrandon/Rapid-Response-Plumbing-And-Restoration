@@ -1,0 +1,17 @@
+---
+/*
+  Root-level dynamic pages. Restoration service pages live at the site root to keep the old site's URLs
+  (/water-damage-restoration/, /flood-damage/, /mold-remediation/, ...). Town pages will join this route later.
+*/
+import { getCollection } from 'astro:content';
+import ServicePageLayout from '../layouts/ServicePageLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('restoration');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<ServicePageLayout entry={entry} category={{ label: 'Restoration', href: '/restoration/' }} providerType="HomeAndConstructionBusiness" />

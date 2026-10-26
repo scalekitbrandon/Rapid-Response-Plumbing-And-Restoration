@@ -19,6 +19,8 @@ interface Props {
 }
 
 const { heading, intro, issues } = Astro.props;
+// 6 (or 9) items fill a 3-column grid evenly. 4 or 8 fill 4 columns.
+const threeCol = issues.length % 3 === 0 && issues.length % 4 !== 0;
 ---
 
 <section class="issues" aria-labelledby="issues-heading">
@@ -27,7 +29,7 @@ const { heading, intro, issues } = Astro.props;
       <h2 id="issues-heading">{heading}</h2>
       <p>{intro}</p>
     </div>
-    <ul class="grid">
+    <ul class:list={["grid", { "three": threeCol }]}>
       {issues.map((i) => (
         <li class={`card icon-${i.icon}`}>
           <span class="icon" aria-hidden="true"><ServiceIcon name={i.icon} /></span>
@@ -68,6 +70,9 @@ const { heading, intro, issues } = Astro.props;
     padding: 0;
     list-style: none;
   }
+  .grid.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
   .card {
     padding: var(--space-5) var(--space-4);
     border: 1px solid var(--color-border);
@@ -96,6 +101,10 @@ const { heading, intro, issues } = Astro.props;
   .icon-valve .icon {
     color: var(--color-fire);
   }
+  .icon-fire .icon { color: var(--color-fire); }
+  .icon-mold .icon { color: var(--color-mold); }
+  .icon-building .icon { color: var(--color-navy-2); }
+
   h3 {
     font-size: 1.2rem;
     line-height: 1.2;
@@ -109,11 +118,11 @@ const { heading, intro, issues } = Astro.props;
   }
 
   @media (max-width: 1100px) {
-    .grid { grid-template-columns: repeat(2, 1fr); }
+    .grid, .grid.three { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
     .issues { padding-block: var(--space-7); }
-    .grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .grid, .grid.three { grid-template-columns: 1fr; gap: var(--space-3); }
     .card { display: grid; grid-template-columns: 44px 1fr; column-gap: var(--space-3); padding: var(--space-4); }
     .icon { width: 44px; height: 44px; grid-row: span 2; margin: 0; }
   }

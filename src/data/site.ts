@@ -35,12 +35,12 @@ export const serviceAreas = [
   { name: 'Helendale', slug: 'helendale', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
 ];
 
-export const restorationServices = [
-  { label: 'Water Damage Restoration', href: '/water-damage-restoration/' },
-  { label: 'Flood Damage Restoration', href: '/flood-damage-restoration/' },
-  { label: 'Mold Remediation', href: '/mold-remediation/' },
-  { label: 'Fire & Smoke Damage', href: '/fire-smoke-damage-restoration/' },
-  { label: 'Commercial Restoration', href: '/commercial-property-restoration/' },
+export const restorationServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
+  { label: 'Water Damage Restoration', href: '/water-damage-restoration/', icon: 'drop', blurb: 'Emergency water extraction, structural drying and cleanup after leaks, burst pipes and overflows.' },
+  { label: 'Flood Damage Restoration', href: '/flood-damage/', icon: 'flood', blurb: 'Fast flood cleanup and dry-out after storms, overflows and major water intrusion.' },
+  { label: 'Mold Remediation', href: '/mold-remediation/', icon: 'mold', blurb: 'Containment, removal and cleanup of mold, plus fixing the moisture problem that caused it.' },
+  { label: 'Fire & Smoke Damage', href: '/fire-smoke-damage-restoration/', icon: 'fire', blurb: 'Soot and smoke cleanup, damaged material removal and cleanup of water left from firefighting.' },
+  { label: 'Commercial Restoration', href: '/commercial-property-restoration/', icon: 'building', blurb: 'Water, flood, fire and mold restoration for offices, retail, warehouses and rentals.' },
 ];
 
 // TODO(client): placeholder plumbing list. The current site has no plumbing services.

@@ -21,9 +21,20 @@ interface Props {
   bullets: string[];
   ctaLabel?: string;
   ctaHref?: string;
+  nowTitle?: string;
 }
 
-const { crumbs, eyebrow, h1, h1Accent, sub, bullets, ctaLabel = 'Request Service', ctaHref = '#request-inspection' } = Astro.props;
+const {
+  crumbs,
+  eyebrow,
+  h1,
+  h1Accent,
+  sub,
+  bullets,
+  ctaLabel = 'Request Service',
+  ctaHref = '#request-inspection',
+  nowTitle = 'Plumbing or water emergency?',
+} = Astro.props;
 
 // Split the H1 so the accent phrase gets its own color, keeping one plain-text H1 for SEO.
 const at = h1.indexOf(h1Accent);
@@ -72,7 +83,7 @@ const bgVars = await fireWaterBg();
 
     <aside class="now-card" aria-label="Call now">
       <p class="live"><span class="dot" aria-hidden="true"></span> Crews available now</p>
-      <p class="now-title">Plumbing or water emergency?</p>
+      <p class="now-title">{nowTitle}</p>
       <p class="now-text">Call 24/7. A crew heads your way in 1 hour or less.</p>
       <a class="now-phone" href={business.phoneHref}>{business.phoneDisplay}</a>
       <p class="now-digits">{business.phoneDigits}</p>

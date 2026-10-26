@@ -1,0 +1,194 @@
+---
+/*
+  /restoration/: the restoration category hub. Targets "restoration company Victorville" /
+  "property damage restoration Victorville". It links down to the five restoration service pages
+  (which live at the site root to keep the old URLs) and across to plumbing.
+  Schema: BreadcrumbList, plus HomeAndConstructionBusiness with an OfferCatalog of the services.
+*/
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import InnerHero from '../../components/InnerHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import ServiceSplit from '../../components/ServiceSplit.astro';
+import Process from '../../components/Process.astro';
+import ProseSection from '../../components/ProseSection.astro';
+import RealWork from '../../components/RealWork.astro';
+import InsuranceCarriers from '../../components/InsuranceCarriers.astro';
+import Reviews from '../../components/Reviews.astro';
+import FAQ from '../../components/FAQ.astro';
+import AreaLinks from '../../components/AreaLinks.astro';
+import InspectionForm from '../../components/InspectionForm.astro';
+import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, restorationServices, serviceAreas } from '../../data/site';
+import moldPpe from '../../assets/work/mold-remediation-ppe.jpg';
+
+const entries = await getCollection('restoration');
+const liveHrefs = entries.map((e) => `/${e.slug}/`);
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL('/restoration/', site).toString();
+
+const faqs = [
+  {
+    q: 'What does a restoration company do?',
+    a: 'A restoration company cleans up and stabilizes a property after water, flood, fire, smoke or mold damage. That includes extracting water, removing damaged materials, cleaning and sanitizing, drying the structure and documenting the loss so the property is ready for repairs.',
+  },
+  {
+    q: 'Do you provide 24/7 emergency restoration?',
+    a: 'Yes. We answer 24/7, including nights, weekends and holidays, and send a crew in 1 hour or less across Victorville and our High Desert service area.',
+  },
+  {
+    q: 'Do I need to know exactly what service I need?',
+    a: 'No. Tell us what happened and what you can see. You do not need to diagnose the property or pick a restoration category before calling.',
+  },
+  {
+    q: 'Do you work with insurance companies?',
+    a: 'Yes. We work with all major insurance carriers and document the damage with photos and moisture readings to keep your claim organized and moving.',
+  },
+  {
+    q: 'Can you fix the plumbing problem that caused the damage?',
+    a: 'Yes. Rapid Response is a plumbing company too, so we can repair the leak, pipe or water heater that caused the damage and restore the damage it left behind.',
+  },
+  {
+    q: 'Should I wait if the damage looks small?',
+    a: 'Damage often extends farther than what you can see. Water travels behind walls and under flooring, and moisture can lead to mold. If you are unsure how serious it is, calling early helps you understand what needs attention.',
+  },
+];
+
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  name: business.name,
+  url: new URL('/', site).toString(),
+  telephone: '+1-855-477-2743',
+  openingHours: 'Mo-Su 00:00-23:59',
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Restoration Services',
+    url: pageUrl,
+    itemListElement: restorationServices.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.label,
+        description: s.blurb,
+        ...(liveHrefs.includes(s.href) ? { url: new URL(s.href, site).toString() } : {}),
+      },
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Restoration Company in Victorville, CA | 24/7 | Rapid Response"
+  description="Water, flood, fire, smoke or mold damage? Rapid Response is the High Desert's 24/7 restoration company, serving Victorville and nearby. Call 855-47-RAPID."
+>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Restoration' }]}
+    eyebrow="24/7 Property Restoration"
+    h1="Property Restoration Services in Victorville, CA"
+    h1Accent="Property Restoration Services"
+    sub="Water, flood, fire, smoke or mold, one call gets a Rapid Response crew on the way. We stabilize the damage, restore your property and handle the plumbing that caused it."
+    bullets={[
+      'On the way in 1 hour or less, 24/7',
+      'Water, flood, fire, smoke and mold damage',
+      'We work with all major insurance carriers',
+    ]}
+    nowTitle="Property damage emergency?"
+  />
+  <TrustStrip />
+
+  <ServiceCards
+    heading="Restoration Services We Offer"
+    intro="One restoration company for every kind of property damage. Choose a service to learn more, or call and tell us what happened."
+    items={restorationServices}
+    liveHrefs={liveHrefs}
+  />
+
+  <RealWork />
+
+  <ServiceSplit
+    heading="Your Restoration Team"
+    accent="and Your Plumber"
+    text="Most property damage starts with water, and most water damage starts with plumbing. Restoration companies usually have to send you to a separate plumber. Rapid Response does both, so we repair the source and restore the damage with one crew and one point of contact."
+    points={[
+      'Find and repair the leak, pipe or water heater behind the damage',
+      'Contain, clean and remove damaged materials',
+      'Dry the structure and confirm it with moisture readings',
+      'Document everything for your insurance claim',
+    ]}
+    image={moldPpe}
+    imageAlt="Rapid Response technician in a full protective suit working inside a containment area"
+    linkLabel="Plumbing services"
+    linkHref="/plumbing/"
+  />
+
+  <Process phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+
+  <InsuranceCarriers phoneDisplay={business.phoneDisplay} phoneHref={business.phoneHref} />
+
+  <ProseSection heading="A Local Restoration Company for Victorville and the High Desert">
+    <p>
+      When property damage happens, you need a <strong>restoration company in Victorville</strong> that answers the
+      phone and shows up fast. Rapid Response Plumbing &amp; Restoration serves homes and businesses across
+      Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale, 24/7.
+    </p>
+    <h3>Every kind of property damage, one company</h3>
+    <p>
+      We handle <a href="/water-damage-restoration/">water damage restoration</a>,
+      <a href="/flood-damage/">flood cleanup</a>, <a href="/mold-remediation/">mold remediation</a> and
+      <a href="/fire-smoke-damage-restoration/">fire and smoke damage</a> for residential properties, plus
+      <a href="/commercial-property-restoration/">commercial restoration</a> for offices, retail, warehouses and
+      rentals. You do not need to know which service you need. Tell us what happened and we will take it from there.
+    </p>
+    <h3>Why fast response matters</h3>
+    <p>
+      Damage spreads when it is left alone. Water migrates into walls and floors, soot sets into surfaces, and wet
+      materials can start growing mold within a day or two. Fast mitigation limits how much has to be removed and
+      replaced, shortens the recovery and helps your insurance claim.
+    </p>
+    <h3>Real work, real documentation</h3>
+    <p>
+      Every photo on this site comes from a Rapid Response job. We document every loss the same way, with photos,
+      moisture readings and clear notes on what was removed and why, so owners, property managers and insurers can
+      see exactly what was done.
+    </p>
+  </ProseSection>
+
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
+  <FAQ headingLead="Restoration" headingAccent="FAQs" intro="Answers to common questions about our restoration services in Victorville and the High Desert." items={faqs} />
+  <AreaLinks
+    heading="Restoration Company Near You in the High Desert"
+    intro="Fast 24/7 restoration across Southern California's High Desert. Choose your city for local service details."
+    service="Property restoration"
+  />
+  <InspectionForm
+    eyebrow="Free Inspection"
+    headingLead="Request Your"
+    headingAccent="Free Inspection"
+    formName="Restoration hub form"
+  />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema
+    items={[
+      { label: 'Home', url: new URL('/', site).toString() },
+      { label: 'Restoration', url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+</BaseLayout>

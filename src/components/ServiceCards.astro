@@ -23,6 +23,8 @@ interface Props {
 }
 
 const { heading, intro, items, liveHrefs } = Astro.props;
+// Fill the empty slot in the last row of the 3-column grid with a call card.
+const showHelpCard = items.length % 3 !== 0;
 ---
 
 <section class="cards" aria-labelledby="cards-heading">
@@ -47,6 +49,13 @@ const { heading, intro, items, liveHrefs } = Astro.props;
           </li>
         );
       })}
+      {showHelpCard && (
+        <li class="card help">
+          <p class="help-title">Not sure what you need?</p>
+          <p>Tell us what happened and what you can see. We will figure out the rest and get a crew moving.</p>
+          <a class="help-call" href={business.phoneHref}>Call {business.phoneDisplay}</a>
+        </li>
+      )}
     </ul>
   </div>
 </section>
@@ -114,6 +123,13 @@ const { heading, intro, items, liveHrefs } = Astro.props;
   .icon-heater .icon {
     color: var(--color-fire);
   }
+  .icon-fire .icon { color: var(--color-fire); }
+  .icon-mold .icon { color: var(--color-mold); }
+  .icon-building .icon { color: var(--color-navy-2); }
+  .icon-fire { border-top-color: var(--color-fire); }
+  .icon-mold { border-top-color: var(--color-mold); }
+  .icon-building { border-top-color: var(--color-navy-2); }
+
   h3 {
     font-size: 1.4rem;
     line-height: 1.2;
@@ -168,6 +184,41 @@ const { heading, intro, items, liveHrefs } = Astro.props;
   .call:hover {
     background: var(--color-fire);
     color: #fff;
+  }
+
+  .help {
+    justify-content: center;
+    border: 0;
+    background: linear-gradient(135deg, var(--color-navy-2) 0%, var(--color-black) 100%);
+    color: #fff;
+    box-shadow: inset 0 4px 0 var(--color-fire);
+  }
+  .help p {
+    flex: 0;
+    color: var(--color-chrome);
+  }
+  .help .help-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  .help-call {
+    align-self: flex-start;
+    padding: 12px 22px;
+    border-radius: var(--radius-pill);
+    background: var(--color-fire);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: var(--glow-fire);
+  }
+  .help-call:hover {
+    background: var(--color-fire-dark);
   }
 
   @media (max-width: 1000px) {

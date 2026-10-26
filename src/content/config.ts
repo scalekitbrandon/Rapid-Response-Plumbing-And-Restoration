@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 
 // Service pages. Each entry is one keyword-targeted page rendered by src/layouts/ServicePageLayout.astro.
 // Frontmatter holds the structured sections. The Markdown body is the long-form "about this service" copy.
-// `plumbing` renders at /plumbing/<slug>/. A `restoration` collection with the same schema comes next.
+// `plumbing` renders at /plumbing/<slug>/. `restoration` renders at /<slug>/.
 
 const faq = z.object({ q: z.string(), a: z.string() });
 
@@ -25,7 +25,7 @@ const serviceSchema = ({ image }: { image: () => z.ZodTypeAny }) =>
     // "Problems we fix" grid
     issuesHeading: z.string(),
     issuesIntro: z.string(),
-    issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve']) })).min(4),
+    issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve', 'fire', 'mold', 'building', 'fan', 'home', 'flood']) })).min(4),
 
     // "Do this right now" emergency callout (optional)
     urgent: z
@@ -40,6 +40,7 @@ const serviceSchema = ({ image }: { image: () => z.ZodTypeAny }) =>
       points: z.array(z.string()).min(3),
       image: image(),
       imageAlt: z.string(),
+      link: z.object({ label: z.string(), href: z.string() }).optional(), // cross-link under the checklist
     }),
 
     // Process steps
@@ -65,5 +66,7 @@ const serviceSchema = ({ image }: { image: () => z.ZodTypeAny }) =>
   });
 
 const plumbing = defineCollection({ type: 'content', schema: serviceSchema });
+// Restoration pages render at the site root (/water-damage-restoration/ etc.) to keep the old site's URLs.
+const restoration = defineCollection({ type: 'content', schema: serviceSchema });
 
-export const collections = { plumbing };
+export const collections = { plumbing, restoration };

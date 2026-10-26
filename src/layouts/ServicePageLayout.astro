@@ -29,12 +29,21 @@ import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
 
 interface Props {
-  entry: CollectionEntry<'plumbing'>;
+  entry: CollectionEntry<'plumbing'> | CollectionEntry<'restoration'>;
   category: { label: string; href: string };
   providerType: string; // schema.org type for the provider, e.g. "Plumber"
 }
 
 const { entry, category, providerType } = Astro.props;
+const isPlumbing = entry.collection === 'plumbing';
+// Per-category defaults: the cross-sell link under the split checklist, the hero call-card title and the form lead.
+const splitLink = entry.data.split.link ?? (isPlumbing
+  ? { label: 'Water damage restoration', href: '/water-damage-restoration/' }
+  : { label: 'Plumbing services', href: '/plumbing/' });
+const nowTitle = isPlumbing ? 'Plumbing or water emergency?' : 'Property damage emergency?';
+const formLead = isPlumbing
+  ? 'Tell us what is going on and where. We will call you right back. If water is actively leaking, shut it off if you can and call now.'
+  : 'Tell us what happened and where. We will call you right back to schedule your free inspection. If damage is still spreading, call now.';
 const d = entry.data;
 const { Content } = await entry.render();
 
@@ -75,7 +84,7 @@ const serviceSchema = {
     phoneHref={business.phoneHref}
   />
 
-  <InnerHero crumbs={crumbs} eyebrow={d.eyebrow} h1={d.h1} h1Accent={d.h1Accent} sub={d.heroSub} bullets={d.heroBullets} />
+  <InnerHero crumbs={crumbs} eyebrow={d.eyebrow} h1={d.h1} h1Accent={d.h1Accent} sub={d.heroSub} bullets={d.heroBullets} nowTitle={nowTitle} />
   <TrustStrip />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
   {d.urgent && <UrgentSteps heading={d.urgent.heading} intro={d.urgent.intro} steps={d.urgent.steps} />}
@@ -86,8 +95,8 @@ const serviceSchema = {
     points={d.split.points}
     image={d.split.image}
     imageAlt={d.split.imageAlt}
-    linkLabel="Water damage restoration"
-    linkHref="/water-damage-restoration/"
+    linkLabel={splitLink.label}
+    linkHref={splitLink.href}
   />
   <Process
     eyebrow="How It Works"
@@ -116,7 +125,7 @@ const serviceSchema = {
     eyebrow="24/7 Service"
     headingLead={d.formHeading}
     headingAccent={d.formAccent}
-    lead="Tell us what is going on and where. We will call you right back. If water is actively leaking, shut it off if you can and call now."
+    lead={formLead}
     formName={`${d.navLabel} form`}
     submitLabel="Request Service Now"
     defaultDamageType={d.formDamageType}
