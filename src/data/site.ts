@@ -9,8 +9,8 @@ import type { IconName } from '../lib/icons';
  *   false = demo mode: the form validates and shows a "not connected yet" note but sends nothing.
  * TODO(client): create the GHL inbound webhook, paste its URL below, then set FORMS_LIVE = true.
  */
-export const FORMS_LIVE = false;
-export const LEAD_WEBHOOK = '';
+export const FORMS_LIVE = true;
+export const LEAD_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/mCPAt01nhLYkOLgWnrhP/webhook-trigger/32e97898-b7cf-4607-b1a1-d7b4070e6d63';
 
 export const business = {
   name: 'Rapid Response Plumbing & Restoration',

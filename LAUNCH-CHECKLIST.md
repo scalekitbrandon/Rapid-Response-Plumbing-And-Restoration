@@ -4,7 +4,7 @@ Site build is complete (80 pages as of 2026-10-27: 14 town pages plus 40 local s
 Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate titles, one H1 per page.
 
 ## Blockers: needed from the client
-- [ ] **Lead form webhook**: create the GHL Inbound Webhook, paste its URL into `LEAD_WEBHOOK` in `src/data/site.ts`, set `FORMS_LIVE = true`, then send a test lead
+- [ ] **Lead form webhook**: connected 2026-10-27 (`FORMS_LIVE = true`, sample lead received by GHL). Remaining: map fields + notifications in the GHL workflow, publish it, then submit a real test from the site
 - [ ] **Plumbing services list**: confirm the 6 plumbing pages match what they actually offer (methods, tankless, sewer lines, reroutes, whole-house repipes)
 - [ ] **Reviews**: confirm the 8 Google reviews are from real customers (FTC fake-review rule)
 - [x] **"1 hour or less"**: client confirmed (2026-10-27) the promise applies to every page and every service area, including the Inland Empire and Las Vegas/Henderson. All town and local pages now promise it.
