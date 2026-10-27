@@ -24,11 +24,19 @@ export const business = {
   tagline: 'We Respond Fast. We Restore Right.',
 };
 
+/**
+ * Nevada (Las Vegas + Henderson): false = those 22 pages are still built but noindexed, left out of the sitemap,
+ * and removed from menus, town lists, schema and copy site-wide (Markdown copy via the remark filter in astro.config.mjs).
+ * Set true on 2026-10-27 at launch (user decision). TODO(client): add the NV contractor license # to the Nevada pages.
+ */
+export const NEVADA_LIVE = true;
+
 export type Region = 'High Desert' | 'Inland Empire' | 'Nevada';
 
-export const regions: Region[] = ['High Desert', 'Inland Empire', 'Nevada'];
+export const regions: Region[] = (['High Desert', 'Inland Empire', 'Nevada'] as Region[]).filter((r) => NEVADA_LIVE || r !== 'Nevada');
 
-export const serviceAreas: { name: string; slug: string; region: Region; state: 'CA' | 'NV'; blurb: string }[] = [
+/** Every service area, including Nevada. Use for page lookups; use `serviceAreas` for anything visitors see. */
+export const allServiceAreas: { name: string; slug: string; region: Region; state: 'CA' | 'NV'; blurb: string }[] = [
   { name: 'Victorville', slug: 'victorville', region: 'High Desert', state: 'CA', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
   { name: 'Apple Valley', slug: 'apple-valley', region: 'High Desert', state: 'CA', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
   { name: 'Hesperia', slug: 'hesperia', region: 'High Desert', state: 'CA', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
@@ -45,6 +53,16 @@ export const serviceAreas: { name: string; slug: string; region: Region; state: 
   { name: 'Las Vegas', slug: 'las-vegas', region: 'Nevada', state: 'NV', blurb: 'Plumbing, water damage, flooding, sewage, mold and fire restoration across the Las Vegas Valley.' },
   { name: 'Henderson', slug: 'henderson', region: 'Nevada', state: 'NV', blurb: 'Slab leaks, water heaters, AC condensate leaks, water damage, mold and fire restoration for homes and businesses.' },
 ];
+
+/** Service areas shown on the site (Nevada hidden until NEVADA_LIVE). */
+export const serviceAreas = allServiceAreas.filter((a) => NEVADA_LIVE || a.state !== 'NV');
+
+/** The town list used in body copy, e.g. "We serve {areaList}." */
+export const areaList = `Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, ${
+  NEVADA_LIVE ? 'Fontana, Rancho Cucamonga and Las Vegas, Nevada' : 'Fontana and Rancho Cucamonga'
+}`;
+/** Short label for the whole footprint. */
+export const footprint = NEVADA_LIVE ? 'Southern California & Las Vegas' : 'Southern California';
 
 export const restorationServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
   { label: 'Water Damage Restoration', href: '/water-damage-restoration/', icon: 'drop', blurb: 'Emergency water extraction, structural drying and cleanup after leaks, burst pipes and overflows.' },

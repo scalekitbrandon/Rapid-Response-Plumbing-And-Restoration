@@ -8,7 +8,7 @@
 */
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
-import { business, restorationServices, plumbingServices, serviceAreas } from '../data/site';
+import { business, restorationServices, plumbingServices, serviceAreas, NEVADA_LIVE } from '../data/site';
 import { reviewSummary } from '../data/reviews';
 
 const year = new Date().getFullYear();
@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
       <p class="phone-digits">{business.phoneDigits}</p>
       <ul class="meta">
         <li>Open 24 hours, 7 days a week</li>
-        <li>Serving the High Desert, Inland Empire &amp; Las Vegas</li>
+        <li>Serving the High Desert, Inland Empire{NEVADA_LIVE ? ' & Las Vegas' : ''}</li>
       </ul>
       {reviewSummary.rating !== null && (
         <a class="rating" href={business.googleReviewsUrl} target="_blank" rel="noopener">

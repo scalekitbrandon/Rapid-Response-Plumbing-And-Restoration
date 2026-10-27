@@ -11,7 +11,7 @@ import InspectionForm from '../components/InspectionForm.astro';
 import FAQ from '../components/FAQ.astro';
 import AreaLinks from '../components/AreaLinks.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business } from '../data/site';
+import { primaryNav, utilityLinks, business, NEVADA_LIVE, footprint } from '../data/site';
 import { reviewSummary } from '../data/reviews';
 
 const site = Astro.site ?? new URL(Astro.url.origin);
@@ -44,7 +44,7 @@ const faqs = [
     h1="Contact Rapid Response Plumbing & Restoration"
     h1Accent="Rapid Response"
     sub="For emergencies, call. We answer 24/7. For everything else, call or send a request below and we will get right back to you."
-    bullets={['Answered 24/7, including nights and weekends', 'Free inspections', 'Serving SoCal and Las Vegas, NV']}
+    bullets={['Answered 24/7, including nights and weekends', 'Free inspections', NEVADA_LIVE ? 'Serving SoCal and Las Vegas, NV' : 'Serving the High Desert and Inland Empire']}
     ctaLabel="Send a Request"
     nowTitle="Call us 24/7"
     nowText="Plumbing emergency or property damage? Call now."
@@ -65,8 +65,8 @@ const faqs = [
         </li>
         <li>
           <p class="label">Service area</p>
-          <p class="big">SoCal &amp; Las Vegas</p>
-          <p class="sub"><a href="/locations/">Victorville, San Bernardino, Fontana, Las Vegas and more</a></p>
+          <p class="big">{NEVADA_LIVE ? 'SoCal & Las Vegas' : 'High Desert & Inland Empire'}</p>
+          <p class="sub"><a href="/locations/">Victorville, San Bernardino, Fontana{NEVADA_LIVE ? ', Las Vegas' : ''} and more</a></p>
         </li>
         <li>
           <p class="label">Google reviews</p>
@@ -86,7 +86,7 @@ const faqs = [
     submitLabel="Send Request"
   />
   <FAQ headingLead="Contact" headingAccent="Questions" intro="What to expect when you reach out." items={faqs} />
-  <AreaLinks heading="Serving Southern California & Las Vegas" intro="Choose your city for local service details." service="Plumbing and restoration" />
+  <AreaLinks heading={`Serving ${footprint}`} intro="Choose your city for local service details." service="Plumbing and restoration" />
 
   <Footer slot="footer" />
 

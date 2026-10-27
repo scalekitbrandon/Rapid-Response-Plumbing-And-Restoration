@@ -17,7 +17,7 @@ import Reviews from '../components/Reviews.astro';
 import AreaLinks from '../components/AreaLinks.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business } from '../data/site';
+import { primaryNav, utilityLinks, business, areaList } from '../data/site';
 import drying from '../assets/work/structural-drying-air-movers.jpg';
 
 const site = Astro.site ?? new URL(Astro.url.origin);
@@ -98,7 +98,7 @@ const site = Astro.site ?? new URL(Astro.url.origin);
     </ul>
     <h3>Where we work</h3>
     <p>
-      We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. See all of
+      We serve {areaList}. See all of
       our <a href="/locations/">service areas</a>.
     </p>
   </ProseSection>

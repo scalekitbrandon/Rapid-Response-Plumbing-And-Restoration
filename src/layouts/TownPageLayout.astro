@@ -21,7 +21,7 @@ import Reviews from '../components/Reviews.astro';
 import FAQ from '../components/FAQ.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
+import { primaryNav, utilityLinks, business, allServiceAreas as serviceAreas, NEVADA_LIVE } from '../data/site';
 
 interface Props {
   entry: CollectionEntry<'towns'>;
@@ -70,7 +70,7 @@ const serviceSchema = {
 const bullets = ['On the way in 1 hour or less, 24/7', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers'];
 ---
 
-<BaseLayout title={d.title} description={d.description}>
+<BaseLayout title={d.title} description={d.description} noindex={isNV && !NEVADA_LIVE}>
   <Header
     slot="header"
     businessName={business.name}

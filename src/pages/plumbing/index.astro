@@ -19,7 +19,7 @@ import FAQ from '../../components/FAQ.astro';
 import AreaLinks from '../../components/AreaLinks.astro';
 import InspectionForm from '../../components/InspectionForm.astro';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, plumbingServices, serviceAreas } from '../../data/site';
+import { primaryNav, utilityLinks, business, plumbingServices, serviceAreas, areaList } from '../../data/site';
 import drywall from '../../assets/work/removing-wet-drywall.jpg';
 
 const entries = await getCollection('plumbing');
@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: 'Which cities do you serve?',
-    a: 'We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. If you are nearby, call and ask.',
+    a: `We serve ${areaList}. If you are nearby, call and ask.`,
   },
   {
     q: 'Do you work on commercial plumbing?',
@@ -146,7 +146,7 @@ const plumberSchema = {
   <ProseSection heading="A Local Plumber for Victorville and the High Desert">
     <p>
       Looking for a reliable <strong>plumber in Victorville</strong>? Rapid Response Plumbing &amp; Restoration
-      serves homes and businesses across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. We answer 24/7, and in the Victor Valley a crew is on the way in 1 hour or less for urgent problems.
+      serves homes and businesses across {areaList}. We answer 24/7, and in the Victor Valley a crew is on the way in 1 hour or less for urgent problems.
     </p>
     <h3>Plumbing repair for homes, rentals and businesses</h3>
     <p>

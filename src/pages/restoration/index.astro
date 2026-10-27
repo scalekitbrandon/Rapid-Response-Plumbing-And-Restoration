@@ -22,7 +22,7 @@ import FAQ from '../../components/FAQ.astro';
 import AreaLinks from '../../components/AreaLinks.astro';
 import InspectionForm from '../../components/InspectionForm.astro';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, restorationServices, serviceAreas } from '../../data/site';
+import { primaryNav, utilityLinks, business, restorationServices, serviceAreas, areaList } from '../../data/site';
 import moldPpe from '../../assets/work/mold-remediation-ppe.jpg';
 
 const entries = await getCollection('restoration');
@@ -144,7 +144,7 @@ const businessSchema = {
     <p>
       When property damage happens, you need a <strong>restoration company in Victorville</strong> that answers the
       phone and shows up fast. Rapid Response Plumbing &amp; Restoration serves homes and businesses across
-      Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada, 24/7.
+      {areaList}, 24/7.
     </p>
     <h3>Every kind of property damage, one company</h3>
     <p>

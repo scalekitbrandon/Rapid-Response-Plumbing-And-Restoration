@@ -15,7 +15,7 @@ import Reviews from '../../components/Reviews.astro';
 import FAQ from '../../components/FAQ.astro';
 import InspectionForm from '../../components/InspectionForm.astro';
 import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, serviceAreas } from '../../data/site';
+import { primaryNav, utilityLinks, business, serviceAreas, areaList, NEVADA_LIVE } from '../../data/site';
 
 const site = Astro.site ?? new URL(Astro.url.origin);
 const pageUrl = new URL('/locations/', site).toString();
@@ -24,11 +24,11 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent('Victorville
 const faqs = [
   {
     q: 'What areas does Rapid Response serve?',
-    a: 'We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada in Southern California’s High Desert.',
+    a: `We serve ${areaList}.`,
   },
   {
     q: 'Do you provide emergency service throughout the area?',
-    a: 'Yes. We are on call 24/7 across our entire service area, and a crew is on the way in 1 hour or less, from the Victor Valley and Barstow to the Inland Empire and Las Vegas.',
+    a: `Yes. We are on call 24/7 across our entire service area, and a crew is on the way in 1 hour or less, from the Victor Valley and Barstow to the Inland Empire${NEVADA_LIVE ? ' and Las Vegas' : ''}.`,
   },
   {
     q: 'What if I am near one of these cities but not in it?',
@@ -56,8 +56,8 @@ const schema = {
 ---
 
 <BaseLayout
-  title="Service Areas: SoCal & Las Vegas | Rapid Response"
-  description="24/7 plumbing and restoration across the High Desert, the Inland Empire and Las Vegas: Victorville, Hesperia, San Bernardino, Fontana, Las Vegas and more."
+  title={NEVADA_LIVE ? 'Service Areas: SoCal & Las Vegas | Rapid Response' : 'Service Areas: High Desert & Inland Empire | Rapid Response'}
+  description={NEVADA_LIVE ? '24/7 plumbing and restoration across the High Desert, the Inland Empire and Las Vegas: Victorville, Hesperia, San Bernardino, Fontana, Las Vegas and more.' : '24/7 plumbing and restoration across the High Desert and the Inland Empire: Victorville, Hesperia, Apple Valley, San Bernardino, Fontana and more.'}
 >
   <Header
     slot="header"
@@ -73,7 +73,7 @@ const schema = {
     eyebrow="Service Areas"
     h1="Our High Desert Service Areas"
     h1Accent="Service Areas"
-    sub="One team for communities across the High Desert, the Inland Empire and Las Vegas, Nevada. Choose your city below for local service details, or call 855-47-RAPID any time."
+    sub={`One team for communities across the High Desert${NEVADA_LIVE ? ', the Inland Empire and Las Vegas, Nevada' : ' and the Inland Empire'}. Choose your city below for local service details, or call 855-47-RAPID any time.`}
     bullets={[
       'On the way in 1 hour or less, 24/7',
       'Plumbing repair and restoration in one call',
@@ -116,6 +116,7 @@ const schema = {
       <a href="/fontana/">Fontana</a> and <a href="/rancho-cucamonga/">Rancho Cucamonga</a>, with crews on the way in
       1 hour or less, 24/7.
     </p>
+    {NEVADA_LIVE && <>
     <h3>Las Vegas, Nevada</h3>
     <p>
       We also serve <a href="/las-vegas/">Las Vegas</a>, <a href="/henderson/">Henderson</a> and the surrounding
@@ -123,6 +124,7 @@ const schema = {
       <a href="/las-vegas/emergency-plumber/">emergency plumbing</a> to
       <a href="/las-vegas/water-damage-restoration/">water damage restoration</a>, on the way in 1 hour or less, 24/7.
     </p>
+    </>}
     <h3>Every service, everywhere we work</h3>
     <p>
       Every community gets the same full range of services: <a href="/plumbing/">plumbing</a> from

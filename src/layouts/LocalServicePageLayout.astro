@@ -26,7 +26,7 @@ import FAQ from '../components/FAQ.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, plumbingServices, restorationServices, serviceAreas } from '../data/site';
+import { primaryNav, utilityLinks, business, plumbingServices, restorationServices, allServiceAreas as serviceAreas, NEVADA_LIVE } from '../data/site';
 
 interface Props {
   entry: CollectionEntry<'local'>;
@@ -116,7 +116,7 @@ const serviceSchema = {
 };
 ---
 
-<BaseLayout title={d.title} description={d.description}>
+<BaseLayout title={d.title} description={d.description} noindex={st === 'NV' && !NEVADA_LIVE}>
   <Header
     slot="header"
     businessName={business.name}
