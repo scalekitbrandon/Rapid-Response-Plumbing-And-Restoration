@@ -124,4 +124,4 @@ When firefighters put out a fire, they use a lot of water, and sprinkler systems
 
 ### Residential and commercial fire damage
 
-We handle fire and smoke damage for homes, rentals and businesses across Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. For businesses, see [commercial restoration](/commercial-property-restoration/). Call 855-47-RAPID any time.
+We handle fire and smoke damage for homes, rentals and businesses across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. For businesses, see [commercial restoration](/commercial-property-restoration/). Call 855-47-RAPID any time.

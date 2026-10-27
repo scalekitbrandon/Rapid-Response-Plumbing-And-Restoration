@@ -78,8 +78,8 @@ reviewTags:
 areasHeading: Drain Cleaning Near You in the High Desert
 related:
   - /plumbing/emergency-plumber/
-  - /plumbing/repiping/
-  - /water-damage-restoration/
+  - /plumbing/sewer-line-repair/
+  - /sewage-cleanup/
   - /plumbing/leak-detection/
 
 faqs:
@@ -119,8 +119,8 @@ The most common causes we see are:
 
 ### Cleaning up after a backup
 
-When a sewer line backs up into a home, clearing the clog is only the start. Sewage soaks into carpet, pad, baseboards and drywall and leaves bacteria behind. Because Rapid Response is also a [water damage restoration](/water-damage-restoration/) company, we extract contaminated water, remove materials that cannot be safely cleaned, sanitize the area and dry it out. If wastewater is coming up right now, call our [24/7 emergency plumber](/plumbing/emergency-plumber/) line. If the lines themselves are failing, ask about [repiping](/plumbing/repiping/).
+When a sewer line backs up into a home, clearing the clog is only the start. Sewage soaks into carpet, pad, baseboards and drywall and leaves bacteria behind. Because Rapid Response is also a [water damage restoration](/water-damage-restoration/) company, we extract contaminated water, remove materials that cannot be safely cleaned, sanitize the area and dry it out. If wastewater is coming up right now, call our [24/7 emergency plumber](/plumbing/emergency-plumber/) line. If the sewer line itself is cracked or full of roots, see [sewer line repair](/plumbing/sewer-line-repair/), and for cleanup after a backup see [sewage cleanup](/sewage-cleanup/).
 
 ### Drain cleaning across the High Desert
 
-We clear drains for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. Call 855-47-RAPID or send a request below.
+We clear drains for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID or send a request below.

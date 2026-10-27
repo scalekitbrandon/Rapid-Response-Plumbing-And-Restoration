@@ -1,6 +1,6 @@
 # Rapid Response: Launch Checklist
 
-Site build is complete (28 pages). Lighthouse (mobile): Accessibility 100, Best Practices 100, SEO 100,
+Site build is complete (38 pages as of 2026-10-27). Lighthouse (mobile): Accessibility 100, Best Practices 100, SEO 100,
 Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate titles, one H1 per page.
 
 ## Blockers: needed from the client
@@ -12,11 +12,13 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 - [ ] **Privacy Policy**: client or attorney review, add a contact email
 - [ ] **Domain**: confirm the final domain (`site` in `astro.config.mjs` is currently rapidresponsefloodrestoration.com)
 
+- [ ] **Inland Empire + Daggett on the Google Business Profile**: add San Bernardino, Rialto, Fontana and Rancho Cucamonga to the GBP service areas so the profile matches the new town pages
+- [ ] **New page claims**: confirm sewer line repair methods (section repair vs. replacement, camera inspection), septic backup cleanup, and warehouse/sprinkler losses in Fontana
+
 ## Nice to have
 - [ ] CSLB license # (add to the footer), IICRC or other certifications, years in business, job count
 - [ ] Transparent-background logo (the current one is cropped to a circle)
 - [ ] Cut-out van photo, and indoor fire-cleanup photos
-- [ ] Daggett as a 9th town (it is on the Google profile)
 - [ ] Commercial-job reviews
 
 ## Deploy (astro-deploy)

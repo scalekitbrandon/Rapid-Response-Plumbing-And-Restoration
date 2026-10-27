@@ -111,4 +111,4 @@ Here is what sets Rapid Response apart. Homes that need repiping have almost alw
 
 ### Repiping across the High Desert
 
-We repipe homes, rentals and commercial properties in Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. Call 855-47-RAPID or send a request below to schedule an inspection.
+We repipe homes, rentals and commercial properties in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID or send a request below to schedule an inspection.

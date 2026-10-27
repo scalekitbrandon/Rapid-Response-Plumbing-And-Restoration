@@ -1,11 +1,11 @@
 ---
 /*
-  Service Areas: 8 linked town cards on the fire/water brand background (a "pop" section),
+  Service Areas: linked town cards grouped by region on the fire/water brand background (a "pop" section),
   plus a 24/7 emergency card. Each card links to its town page, for local SEO internal linking.
   Town blurbs are adapted from the client's current homepage.
 */
 import { fireWaterBg } from '../lib/fireWaterBg';
-import { serviceAreas } from '../data/site';
+import { serviceAreas, regions } from '../data/site';
 
 interface Props {
   phoneDisplay?: string;
@@ -14,6 +14,11 @@ interface Props {
 
 const { phoneDisplay = '855-47-RAPID', phoneHref = 'tel:+18554772743' } = Astro.props;
 const bgVars = await fireWaterBg();
+const groups = regions
+  .map((r) => ({ region: r, towns: serviceAreas.filter((a) => a.region === r) }))
+  .filter((g) => g.towns.length > 0);
+// Pick a column count that leaves no orphan card in each group.
+const cols = (n: number) => (n % 4 === 0 ? 4 : n % 3 === 0 ? 3 : 4);
 ---
 
 <section class="areas" style={bgVars} aria-labelledby="areas-heading">
@@ -22,28 +27,33 @@ const bgVars = await fireWaterBg();
     <div class="head">
       <span class="eyebrow">Service Areas</span>
       <h2 id="areas-heading">
-        Plumbing &amp; Restoration <span class="accent">Across the High Desert</span>
+        Plumbing &amp; Restoration <span class="accent">Across the High Desert &amp; Inland Empire</span>
       </h2>
       <p>
-        Local crews ready 24/7 for homes, rentals and businesses in eight Southern California High Desert
+        Local crews ready 24/7 for homes, rentals and businesses in {serviceAreas.length} Southern California
         communities.
       </p>
     </div>
 
-    <ul class="grid">
-      {serviceAreas.map((a) => (
-        <li>
-          <a class="town" href={`/${a.slug}/`}>
-            <span class="pin" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
-            </span>
-            <span class="name">{a.name}, CA</span>
-            <span class="blurb">{a.blurb}</span>
-            <span class="go">View {a.name} <span aria-hidden="true">→</span></span>
-          </a>
-        </li>
-      ))}
-    </ul>
+    {groups.map((g) => (
+      <div class="group">
+        {groups.length > 1 && <h3 class="region">{g.region}</h3>}
+        <ul class="grid" style={`--cols: ${cols(g.towns.length)}`}>
+          {g.towns.map((a) => (
+            <li>
+              <a class="town" href={`/${a.slug}/`}>
+                <span class="pin" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
+                </span>
+                <span class="name">{a.name}, CA</span>
+                <span class="blurb">{a.blurb}</span>
+                <span class="go">View {a.name} <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
 
     <div class="emergency">
       <div>
@@ -109,11 +119,31 @@ const bgVars = await fireWaterBg();
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
     gap: var(--space-3);
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+  .group + .group {
+    margin-top: var(--space-6);
+  }
+  .region {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0 0 var(--space-3);
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .region::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--gradient-fire-water);
+    opacity: 0.6;
   }
   .town {
     display: flex;

@@ -27,7 +27,7 @@ faqs:
     a: Yes. Newberry Springs is part of our High Desert service area. We are on call 24/7 and will give you an arrival time as soon as you call.
   - q: Can you find a leak in the line between my well and my house?
     a: Yes. Long supply lines are common on rural Newberry Springs properties. If you have unexplained wet ground, low pressure or a pump that runs more than it should, our leak detection service can track down the problem.
-nearby: ['barstow', 'yermo']
+nearby: ['barstow', 'daggett', 'yermo']
 ---
 
 Newberry Springs is a rural, unincorporated community along I-40 east of Barstow, with homes and ranches spread across open desert. Many properties rely on private wells and long water lines, and the nearest help can feel a long way off. Rapid Response provides **plumbing and restoration in Newberry Springs**, on call 24/7.

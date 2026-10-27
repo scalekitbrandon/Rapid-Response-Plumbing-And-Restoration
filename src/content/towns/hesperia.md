@@ -27,7 +27,7 @@ faqs:
     a: Yes. Hesperia's colder winter nights make frozen and burst pipes a common call. We repair the pipe and, if water spread, extract it and dry the structure.
   - q: Can you clean up after a sewer backup in Hesperia?
     a: Yes. We clear the clogged line and handle the cleanup, including removing contaminated materials, sanitizing and drying the affected area.
-nearby: ['victorville', 'apple-valley', 'adelanto']
+nearby: ['victorville', 'apple-valley', 'adelanto', 'san-bernardino']
 ---
 
 Hesperia stretches along I-15 just south of Victorville, climbing toward the top of the Cajon Pass. That extra elevation means colder winter nights than much of the Victor Valley, and when storms roll through, runoff moves fast. Rapid Response provides **plumbing and restoration in Hesperia** 24/7 for homes, rentals and businesses across the city.

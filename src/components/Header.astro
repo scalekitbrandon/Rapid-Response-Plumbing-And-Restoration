@@ -10,6 +10,8 @@ import logo from '../assets/logo.png';
 interface NavChild {
   label: string;
   href: string;
+  /** Optional group heading (e.g. region). Grouped dropdowns render as columns. */
+  group?: string;
 }
 
 interface NavItem {
@@ -86,11 +88,31 @@ const current = Astro.url.pathname;
                   <button class="sub-toggle" type="button" aria-expanded="false" aria-label={`Show ${item.label} links`}>
                     <svg viewBox="0 0 12 12" width="14" height="14" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
                   </button>
-                  <ul class="dropdown">
-                    {item.children.map((child) => (
-                      <li><a href={child.href}>{child.label}</a></li>
-                    ))}
-                  </ul>
+                  {item.children.some((c) => c.group) ? (
+                    <div class="dropdown dropdown-groups">
+                      {item.children.filter((c) => !c.group).map((child) => (
+                        <a class="dd-all" href={child.href}>{child.label}</a>
+                      ))}
+                      <div class="dd-cols">
+                        {[...new Set(item.children.filter((c) => c.group).map((c) => c.group))].map((g) => (
+                          <div class="dd-col">
+                            <p class="dd-head">{g}</p>
+                            <ul>
+                              {(item.children ?? []).filter((c) => c.group === g).map((child) => (
+                                <li><a href={child.href}>{child.label}</a></li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <ul class="dropdown">
+                      {item.children.map((child) => (
+                        <li><a href={child.href}>{child.label}</a></li>
+                      ))}
+                    </ul>
+                  )}
                 </>
               )}
             </li>
@@ -261,6 +283,36 @@ const current = Astro.url.pathname;
     font-weight: 600;
     text-decoration: none;
   }
+  .dropdown-groups {
+    left: auto;
+    right: -120px;
+    min-width: 460px;
+    padding: var(--space-2) 0 var(--space-3);
+  }
+  .dropdown-groups ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .dd-all {
+    border-bottom: 1px solid #1a2238;
+    margin-bottom: var(--space-2);
+    color: var(--color-flame) !important;
+  }
+  .dd-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .dd-head {
+    margin: var(--space-2) 20px 4px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-chrome);
+  }
   .dropdown a:hover,
   .dropdown a:focus-visible {
     background: var(--color-navy);
@@ -395,6 +447,9 @@ const current = Astro.url.pathname;
     .sub-open > .dropdown,
     .sub-open:hover > .dropdown { display: block; }
     .dropdown a { padding-left: 36px; }
+    .dropdown-groups { min-width: 0; padding: var(--space-2) 0; }
+    .dd-cols { grid-template-columns: 1fr; }
+    .dd-head { margin-left: 36px; }
   }
 
   @media (max-width: 520px) {

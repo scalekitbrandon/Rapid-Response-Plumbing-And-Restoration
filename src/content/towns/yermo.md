@@ -27,7 +27,7 @@ faqs:
     a: Yes. We repair plumbing leaks in manufactured homes, including lines under the home, and dry out subfloors and insulation that got wet.
   - q: What should I do while waiting for a crew in Yermo?
     a: Shut off the main water valve if water is leaking, move belongings out of the water, stay away from electrical outlets near water, and take photos for your insurance claim. We will walk you through it when you call.
-nearby: ['barstow', 'newberry-springs']
+nearby: ['barstow', 'daggett', 'newberry-springs']
 ---
 
 Yermo is a small, unincorporated community just east of Barstow along I-15, near Calico and the open desert. Properties here are spread out, and many are rural homes, manufactured homes and roadside businesses. Rapid Response provides **plumbing and restoration in Yermo**, on call 24/7 for whatever goes wrong.

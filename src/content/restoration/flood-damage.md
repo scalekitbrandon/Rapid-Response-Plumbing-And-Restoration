@@ -78,8 +78,8 @@ reviewTags:
 areasHeading: Flood Damage Restoration Near You in the High Desert
 related:
   - /water-damage-restoration/
-  - /mold-remediation/
-  - /commercial-property-restoration/
+  - /sewage-cleanup/
+  - /water-mitigation/
   - /plumbing/emergency-plumber/
 
 faqs:
@@ -123,4 +123,4 @@ Flood water travels under flooring, behind baseboards and up into drywall and in
 
 ### Residential and commercial flood cleanup
 
-We handle flood cleanup for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. For businesses, see our [commercial restoration](/commercial-property-restoration/) services. If a plumbing failure caused the flood, our [emergency plumbers](/plumbing/emergency-plumber/) can repair it on the same visit.
+We handle flood cleanup for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. For businesses, see our [commercial restoration](/commercial-property-restoration/) services. If a plumbing failure caused the flood, our [emergency plumbers](/plumbing/emergency-plumber/) can repair it on the same visit.

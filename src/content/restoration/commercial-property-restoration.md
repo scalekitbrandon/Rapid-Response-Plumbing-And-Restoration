@@ -120,4 +120,4 @@ Many commercial water losses start with a plumbing failure: a burst line, a fail
 
 ### Commercial restoration across the High Desert
 
-We serve businesses and property managers in Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. Learn more about our [water damage](/water-damage-restoration/), [flood damage](/flood-damage/), [fire and smoke](/fire-smoke-damage-restoration/) and [mold remediation](/mold-remediation/) services, or call 855-47-RAPID any time.
+We serve businesses and property managers in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. Learn more about our [water damage](/water-damage-restoration/), [flood damage](/flood-damage/), [fire and smoke](/fire-smoke-damage-restoration/) and [mold remediation](/mold-remediation/) services, or call 855-47-RAPID any time.

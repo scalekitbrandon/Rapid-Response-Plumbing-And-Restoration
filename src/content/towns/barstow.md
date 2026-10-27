@@ -27,7 +27,7 @@ faqs:
     a: Yes. We provide commercial restoration and plumbing for hotels, restaurants, retail and other businesses in Barstow, and plan the work around keeping your business running when it is safe to do so.
   - q: My older Barstow home keeps springing leaks. What should I do?
     a: Repeated leaks usually mean the pipes are wearing out. We can repair the current leak, inspect the rest of the plumbing and explain whether spot repairs or repiping makes more sense.
-nearby: ['yermo', 'newberry-springs', 'helendale']
+nearby: ['yermo', 'daggett', 'newberry-springs', 'helendale']
 ---
 
 Barstow sits where I-15 and I-40 meet, northeast of Victorville, with historic Route 66 running right through town. It is a mix of established neighborhoods and busy commercial corridors that serve travelers around the clock. Rapid Response provides **plumbing and restoration in Barstow**, on call 24/7 for homes, rentals and businesses.

@@ -77,7 +77,7 @@ reviewTags:
   - Burst Pipe
 areasHeading: Water Damage Restoration Near You in the High Desert
 related:
-  - /flood-damage/
+  - /water-mitigation/
   - /mold-remediation/
   - /plumbing/emergency-plumber/
   - /plumbing/leak-detection/
@@ -124,4 +124,4 @@ Most water damage starts with plumbing: a burst pipe, a failed water heater, a s
 
 ### Residential and commercial water damage
 
-We restore homes, rentals, offices, retail spaces and other commercial properties across Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. For larger losses from storms or major intrusion, see [flood damage restoration](/flood-damage/). If mold has already started, see [mold remediation](/mold-remediation/).
+We restore homes, rentals, offices, retail spaces and other commercial properties across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. For larger losses from storms or major intrusion, see [flood damage restoration](/flood-damage/). If mold has already started, see [mold remediation](/mold-remediation/).

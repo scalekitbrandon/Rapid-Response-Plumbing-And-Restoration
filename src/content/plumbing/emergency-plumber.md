@@ -84,8 +84,8 @@ reviewTags:
 areasHeading: Emergency Plumber Near You in the High Desert
 related:
   - /water-damage-restoration/
+  - /plumbing/burst-pipe-repair/
   - /plumbing/leak-detection/
-  - /plumbing/slab-leak-repair/
   - /plumbing/water-heaters/
 
 faqs:
@@ -109,7 +109,7 @@ formAccent: On the Way
 formDamageType: Burst pipe / plumbing problem
 ---
 
-When a pipe bursts at 2 a.m. or water starts coming through the ceiling, you need an **emergency plumber in Victorville** who answers the phone and shows up fast. Rapid Response Plumbing & Restoration is on call 24/7 across Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale, with crews on the way in 1 hour or less.
+When a pipe bursts at 2 a.m. or water starts coming through the ceiling, you need an **emergency plumber in Victorville** who answers the phone and shows up fast. Rapid Response Plumbing & Restoration is on call 24/7 across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. In Victorville and the Victor Valley, crews are on the way in 1 hour or less.
 
 ### What counts as a plumbing emergency?
 

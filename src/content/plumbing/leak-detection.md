@@ -80,7 +80,7 @@ related:
   - /plumbing/slab-leak-repair/
   - /plumbing/emergency-plumber/
   - /water-damage-restoration/
-  - /mold-remediation/
+  - /plumbing/plumbing-repairs/
 
 faqs:
   - q: How do I know if I have a hidden water leak?
@@ -94,7 +94,7 @@ faqs:
   - q: Will insurance pay for leak detection?
     a: It depends on your policy. Many policies cover sudden water damage and sometimes the cost to access the leak, but not always the repair itself or damage from long-term leaks. We document everything with photos and moisture readings and work with all major carriers.
   - q: Do you offer leak detection outside Victorville?
-    a: Yes. We serve Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale, as well as Victorville.
+    a: Yes. We serve all of the High Desert, from Victorville, Apple Valley and Hesperia to Barstow and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga.
 
 formHeading: Find Your Leak
 formAccent: Before It Spreads
@@ -123,4 +123,4 @@ Most leak detection companies stop at finding the leak. Rapid Response repairs i
 
 ### Serving the whole High Desert
 
-We provide leak detection for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Barstow, Adelanto, Yermo, Newberry Springs and Helendale. Call 855-47-RAPID any time to schedule, or use the form below and we will call you back.
+We provide leak detection for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID any time to schedule, or use the form below and we will call you back.

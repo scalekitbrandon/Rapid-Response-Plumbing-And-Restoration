@@ -24,20 +24,31 @@ export const business = {
   tagline: 'We Respond Fast. We Restore Right.',
 };
 
-export const serviceAreas = [
-  { name: 'Victorville', slug: 'victorville', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
-  { name: 'Apple Valley', slug: 'apple-valley', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
-  { name: 'Hesperia', slug: 'hesperia', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
-  { name: 'Barstow', slug: 'barstow', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
-  { name: 'Adelanto', slug: 'adelanto', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
-  { name: 'Yermo', slug: 'yermo', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
-  { name: 'Newberry Springs', slug: 'newberry-springs', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
-  { name: 'Helendale', slug: 'helendale', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
+export type Region = 'High Desert' | 'Inland Empire';
+
+export const regions: Region[] = ['High Desert', 'Inland Empire'];
+
+export const serviceAreas: { name: string; slug: string; region: Region; blurb: string }[] = [
+  { name: 'Victorville', slug: 'victorville', region: 'High Desert', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
+  { name: 'Apple Valley', slug: 'apple-valley', region: 'High Desert', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
+  { name: 'Hesperia', slug: 'hesperia', region: 'High Desert', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
+  { name: 'Adelanto', slug: 'adelanto', region: 'High Desert', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
+  { name: 'Helendale', slug: 'helendale', region: 'High Desert', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
+  { name: 'Barstow', slug: 'barstow', region: 'High Desert', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
+  { name: 'Yermo', slug: 'yermo', region: 'High Desert', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
+  { name: 'Newberry Springs', slug: 'newberry-springs', region: 'High Desert', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
+  { name: 'Daggett', slug: 'daggett', region: 'High Desert', blurb: 'Water damage, frozen pipes, well and supply line leaks, mold and fire damage for rural properties.' },
+  { name: 'San Bernardino', slug: 'san-bernardino', region: 'Inland Empire', blurb: 'Aging pipes, sewer line problems, water damage, mold and fire and smoke cleanup for homes and businesses.' },
+  { name: 'Rialto', slug: 'rialto', region: 'Inland Empire', blurb: 'Plumbing repairs, sewer and drain problems, water damage, flooding and mold for homes and rentals.' },
+  { name: 'Fontana', slug: 'fontana', region: 'Inland Empire', blurb: 'Residential and commercial water damage, slab leaks, sewer backups and warehouse restoration.' },
+  { name: 'Rancho Cucamonga', slug: 'rancho-cucamonga', region: 'Inland Empire', blurb: 'Leaks, slab leaks, water heaters, water damage, mold and wildfire smoke cleanup.' },
 ];
 
 export const restorationServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
   { label: 'Water Damage Restoration', href: '/water-damage-restoration/', icon: 'drop', blurb: 'Emergency water extraction, structural drying and cleanup after leaks, burst pipes and overflows.' },
+  { label: 'Water Mitigation & Structural Drying', href: '/water-mitigation/', icon: 'fan', blurb: 'Fast extraction, moisture mapping and professional drying to stop water damage from spreading.' },
   { label: 'Flood Damage Restoration', href: '/flood-damage/', icon: 'flood', blurb: 'Fast flood cleanup and dry-out after storms, overflows and major water intrusion.' },
+  { label: 'Sewage Cleanup', href: '/sewage-cleanup/', icon: 'toilet', blurb: 'Safe removal, cleaning and sanitizing after sewer backups and contaminated water.' },
   { label: 'Mold Remediation', href: '/mold-remediation/', icon: 'mold', blurb: 'Containment, removal and cleanup of mold, plus fixing the moisture problem that caused it.' },
   { label: 'Fire & Smoke Damage', href: '/fire-smoke-damage-restoration/', icon: 'fire', blurb: 'Soot and smoke cleanup, damaged material removal and cleanup of water left from firefighting.' },
   { label: 'Commercial Restoration', href: '/commercial-property-restoration/', icon: 'building', blurb: 'Water, flood, fire and mold restoration for offices, retail, warehouses and rentals.' },
@@ -46,12 +57,15 @@ export const restorationServices: { label: string; href: string; icon: IconName;
 // TODO(client): placeholder plumbing list. The current site has no plumbing services.
 // Replace with the client's real list before launch.
 export const plumbingServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
-  { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber/', icon: 'valve', blurb: '24/7 response for burst pipes, major leaks, water heater failures and sewer backups. On the way in 1 hour or less.' },
+  { label: 'Emergency Plumber', href: '/plumbing/emergency-plumber/', icon: 'valve', blurb: '24/7 response for burst pipes, major leaks, water heater failures and sewer backups. On the way fast.' },
+  { label: 'Burst Pipe Repair', href: '/plumbing/burst-pipe-repair/', icon: 'freeze', blurb: 'Stop the water, repair split and frozen pipes, and dry out everything the burst soaked.' },
+  { label: 'Plumbing Repairs', href: '/plumbing/plumbing-repairs/', icon: 'toilet', blurb: 'Toilets, faucets, supply lines, shut-off valves, fixtures and everyday plumbing problems.' },
   { label: 'Leak Detection', href: '/plumbing/leak-detection/', icon: 'drop', blurb: 'Track down hidden leaks in walls, ceilings and under floors before they cause bigger damage.' },
   { label: 'Slab Leak Repair', href: '/plumbing/slab-leak-repair/', icon: 'slab', blurb: 'Find and fix leaks under your foundation, then dry out any water that spread into the home.' },
   { label: 'Water Heaters', href: '/plumbing/water-heaters/', icon: 'heater', blurb: 'Repair and replacement for leaking, noisy or failed tank and tankless water heaters.' },
   { label: 'Drain Cleaning', href: '/plumbing/drain-cleaning/', icon: 'drain', blurb: 'Clear clogged sinks, tubs, toilets and main lines, and stop backups before they overflow.' },
-  { label: 'Repiping', href: '/plumbing/repiping/', icon: 'pipe', blurb: 'Replace old, corroded or leak-prone supply lines with new piping built to last.' },
+  { label: 'Sewer Line Repair', href: '/plumbing/sewer-line-repair/', icon: 'pipe', blurb: 'Repair cracked, root-damaged and collapsed sewer lines, and clean up any backup they caused.' },
+  { label: 'Repiping', href: '/plumbing/repiping/', icon: 'home', blurb: 'Replace old, corroded or leak-prone supply lines with new piping built to last.' },
 ];
 
 export const primaryNav = [
@@ -63,7 +77,7 @@ export const primaryNav = [
     href: '/locations/',
     children: [
       { label: 'All Service Areas', href: '/locations/' },
-      ...serviceAreas.map((a) => ({ label: a.name, href: `/${a.slug}/` })),
+      ...serviceAreas.map((a) => ({ label: a.name, href: `/${a.slug}/`, group: a.region })),
     ],
   },
   { label: 'About Us', href: '/about-us/' },

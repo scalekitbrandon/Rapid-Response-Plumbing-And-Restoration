@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
       <p class="phone-digits">{business.phoneDigits}</p>
       <ul class="meta">
         <li>Open 24 hours, 7 days a week</li>
-        <li>Serving Southern California&rsquo;s High Desert</li>
+        <li>Serving the High Desert &amp; Inland Empire</li>
       </ul>
       {reviewSummary.rating !== null && (
         <a class="rating" href={business.googleReviewsUrl} target="_blank" rel="noopener">
@@ -191,6 +191,10 @@ const year = new Date().getFullYear();
     text-decoration: none;
     font-size: 0.98rem;
   }
+  .col .areas {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-3);
+  }
   .col a:hover {
     color: var(--color-water);
   }
@@ -285,7 +289,7 @@ const year = new Date().getFullYear();
     .top { gap: var(--space-5) var(--space-4); padding-block: var(--space-6); }
     .brand { grid-column: 1 / -1; }
     .col:last-child { grid-column: 1 / -1; }
-    .areas { grid-template-columns: 1fr 1fr; }
+  
     .bottom-inner { flex-direction: column; align-items: flex-start; }
     .built-by { text-align: left; padding-inline: var(--space-4); }
   }
