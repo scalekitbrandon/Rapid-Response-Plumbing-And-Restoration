@@ -40,4 +40,4 @@ In a two-story home, a failed toilet supply line or shower valve upstairs can pu
 
 Our team handles [water mitigation in Rancho Cucamonga](/rancho-cucamonga/water-mitigation/) and [water damage restoration](/rancho-cucamonga/water-damage-restoration/) on the same job.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rancho Cucamonga and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rancho Cucamonga, a crew is on the way in 1 hour or less, 24/7.

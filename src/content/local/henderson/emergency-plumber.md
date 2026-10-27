@@ -40,4 +40,4 @@ Hard water and hot garages wear out water heaters early. Slab foundations hide h
 
 After the repair, our team handles [water mitigation in Henderson](/henderson/water-mitigation/) and [water damage restoration in Henderson](/henderson/water-damage-restoration/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Henderson and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Henderson, a crew is on the way in 1 hour or less, 24/7.

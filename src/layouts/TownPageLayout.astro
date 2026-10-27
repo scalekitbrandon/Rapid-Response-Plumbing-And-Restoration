@@ -6,7 +6,6 @@
   - Town name in title, H1, intro, H2s, service link text, FAQ and form (city preselected)
   - Map embed, ZIP codes, nearby-town links, breadcrumbs
   - JSON-LD: Service (areaServed = this town), BreadcrumbList, FAQPage (in FAQ.astro)
-  For towns flagged fastResponse: false, no "1 hour or less" promise is made in town-specific copy.
 */
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
@@ -42,9 +41,7 @@ const nearby = d.nearby
   .map((slug) => serviceAreas.find((a) => a.slug === slug))
   .filter((a): a is (typeof serviceAreas)[number] => Boolean(a));
 
-const speedAnswer = d.fastResponse
-  ? `We respond in 1 hour or less across ${town} and our High Desert service area, day or night. Call 855-47-RAPID and a crew gets moving right away.`
-  : `Our crews are on call 24/7 for ${town}. Call 855-47-RAPID and we will give you an arrival time right away and walk you through what to do until we get there.`;
+const speedAnswer = `We respond in 1 hour or less across ${town}, day or night. Call 855-47-RAPID and a crew gets moving right away.`;
 
 const faqs = [
   { q: `Do you provide plumbing and restoration services in ${town}?`, a: `Yes. Rapid Response provides 24/7 plumbing, water damage restoration, flood cleanup, mold remediation and fire and smoke damage cleanup for homes and businesses in ${town}, ${st} (${d.zips.join(', ')}).` },
@@ -70,19 +67,7 @@ const serviceSchema = {
   },
 };
 
-// Trust strip for far towns: same proof points, without the 1-hour promise.
-const farTrust = [
-  { value: '24/7', label: 'Emergency Response', text: 'Nights, weekends and holidays. A real person answers.', tone: 'fire' as const },
-  isNV
-    ? { value: 'ONE', label: 'Call for Everything', text: 'We fix the plumbing and restore the damage it caused.', tone: 'water' as const }
-    : { value: 'LOCAL', label: 'High Desert Crews', text: `We make the drive to ${town} and know the area.`, tone: 'water' as const },
-  { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' as const },
-  { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' as const },
-];
-
-const bullets = d.fastResponse
-  ? ['On the way in 1 hour or less, 24/7', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers']
-  : ['On call 24/7 for emergencies', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers'];
+const bullets = ['On the way in 1 hour or less, 24/7', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers'];
 ---
 
 <BaseLayout title={d.title} description={d.description}>
@@ -103,18 +88,18 @@ const bullets = d.fastResponse
     sub={d.heroSub}
     bullets={bullets}
     nowTitle={`Emergency in ${town}?`}
-    nowText={d.fastResponse ? 'Call 24/7. A crew heads your way in 1 hour or less.' : `Call 24/7. We will give you an arrival time for ${town} right away.`}
+    nowText="Call 24/7. A crew heads your way in 1 hour or less"
   />
-  {d.fastResponse ? <TrustStrip /> : <TrustStrip items={farTrust} />}
+  <TrustStrip />
   <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} state={st} townSlug={entry.slug} />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
 
-  <ProseSection heading={d.bodyHeading} sideText={d.fastResponse ? undefined : `Call 24/7 for ${town}. We will give you an arrival time right away.`}>
+  <ProseSection heading={d.bodyHeading}>
     <Content />
   </ProseSection>
 
   {!isNV && <RealWork />}
-  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
+  <Reviews headingLead={isNV ? 'What Property Owners' : undefined} googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
   <FAQ headingLead={`${town}`} headingAccent="FAQs" intro={`Common questions from property owners in ${town}, ${st}.`} items={faqs} />
 
   <section class="nearby" aria-labelledby="nearby-heading">
@@ -139,7 +124,6 @@ const bullets = d.fastResponse
     lead={`Tell us what happened at your ${town} property. We will call you right back. If water is actively leaking, shut it off if you can and call now.`}
     formName={`${town} town page form`}
     defaultCity={town}
-    fastResponse={d.fastResponse}
     areaLabel={isNV ? 'the Las Vegas Valley' : serviceAreas.find((a) => a.slug === entry.slug)?.region === 'Inland Empire' ? 'the Inland Empire' : 'the High Desert'}
   />
 

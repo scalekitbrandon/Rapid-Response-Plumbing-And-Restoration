@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Rialto, CA. Leaks, se
 heroSub: Leak, backup or water damage at your Rialto home or rental? Rapid Response is on call 24/7 to repair the plumbing and restore the damage in one call.
 zips: ['92376', '92377']
 mapQuery: Rialto, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Rialto Homes and Rentals
 issuesHeading: Common Property Damage in Rialto
 issuesIntro: Rialto's established neighborhoods and many rental properties bring a familiar set of plumbing and water damage problems.
@@ -44,4 +43,4 @@ Leaks in rentals and multi-unit buildings often spread from one unit to the next
 
 When water gets loose, we start [water mitigation and structural drying](/water-mitigation/) right away. We also handle [mold remediation](/mold-remediation/) and [fire and smoke damage](/fire-smoke-damage-restoration/) cleanup for Rialto properties.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rialto and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rialto, a crew is on the way in 1 hour or less, 24/7.

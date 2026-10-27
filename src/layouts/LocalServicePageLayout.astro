@@ -5,12 +5,12 @@
   Built to rank for "[service] [town]" without being a thin doorway page:
   - Town-specific title, H1, hero, problem grid, FAQs and long-form body (from the `local` collection)
   - The base service page's generic sections (emergency checklist, split, process) are reused only if they
-    mention no other town or region, and no "1 hour" promise when the town is not a fast-response town.
+    mention no other town or region.
   - Links: Home › Locations › Town › Service breadcrumbs, related services (local version when it exists),
     sibling local pages in the same town, the town hub, and the base service page.
   - JSON-LD: Service (areaServed = this town), BreadcrumbList, FAQPage (in FAQ.astro).
 */
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -40,8 +40,6 @@ const [townSlug] = entry.slug.split('/');
 // Town info
 const area = serviceAreas.find((a) => a.slug === townSlug);
 if (!area) throw new Error(`Local page ${entry.slug}: unknown town ${townSlug}`);
-const townEntry = await getEntry('towns', townSlug);
-const fast = townEntry?.data.fastResponse ?? false;
 const town = area.name;
 const st = area.state;
 const areaLabel = st === 'NV' ? 'the Las Vegas Valley' : area.region === 'Inland Empire' ? 'the Inland Empire' : 'the High Desert';
@@ -65,12 +63,11 @@ const localHref = (href: string) => {
   return href;
 };
 
-// Reuse base sections only when they say nothing about another place (and no 1-hour promise for far towns).
+// Reuse base sections only when they say nothing about another place.
 const otherPlaces = [
   ...serviceAreas.filter((a) => a.slug !== townSlug).map((a) => a.name),
   ...['High Desert', 'Inland Empire', 'Victor Valley'].filter((r) => r !== area.region),
   ...(st === 'NV' ? ['California'] : ['Nevada', 'Las Vegas']),
-  ...(fast ? [] : ['1 hour', 'one hour']),
 ];
 const placePattern = new RegExp(otherPlaces.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'i');
 const clean = (v: unknown) => !placePattern.test(JSON.stringify(v));
@@ -90,9 +87,7 @@ const pageUrl = new URL(Astro.url.pathname, site).toString();
 const townUrl = new URL(`/${townSlug}/`, site).toString();
 const locationsUrl = new URL('/locations/', site).toString();
 
-const speed = fast
-  ? `We respond in 1 hour or less across ${town} and the Victor Valley, day or night. Call 855-47-RAPID and a crew gets moving right away.`
-  : `We are on call 24/7 for ${town}. Call 855-47-RAPID and we will give you an arrival time right away and walk you through what to do until we get there.`;
+const speed = `We respond in 1 hour or less across ${town}, day or night. Call 855-47-RAPID and a crew gets moving right away.`;
 const faqs = [
   ...d.faqs,
   { q: `How fast can you get to my property in ${town}?`, a: speed },
@@ -102,13 +97,6 @@ const faqs = [
 const siblings = [...plumbingServices, ...restorationServices].filter(
   (s) => s.href !== d.service && localSlugs.has(`${townSlug}/${svcSlug(s.href)}`),
 );
-
-const farTrust = [
-  { value: '24/7', label: 'Emergency Response', text: `Nights, weekends and holidays across ${areaLabel}.`, tone: 'fire' as const },
-  { value: 'ONE', label: 'Call for Everything', text: 'We fix the plumbing and restore the damage it caused.', tone: 'water' as const },
-  { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' as const },
-  { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' as const },
-];
 
 const serviceSchema = {
   '@context': 'https://schema.org',
@@ -150,14 +138,13 @@ const serviceSchema = {
     h1Accent={d.h1Accent}
     sub={d.heroSub}
     bullets={[
-      fast ? 'On the way in 1 hour or less, 24/7' : `On call 24/7 across ${areaLabel}`,
+      'On the way in 1 hour or less, 24/7',
       'Plumbing repair and restoration in one call',
       'We work with all major insurance carriers',
     ]}
     nowTitle={`Emergency in ${town}?`}
-    nowText={fast ? 'Call 24/7. A crew heads your way in 1 hour or less.' : 'Call 24/7. We will give you an arrival time right away.'}
   />
-  {fast ? <TrustStrip /> : <TrustStrip items={farTrust} />}
+  <TrustStrip />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
   {urgent && <UrgentSteps heading={urgent.heading} intro={urgent.intro} steps={urgent.steps} />}
   {split && (
@@ -176,7 +163,6 @@ const serviceSchema = {
 
   <ProseSection
     heading={`${b.navLabel} in ${town}, ${st === 'NV' ? 'Nevada' : 'CA'}`}
-    sideText={fast ? undefined : `Call 24/7 in ${town}. We will give you an arrival time right away.`}
   >
     <Content />
   </ProseSection>
@@ -211,7 +197,6 @@ const serviceSchema = {
     formName={`${town} ${b.navLabel} form`}
     defaultCity={town}
     defaultDamageType={b.formDamageType}
-    fastResponse={fast}
     areaLabel={areaLabel}
   />
 

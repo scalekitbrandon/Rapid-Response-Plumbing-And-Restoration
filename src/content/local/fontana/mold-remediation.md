@@ -40,4 +40,4 @@ In homes, the usual culprits are slow appliance leaks, slab leaks and bathroom l
 
 Fast [water mitigation in Fontana](/fontana/water-mitigation/) after any leak is the best mold prevention. For hidden leaks, see [leak detection](/plumbing/leak-detection/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Fontana and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Fontana, a crew is on the way in 1 hour or less, 24/7.

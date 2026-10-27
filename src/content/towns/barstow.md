@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Barstow, CA. Leaks, f
 heroSub: Plumbing failure, flooding or fire damage in Barstow? Rapid Response is on call 24/7 for Barstow homes and businesses, fixing the source and restoring the damage in one call.
 zips: ['92311']
 mapQuery: Barstow, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Barstow Homes and Businesses
 issuesHeading: Common Property Damage in Barstow
 issuesIntro: Barstow's older housing and its busy commercial corridors along I-15 and I-40 shape the calls we get there.
@@ -44,4 +43,4 @@ Hotels, restaurants, truck stops and shops along Barstow's highway corridors can
 
 Desert storms can flood Barstow properties with little warning. Our [flood cleanup](/flood-damage/) team extracts water and dries the structure, and we handle [fire and smoke damage](/fire-smoke-damage-restoration/) and [mold remediation](/mold-remediation/) too.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Barstow and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Barstow, a crew is on the way in 1 hour or less, 24/7.

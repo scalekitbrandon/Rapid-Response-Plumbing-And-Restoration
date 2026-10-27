@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Helendale and Silver 
 heroSub: From Silver Lakes to rural properties along Route 66, Rapid Response handles plumbing and property damage restoration in Helendale, 24/7, with crews on the way in 1 hour or less.
 zips: ['92342']
 mapQuery: Helendale, CA
-fastResponse: true
 bodyHeading: Plumbing and Restoration for Helendale and Silver Lakes
 issuesHeading: Common Property Damage in Helendale
 issuesIntro: Helendale's mix of Silver Lakes homes and rural properties brings its own plumbing and water damage challenges.

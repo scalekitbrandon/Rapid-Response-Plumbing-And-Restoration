@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Daggett, CA. Frozen p
 heroSub: Daggett is small and spread out, and help can feel far away. Rapid Response is on call 24/7 for Daggett homes and businesses, fixing plumbing problems and restoring the damage in one call.
 zips: ['92327']
 mapQuery: Daggett, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Daggett Properties
 issuesHeading: Common Property Damage in Daggett
 issuesIntro: Daggett's rural homes, manufactured homes and desert weather bring their own plumbing and water damage risks.
@@ -24,7 +23,7 @@ issues:
     text: Heavy storms that push water into roofs, doorways and outbuildings.
 faqs:
   - q: Do you really serve Daggett?
-    a: Yes. Daggett is part of our High Desert service area. We are on call 24/7 and will give you an arrival time as soon as you call.
+    a: Yes. Daggett is part of our High Desert service area. A crew is on the way in 1 hour or less, 24/7.
   - q: Can you find a leak in the line between my well and my house?
     a: Yes. If you have wet ground, low pressure or a pump that runs too often, our leak detection service can track down the leak, and we repair it.
 nearby: ['barstow', 'yermo', 'newberry-springs']
@@ -40,4 +39,4 @@ Exposed pipes, long supply lines and plumbing under manufactured homes are all v
 
 When a leak or storm soaks a Daggett home, we extract the water, remove what cannot be saved and dry the structure with [water mitigation and structural drying](/water-mitigation/). If moisture has led to [mold](/mold-remediation/), we handle that too. We also provide [fire and smoke damage](/fire-smoke-damage-restoration/) cleanup and [sewage cleanup](/sewage-cleanup/) for septic backups.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Daggett and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Daggett, a crew is on the way in 1 hour or less, 24/7.

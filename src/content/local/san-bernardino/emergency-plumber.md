@@ -40,4 +40,4 @@ San Bernardino has a lot of older housing, and older plumbing fails in predictab
 
 After the repair, our restoration team handles [water mitigation](/san-bernardino/water-mitigation/) and [water damage restoration in San Bernardino](/san-bernardino/water-damage-restoration/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for San Bernardino and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.

@@ -40,4 +40,4 @@ Many San Bernardino homes have older plaster, paneling or multiple layers of flo
 
 Foothill storm runoff and firefighting water during fire season are two San Bernardino situations where fast extraction makes a big difference. See [fire and smoke damage](/fire-smoke-damage-restoration/) and [water damage restoration in San Bernardino](/san-bernardino/water-damage-restoration/) for the next steps.
 
-Call 855-47-RAPID any time. We are on call 24/7 for San Bernardino and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.

@@ -6,7 +6,6 @@ description: 24/7 plumbing and water damage restoration in Las Vegas, NV. Burst 
 heroSub: Burst pipe, slab leak, flooded room, sewage backup or fire damage in Las Vegas? Rapid Response is on call 24/7 to fix the plumbing problem and restore the damage, with one call and one team.
 zips: ['89101', '89102', '89104', '89107', '89117', '89128', '89134', '89135', '89139', '89148']
 mapQuery: Las Vegas, NV
-fastResponse: false
 bodyHeading: Plumbing and Restoration for the Las Vegas Valley
 issuesHeading: Common Property Damage in Las Vegas
 issuesIntro: Extreme heat, very hard water, slab foundations and sudden monsoon storms shape the plumbing and water damage calls we get across the Las Vegas Valley.
@@ -34,7 +33,7 @@ nearby: ['henderson']
 communities: ['Henderson', 'North Las Vegas', 'Summerlin', 'Spring Valley', 'Enterprise', 'Paradise']
 ---
 
-Las Vegas is a long way from the High Desert of California, but the problems property owners face here are familiar: hard water, slab foundations, extreme heat and sudden storms. Rapid Response provides **plumbing and restoration in Las Vegas**, on call 24/7 for homes, condos, rentals and businesses across the valley.
+Property owners in Las Vegas deal with a familiar set of problems: hard water, slab foundations, extreme heat and sudden storms. Rapid Response provides **plumbing and restoration in Las Vegas**, on call 24/7 for homes, condos, rentals and businesses across the valley.
 
 ### One team for the leak and the damage
 
@@ -52,4 +51,4 @@ We handle [water damage restoration](/las-vegas/water-damage-restoration/), [wat
 
 Las Vegas has a lot of condos, townhomes and rentals, where a leak in one unit quickly becomes a problem for the unit below. We work with owners, HOAs, landlords and property managers, and we document every job clearly for owners and insurers.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Las Vegas and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Las Vegas, a crew is on the way in 1 hour or less, 24/7.

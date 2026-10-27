@@ -5,7 +5,6 @@ description: 24/7 plumber and water damage restoration in Victorville, CA. Leaks
 heroSub: Burst pipe, hidden leak, flooded room or fire damage? Rapid Response is Victorville's 24/7 plumbing and restoration team. We fix the source and restore the damage, with crews on the way in 1 hour or less.
 zips: ['92392', '92394', '92395']
 mapQuery: Victorville, CA
-fastResponse: true
 bodyHeading: Your Local Plumbing and Restoration Team in Victorville
 issuesHeading: Common Property Damage in Victorville
 issuesIntro: These are the problems Victorville homeowners, landlords and businesses call us about most often.

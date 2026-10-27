@@ -40,4 +40,4 @@ A burst supply line in a north Fontana home and a sprinkler discharge across a w
 
 Once dry, [water damage restoration in Fontana](/fontana/water-damage-restoration/) handles the repairs. For businesses, see [commercial restoration](/commercial-property-restoration/). If plumbing caused the loss, our [Fontana emergency plumbers](/fontana/emergency-plumber/) fix it on the same visit.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Fontana and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Fontana, a crew is on the way in 1 hour or less, 24/7.

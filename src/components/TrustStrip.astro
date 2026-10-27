@@ -2,7 +2,6 @@
 /*
   Trust strip: a dark band with 4 big proof points (value + label + one line).
   Layout follows the reference site's stats band (structure only). Values are client promises, not counts.
-  TODO(client): confirm "1 hour or less" holds across the full service area before launch.
 */
 interface Item {
   value: string;
@@ -18,7 +17,7 @@ interface Props {
 const {
   items = [
     { value: '24/7', label: 'Emergency Response', text: 'Nights, weekends and holidays. A real person answers.', tone: 'fire' },
-    { value: '1 HR', label: 'Or Less To Your Door', text: 'Crews on the way fast across the High Desert.', tone: 'water' },
+    { value: '1 HR', label: 'Or Less To Your Door', text: 'Crews on the way fast, day or night.', tone: 'water' },
     { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' },
     { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' },
   ],

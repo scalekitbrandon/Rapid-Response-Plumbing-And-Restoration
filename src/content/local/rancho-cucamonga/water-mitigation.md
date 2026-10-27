@@ -40,4 +40,4 @@ In two-story homes, water from an upstairs leak soaks the subfloor, the cavity b
 
 Once dry, [water damage restoration in Rancho Cucamonga](/rancho-cucamonga/water-damage-restoration/) handles the repairs. If a plumbing failure caused it, our [emergency plumbers](/rancho-cucamonga/emergency-plumber/) fix it on the same visit.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rancho Cucamonga and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rancho Cucamonga, a crew is on the way in 1 hour or less, 24/7.

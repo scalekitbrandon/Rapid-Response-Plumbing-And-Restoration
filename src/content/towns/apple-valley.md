@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Apple Valley, CA. Lea
 heroSub: When a leak, flood or fire damages your Apple Valley property, Rapid Response fixes the plumbing and restores the damage, 24/7, with crews on the way in 1 hour or less.
 zips: ['92307', '92308']
 mapQuery: Apple Valley, CA
-fastResponse: true
 bodyHeading: Plumbing and Restoration for Apple Valley Homes and Businesses
 issuesHeading: Common Property Damage in Apple Valley
 issuesIntro: Apple Valley's larger lots, ranch-style homes and cold winter nights bring their own set of plumbing and water problems.

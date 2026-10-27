@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Yermo, CA. Frozen pip
 heroSub: Yermo properties are spread out, and help can feel far away when something goes wrong. Rapid Response is on call 24/7 for Yermo, fixing plumbing problems and restoring property damage in one call.
 zips: ['92398']
 mapQuery: Yermo, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Yermo and the Surrounding Desert
 issuesHeading: Common Property Damage in Yermo
 issuesIntro: Yermo's rural homes, manufactured homes and roadside businesses each bring their own plumbing and water damage risks.
@@ -44,4 +43,4 @@ Yermo's gas stations, restaurants and other businesses serve travelers around th
 
 Desert storms, hidden leaks and fires all happen out here too. We provide [flood cleanup](/flood-damage/), [mold remediation](/mold-remediation/) and [fire and smoke damage](/fire-smoke-damage-restoration/) cleanup for Yermo properties.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Yermo and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Yermo, a crew is on the way in 1 hour or less, 24/7.

@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Fontana, CA. Slab lea
 heroSub: From newer homes in north Fontana to warehouses along the I-10, Rapid Response is on call 24/7 to repair plumbing problems and restore water, fire and mold damage.
 zips: ['92335', '92336', '92337']
 mapQuery: Fontana, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for a Growing Fontana
 issuesHeading: Common Property Damage in Fontana
 issuesIntro: Fontana's mix of older neighborhoods, newer subdivisions and large commercial buildings means a wide range of plumbing and water damage calls.
@@ -44,4 +43,4 @@ Newer Fontana homes still have plumbing failures: supply lines, appliance hoses 
 
 We also provide [mold remediation](/mold-remediation/), [sewage cleanup](/sewage-cleanup/) and [fire and smoke damage](/fire-smoke-damage-restoration/) cleanup for Fontana properties.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Fontana and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Fontana, a crew is on the way in 1 hour or less, 24/7.

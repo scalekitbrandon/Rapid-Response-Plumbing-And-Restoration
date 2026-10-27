@@ -6,7 +6,6 @@ description: 24/7 plumbing and water damage restoration in Henderson, NV. Slab l
 heroSub: Slab leak, burst water heater, AC overflow or fire damage in Henderson? Rapid Response is on call 24/7 to fix the plumbing problem and restore the damage, with one call and one team.
 zips: ['89002', '89011', '89012', '89014', '89015', '89044', '89052', '89074']
 mapQuery: Henderson, NV
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Henderson Homes and Businesses
 issuesHeading: Common Property Damage in Henderson
 issuesIntro: From established Green Valley neighborhoods to newer communities like Inspirada and Anthem, these are the problems Henderson property owners call us about most.
@@ -48,4 +47,4 @@ Much of Green Valley and other established Henderson neighborhoods were built du
 
 When water gets loose, our [emergency plumbers](/henderson/emergency-plumber/) repair the source and our restoration team handles [water mitigation and structural drying](/henderson/water-mitigation/) and [water damage restoration](/henderson/water-damage-restoration/). If moisture has led to [mold](/henderson/mold-remediation/), we handle that too.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Henderson and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Henderson, a crew is on the way in 1 hour or less, 24/7.

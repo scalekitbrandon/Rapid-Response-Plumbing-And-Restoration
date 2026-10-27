@@ -2,7 +2,7 @@
 service: "/water-damage-restoration/"
 keyword: "water damage restoration San Bernardino"
 title: "Water Damage Restoration in San Bernardino, CA | Rapid Response"
-description: "Water damage in San Bernardino? Rapid Response extracts water, dries the structure and restores homes and businesses 24/7. Call 855-47-RAPID for an arrival time."
+description: "Water damage in San Bernardino? Rapid Response extracts water, dries and restores homes and businesses 24/7, on the way in 1 hour or less. Call 855-47-RAPID."
 h1: "Water Damage Restoration in San Bernardino, CA"
 h1Accent: "Water Damage Restoration"
 heroSub: "Old pipe leak, sewer backup, storm runoff off the foothills or water from a fire? We extract the water, dry the structure and get your San Bernardino property ready for repairs, 24/7."
@@ -40,4 +40,4 @@ Many San Bernardino neighborhoods were built decades ago, and their galvanized a
 
 When heavy rain hits the San Bernardino Mountains, runoff comes down fast into foothill neighborhoods. We handle the extraction, sanitizing and [water mitigation and structural drying in San Bernardino](/san-bernardino/water-mitigation/). If a plumbing failure caused the damage, our [San Bernardino emergency plumbers](/san-bernardino/emergency-plumber/) repair it on the same job.
 
-Call 855-47-RAPID any time. We are on call 24/7 for San Bernardino and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.

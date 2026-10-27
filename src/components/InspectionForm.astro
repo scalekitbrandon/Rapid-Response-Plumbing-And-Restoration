@@ -20,8 +20,6 @@ interface Props {
   defaultDamageType?: string;
   /** Preselects the City field (must match a serviceAreas name). */
   defaultCity?: string;
-  /** false = do not promise "1 hour or less" (far service-area towns). */
-  fastResponse?: boolean;
   /** Where we serve, shown in the facts list. */
   areaLabel?: string;
 }
@@ -35,7 +33,6 @@ const {
   submitLabel = 'Request Free Inspection',
   defaultDamageType,
   defaultCity,
-  fastResponse = true,
   areaLabel = 'the High Desert',
 } = Astro.props;
 
@@ -62,7 +59,7 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
       </a>
 
       <ul class="facts">
-        <li><strong>24/7</strong> emergency response{fastResponse ? ', 1 hour or less' : ', on call around the clock'}</li>
+        <li><strong>24/7</strong> emergency response, 1 hour or less</li>
         <li><strong>Free</strong> inspections, no obligation</li>
         <li><strong>All major</strong> insurance carriers</li>
         <li><strong>Homes &amp; businesses</strong> across {areaLabel}</li>

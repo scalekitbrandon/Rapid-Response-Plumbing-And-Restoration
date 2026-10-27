@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in San Bernardino, CA. B
 heroSub: Burst pipe, sewer backup, water damage or fire in San Bernardino? Rapid Response is on call 24/7 to fix the plumbing problem and restore the damage, with one crew and one call.
 zips: ['92401', '92404', '92405', '92407', '92408', '92410', '92411']
 mapQuery: San Bernardino, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for San Bernardino Homes and Businesses
 issuesHeading: Common Property Damage in San Bernardino
 issuesIntro: San Bernardino's mix of older neighborhoods, foothill homes and commercial properties shapes the calls we get there.
@@ -44,4 +43,4 @@ San Bernardino's foothills sit in the path of fire season and Santa Ana winds. E
 
 From [water mitigation and structural drying](/water-mitigation/) after a leak, to [sewage cleanup](/sewage-cleanup/) after a backup, to [mold remediation](/mold-remediation/) after a slow leak nobody caught, we handle the whole job. For businesses, see our [commercial restoration](/commercial-property-restoration/) services.
 
-Call 855-47-RAPID any time. We are on call 24/7 for San Bernardino and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.

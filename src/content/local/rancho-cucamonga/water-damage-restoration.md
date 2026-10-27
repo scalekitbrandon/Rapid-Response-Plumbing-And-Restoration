@@ -40,4 +40,4 @@ Many homes in Alta Loma, Etiwanda and Victoria are larger two-story houses. When
 
 Our [Rancho Cucamonga emergency plumbers](/rancho-cucamonga/emergency-plumber/) repair the leak, slab leak or water heater on the same visit. If moisture has sat too long, see [mold remediation in Rancho Cucamonga](/rancho-cucamonga/mold-remediation/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rancho Cucamonga and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rancho Cucamonga, a crew is on the way in 1 hour or less, 24/7.

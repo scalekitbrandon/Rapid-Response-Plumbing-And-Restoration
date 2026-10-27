@@ -40,4 +40,4 @@ In San Bernardino, mold most often follows slow leaks behind older walls, unrepo
 
 We work directly with landlords and property managers and keep documentation clear for owners and tenants. For fresh water damage, start with [water mitigation in San Bernardino](/san-bernardino/water-mitigation/) to keep mold from starting.
 
-Call 855-47-RAPID any time. We are on call 24/7 for San Bernardino and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.

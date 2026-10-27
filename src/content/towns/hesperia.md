@@ -5,7 +5,6 @@ description: 24/7 plumber and water damage restoration in Hesperia, CA. Burst pi
 heroSub: Plumbing failures, flooded rooms, mold or fire damage in Hesperia? Rapid Response repairs the source and restores the damage, 24/7, with crews on the way in 1 hour or less.
 zips: ['92344', '92345']
 mapQuery: Hesperia, CA
-fastResponse: true
 bodyHeading: Plumbing and Restoration Built for Hesperia
 issuesHeading: Common Property Damage in Hesperia
 issuesIntro: Hesperia sits higher than much of the Victor Valley, and its weather and housing bring a few problems we see again and again.

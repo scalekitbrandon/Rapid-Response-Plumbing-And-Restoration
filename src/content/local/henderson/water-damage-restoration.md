@@ -40,4 +40,4 @@ Henderson shares the Las Vegas Valley's very hard water and slab construction, s
 
 Our [Henderson emergency plumbers](/henderson/emergency-plumber/) repair the source, and our team handles [water mitigation and structural drying in Henderson](/henderson/water-mitigation/). If moisture has sat too long, see [mold remediation in Henderson](/henderson/mold-remediation/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Henderson and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Henderson, a crew is on the way in 1 hour or less, 24/7.

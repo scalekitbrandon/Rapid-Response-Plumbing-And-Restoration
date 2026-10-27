@@ -81,7 +81,6 @@ const towns = defineCollection({
     heroSub: z.string(),
     zips: z.array(z.string()).min(1),
     mapQuery: z.string(), // Google Maps embed query, e.g. "Victorville, CA"
-    fastResponse: z.boolean().default(true), // false = do not promise "1 hour or less" for this town
     bodyHeading: z.string(),
     issuesHeading: z.string(),
     issuesIntro: z.string(),

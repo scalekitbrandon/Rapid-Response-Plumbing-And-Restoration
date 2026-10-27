@@ -40,4 +40,4 @@ Larger two-story homes have more places for a slow leak to hide: between floors,
 
 After fire season, homes that took on smoke or firefighting water may need both cleanups. See [fire and smoke damage](/fire-smoke-damage-restoration/). For recent leaks, start with [water mitigation in Rancho Cucamonga](/rancho-cucamonga/water-mitigation/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rancho Cucamonga and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rancho Cucamonga, a crew is on the way in 1 hour or less, 24/7.

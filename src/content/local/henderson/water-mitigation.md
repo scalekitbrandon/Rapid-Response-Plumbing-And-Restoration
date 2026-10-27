@@ -40,4 +40,4 @@ It is easy to assume everything dries fast in Henderson. Surfaces do, but water 
 
 In condos and townhomes, water crosses into neighboring units. We map and dry every affected unit and document it for everyone involved. Then [water damage restoration in Henderson](/henderson/water-damage-restoration/) handles the repairs.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Henderson and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Henderson, a crew is on the way in 1 hour or less, 24/7.

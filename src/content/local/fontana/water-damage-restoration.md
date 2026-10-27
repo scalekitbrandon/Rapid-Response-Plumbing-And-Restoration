@@ -40,4 +40,4 @@ In newer north Fontana neighborhoods like Sierra Lakes, water damage usually sta
 
 Fontana is home to some of the largest warehouses in the Inland Empire. A roof leak or sprinkler discharge can soak a large footprint fast. We bring high-capacity [water mitigation and structural drying](/fontana/water-mitigation/) and keep owners and insurers updated. See [commercial restoration](/commercial-property-restoration/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Fontana and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Fontana, a crew is on the way in 1 hour or less, 24/7.

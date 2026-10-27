@@ -40,4 +40,4 @@ Newer homes see burst supply lines and failed appliance hoses. Older south Fonta
 
 After the repair, our team handles [water mitigation in Fontana](/fontana/water-mitigation/) and [water damage restoration in Fontana](/fontana/water-damage-restoration/), so you do not need a second company.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Fontana and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Fontana, a crew is on the way in 1 hour or less, 24/7.

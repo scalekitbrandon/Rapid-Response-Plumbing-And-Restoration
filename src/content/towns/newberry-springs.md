@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Newberry Springs, CA.
 heroSub: Rural properties in Newberry Springs need a team that will make the drive. Rapid Response is on call 24/7 to fix plumbing problems and restore water, flood, mold and fire damage.
 zips: ['92365']
 mapQuery: Newberry Springs, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Newberry Springs Properties
 issuesHeading: Common Property Damage in Newberry Springs
 issuesIntro: Newberry Springs is rural, and that changes the kinds of plumbing and water problems property owners face.
@@ -24,7 +23,7 @@ issues:
     text: Heavy desert storms that send runoff across open land and into homes and outbuildings.
 faqs:
   - q: Do you really serve Newberry Springs?
-    a: Yes. Newberry Springs is part of our High Desert service area. We are on call 24/7 and will give you an arrival time as soon as you call.
+    a: Yes. Newberry Springs is part of our High Desert service area. A crew is on the way in 1 hour or less, 24/7.
   - q: Can you find a leak in the line between my well and my house?
     a: Yes. Long supply lines are common on rural Newberry Springs properties. If you have unexplained wet ground, low pressure or a pump that runs more than it should, our leak detection service can track down the problem.
 nearby: ['barstow', 'daggett', 'yermo']
@@ -44,4 +43,4 @@ When a leak or storm soaks a Newberry Springs home, we extract the water, remove
 
 Rural properties can be hit hard by fire. We provide [fire and smoke damage](/fire-smoke-damage-restoration/) cleanup, including the water left behind from firefighting.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Newberry Springs and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Newberry Springs, a crew is on the way in 1 hour or less, 24/7.

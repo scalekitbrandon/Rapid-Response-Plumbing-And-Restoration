@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Rancho Cucamonga, CA.
 heroSub: Leak, slab leak, water damage or wildfire smoke at your Rancho Cucamonga home? Rapid Response is on call 24/7 to fix the plumbing and restore the damage in one call.
 zips: ['91701', '91730', '91737', '91739']
 mapQuery: Rancho Cucamonga, CA
-fastResponse: false
 bodyHeading: Plumbing and Restoration for Rancho Cucamonga Homes
 issuesHeading: Common Property Damage in Rancho Cucamonga
 issuesIntro: Rancho Cucamonga's larger multi-story homes and foothill location bring a few problems we see again and again.
@@ -44,4 +43,4 @@ Many Rancho Cucamonga homes are built on concrete slabs, where a leaking line ca
 
 The foothills above Rancho Cucamonga see wildfires, and smoke and soot can reach homes well away from the flames. Our [fire and smoke damage](/fire-smoke-damage-restoration/) team cleans smoke and soot residue. We also provide [mold remediation](/mold-remediation/) when moisture has been left too long.
 
-Call 855-47-RAPID any time. We are on call 24/7 for Rancho Cucamonga and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Rancho Cucamonga, a crew is on the way in 1 hour or less, 24/7.

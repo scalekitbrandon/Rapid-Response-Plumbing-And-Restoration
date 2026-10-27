@@ -40,4 +40,4 @@ Henderson air conditioners run for months and produce a lot of condensate. A clo
 
 We contain the area, remove affected materials, clean and dry, and repair the source. For fresh leaks, start with [water mitigation in Henderson](/henderson/water-mitigation/).
 
-Call 855-47-RAPID any time. We are on call 24/7 for Henderson and will give you an arrival time as soon as you call.
+Call 855-47-RAPID any time. In Henderson, a crew is on the way in 1 hour or less, 24/7.

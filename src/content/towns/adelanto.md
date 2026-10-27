@@ -5,7 +5,6 @@ description: 24/7 plumbing and water damage restoration in Adelanto, CA. Leaks, 
 heroSub: From newer subdivisions to commercial and industrial properties, Rapid Response handles plumbing and property damage restoration across Adelanto, 24/7, with crews on the way in 1 hour or less.
 zips: ['92301']
 mapQuery: Adelanto, CA
-fastResponse: true
 bodyHeading: Plumbing and Restoration for a Growing Adelanto
 issuesHeading: Common Property Damage in Adelanto
 issuesIntro: Adelanto's mix of newer homes and commercial properties means we see a wide range of plumbing and water damage calls.
