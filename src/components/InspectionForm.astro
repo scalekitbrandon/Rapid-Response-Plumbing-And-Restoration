@@ -120,11 +120,6 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
               {damageTypes.map((d) => <option value={d} selected={d === defaultDamageType}>{d}</option>)}
             </select>
           </div>
-          <fieldset class="f full urgency">
-            <legend>Is water or damage still active right now?</legend>
-            <label class="radio"><input type="radio" name="urgency" value="Active now" /> Yes, it is happening now</label>
-            <label class="radio"><input type="radio" name="urgency" value="Not active" /> No, it has stopped</label>
-          </fieldset>
           <div class="f full">
             <label for="i-details">Details</label>
             <textarea id="i-details" name="details" rows="3" placeholder="Where is the damage, and what do you see?"></textarea>
@@ -371,32 +366,6 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
     border-color: var(--color-water);
     box-shadow: 0 0 0 3px rgba(30, 139, 255, 0.2);
   }
-  .urgency {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
-  }
-  .urgency legend {
-    width: 100%;
-    margin-bottom: 6px;
-  }
-  .radio {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-  .radio input {
-    width: 20px;
-    min-height: 20px;
-    height: 20px;
-    accent-color: var(--color-fire);
-  }
-
   .submit {
     width: 100%;
     min-height: 58px;
