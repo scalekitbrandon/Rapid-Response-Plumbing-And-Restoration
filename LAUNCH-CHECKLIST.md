@@ -8,7 +8,6 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 - [ ] **Plumbing services list**: confirm the 6 plumbing pages match what they actually offer (methods, tankless, sewer lines, reroutes, whole-house repipes)
 - [ ] **Reviews**: confirm the 8 Google reviews are from real customers (FTC fake-review rule)
 - [x] **"1 hour or less"**: client confirmed (2026-10-27) the promise applies to every page and every service area, including the Inland Empire and Las Vegas/Henderson. All town and local pages now promise it.
-- [ ] **"A real person answers"**: confirm (trust strip and FAQ copy)
 - [ ] **Privacy Policy**: client or attorney review, add a contact email
 - [ ] **Domain**: confirm the final domain (`site` in `astro.config.mjs` is currently rapidresponsefloodrestoration.com)
 
