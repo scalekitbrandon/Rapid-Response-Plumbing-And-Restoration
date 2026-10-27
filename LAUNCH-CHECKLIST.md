@@ -1,6 +1,6 @@
 # Rapid Response: Launch Checklist
 
-Site build is complete (55 pages as of 2026-10-27, including 17 Las Vegas pages). Lighthouse (mobile): Accessibility 100, Best Practices 100, SEO 100,
+Site build is complete (80 pages as of 2026-10-27: 14 town pages plus 40 local service pages under /<town>/<service>/). Lighthouse (mobile): Accessibility 100, Best Practices 100, SEO 100,
 Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate titles, one H1 per page.
 
 ## Blockers: needed from the client
@@ -17,6 +17,7 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 
 - [ ] **Las Vegas: Nevada contractor license**. Plumbing and most restoration work in Nevada requires a Nevada State Contractors Board license. Confirm the license before the /las-vegas/ pages go live, and add the NV license # to those pages.
 - [ ] **Las Vegas: separate Google Business Profile**. The California profile cannot rank in Las Vegas Maps (it is ~3 hours away). The Las Vegas Valley needs its own GBP (real address or service-area setup, ideally a local 702 number) linked to /las-vegas/.
+- [ ] **Henderson** is covered by the same Nevada license + Las Vegas GBP items above (add Henderson as a GBP service area)
 - [ ] **Las Vegas: claims to confirm**: Henderson / North Las Vegas / Summerlin coverage, condo/HOA work, tankless service, and polybutylene repiping
 
 ## Nice to have
