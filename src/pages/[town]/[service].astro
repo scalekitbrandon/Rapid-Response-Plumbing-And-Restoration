@@ -1,0 +1,19 @@
+---
+/*
+  Local service pages: /<town-slug>/<service-slug>/ from src/content/local/<town-slug>/<service-slug>.md.
+*/
+import { getCollection } from 'astro:content';
+import LocalServicePageLayout from '../../layouts/LocalServicePageLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('local');
+  return entries.map((entry) => {
+    const [town, service] = entry.slug.split('/');
+    return { params: { town, service }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+---
+
+<LocalServicePageLayout entry={entry} />

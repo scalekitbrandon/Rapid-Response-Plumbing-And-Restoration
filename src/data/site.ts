@@ -43,6 +43,7 @@ export const serviceAreas: { name: string; slug: string; region: Region; state: 
   { name: 'Fontana', slug: 'fontana', region: 'Inland Empire', state: 'CA', blurb: 'Residential and commercial water damage, slab leaks, sewer backups and warehouse restoration.' },
   { name: 'Rancho Cucamonga', slug: 'rancho-cucamonga', region: 'Inland Empire', state: 'CA', blurb: 'Leaks, slab leaks, water heaters, water damage, mold and wildfire smoke cleanup.' },
   { name: 'Las Vegas', slug: 'las-vegas', region: 'Nevada', state: 'NV', blurb: 'Plumbing, water damage, flooding, sewage, mold and fire restoration across the Las Vegas Valley.' },
+  { name: 'Henderson', slug: 'henderson', region: 'Nevada', state: 'NV', blurb: 'Slab leaks, water heaters, AC condensate leaks, water damage, mold and fire restoration for homes and businesses.' },
 ];
 
 export const restorationServices: { label: string; href: string; icon: IconName; blurb: string }[] = [

@@ -30,7 +30,7 @@ faqs:
     a: Very hard water wears on pipes, fittings and water heaters, and most homes are built on concrete slabs where lines run under the foundation. Together, that makes slab leaks and early water heater failures common.
   - q: Do you handle condos, HOAs and rental properties?
     a: Yes. We work with condo owners, HOAs, landlords and property managers, including leaks that spread from one unit to the next.
-nearby: []
+nearby: ['henderson']
 communities: ['Henderson', 'North Las Vegas', 'Summerlin', 'Spring Valley', 'Enterprise', 'Paradise']
 ---
 

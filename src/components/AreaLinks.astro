@@ -3,18 +3,21 @@
   Light "service + city" link strip for service pages: the heading carries the service keyword, and each
   chip links to a town page. Internal links that tie the service to every town we serve.
 */
-import { serviceAreas, vegasHref } from '../data/site';
+import { getCollection } from 'astro:content';
+import { serviceAreas } from '../data/site';
 
 interface Props {
   heading: string;
   intro: string;
   service: string;
-  /** On a service page: the Las Vegas chip links to the Las Vegas version of this service. */
+  /** On a service page: town chips link to the local version of this service when one exists. */
   serviceHref?: string; // e.g. "Emergency plumber". Used in each chip's accessible label.
 }
 
 const { heading, intro, service, serviceHref } = Astro.props;
-const hrefFor = (slug: string) => (slug === 'las-vegas' && serviceHref ? vegasHref(serviceHref) : `/${slug}/`);
+const localSlugs = new Set<string>((await getCollection('local')).map((e) => e.slug));
+const svc = serviceHref?.split('/').filter(Boolean).pop();
+const hrefFor = (slug: string) => (svc && localSlugs.has(`${slug}/${svc}`) ? `/${slug}/${svc}/` : `/${slug}/`);
 ---
 
 <section class="area-links" aria-labelledby="area-links-heading">

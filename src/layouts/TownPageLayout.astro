@@ -106,7 +106,7 @@ const bullets = d.fastResponse
     nowText={d.fastResponse ? 'Call 24/7. A crew heads your way in 1 hour or less.' : `Call 24/7. We will give you an arrival time for ${town} right away.`}
   />
   {d.fastResponse ? <TrustStrip /> : <TrustStrip items={farTrust} />}
-  <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} state={st} />
+  <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} state={st} townSlug={entry.slug} />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
 
   <ProseSection heading={d.bodyHeading} sideText={d.fastResponse ? undefined : `Call 24/7 for ${town}. We will give you an arrival time right away.`}>

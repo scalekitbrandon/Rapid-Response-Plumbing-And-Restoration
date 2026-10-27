@@ -4,18 +4,27 @@
   (Plumbing and Restoration). Link text includes the town name, which ties each service page to the town.
 */
 import ServiceIcon from './ServiceIcon.astro';
-import { plumbingServices, restorationServices, vegasHref } from '../data/site';
+import { getCollection } from 'astro:content';
+import { plumbingServices, restorationServices } from '../data/site';
 
 interface Props {
   town: string;
   zips: string[];
   mapQuery: string;
   state?: 'CA' | 'NV';
+  townSlug: string;
 }
 
-const { town, zips, mapQuery, state = 'CA' } = Astro.props;
-// Nevada service links go to the Las Vegas versions of each service page.
-const link = (href: string) => (state === 'NV' ? vegasHref(href) : href);
+const { town, zips, mapQuery, state = 'CA', townSlug } = Astro.props;
+// Link to the local version of a service (/<town>/<service>/) when one exists, otherwise to the main service page.
+const localSlugs = new Set<string>((await getCollection('local')).map((e) => e.slug));
+const link = (href: string) => {
+  const svc = href.split('/').filter(Boolean).pop();
+  if (localSlugs.has(`${townSlug}/${svc}`)) return `/${townSlug}/${svc}/`;
+  // Nevada towns without their own page fall back to the Las Vegas version, not the California page.
+  if (state === 'NV' && localSlugs.has(`las-vegas/${svc}`)) return `/las-vegas/${svc}/`;
+  return href;
+};
 const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=11&output=embed`;
 ---
 

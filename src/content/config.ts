@@ -92,10 +92,10 @@ const towns = defineCollection({
   }),
 });
 
-// Las Vegas service pages render at /las-vegas/<slug>/ (slug matches the California service slug).
-// Each entry adds Nevada-specific hero, problems, FAQs and body copy. The layout reuses the base service's
-// generic sections (emergency checklist, split, process) only when they contain no California-specific claims.
-const vegas = defineCollection({
+// Local service pages ("service in town"): src/content/local/<town-slug>/<service-slug>.md renders at
+// /<town-slug>/<service-slug>/. Each entry adds town-specific hero, problems, FAQs and body copy. The layout
+// reuses the base service's generic sections only when they contain nothing specific to another place.
+const local = defineCollection({
   type: 'content',
   schema: z.object({
     service: z.string(), // base California service href, e.g. /plumbing/drain-cleaning/
@@ -112,4 +112,4 @@ const vegas = defineCollection({
   }),
 });
 
-export const collections = { plumbing, restoration, towns, vegas };
+export const collections = { plumbing, restoration, towns, local };

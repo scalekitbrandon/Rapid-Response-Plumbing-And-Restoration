@@ -1,0 +1,265 @@
+---
+/*
+  Local service page template ("service in town"): /<town-slug>/<service-slug>/.
+  Used for Las Vegas (all 16 services) and for priority towns (top services only).
+  Built to rank for "[service] [town]" without being a thin doorway page:
+  - Town-specific title, H1, hero, problem grid, FAQs and long-form body (from the `local` collection)
+  - The base service page's generic sections (emergency checklist, split, process) are reused only if they
+    mention no other town or region, and no "1 hour" promise when the town is not a fast-response town.
+  - Links: Home › Locations › Town › Service breadcrumbs, related services (local version when it exists),
+    sibling local pages in the same town, the town hub, and the base service page.
+  - JSON-LD: Service (areaServed = this town), BreadcrumbList, FAQPage (in FAQ.astro).
+*/
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import InnerHero from '../components/InnerHero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import IssueGrid from '../components/IssueGrid.astro';
+import UrgentSteps from '../components/UrgentSteps.astro';
+import ServiceSplit from '../components/ServiceSplit.astro';
+import Process from '../components/Process.astro';
+import ProseSection from '../components/ProseSection.astro';
+import Reviews from '../components/Reviews.astro';
+import FAQ from '../components/FAQ.astro';
+import RelatedServices from '../components/RelatedServices.astro';
+import InspectionForm from '../components/InspectionForm.astro';
+import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
+import { primaryNav, utilityLinks, business, plumbingServices, restorationServices, serviceAreas } from '../data/site';
+
+interface Props {
+  entry: CollectionEntry<'local'>;
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await entry.render();
+const [townSlug] = entry.slug.split('/');
+
+// Town info
+const area = serviceAreas.find((a) => a.slug === townSlug);
+if (!area) throw new Error(`Local page ${entry.slug}: unknown town ${townSlug}`);
+const townEntry = await getEntry('towns', townSlug);
+const fast = townEntry?.data.fastResponse ?? false;
+const town = area.name;
+const st = area.state;
+const areaLabel = st === 'NV' ? 'the Las Vegas Valley' : area.region === 'Inland Empire' ? 'the Inland Empire' : 'the High Desert';
+
+// Base service this page localizes
+const baseEntries = [...(await getCollection('plumbing')), ...(await getCollection('restoration'))];
+const base = baseEntries.find((e) =>
+  e.collection === 'plumbing' ? `/plumbing/${e.slug}/` === d.service : `/${e.slug}/` === d.service,
+);
+if (!base) throw new Error(`Local page ${entry.slug}: no base service found for ${d.service}`);
+const b = base.data;
+const isPlumbing = base.collection === 'plumbing';
+
+// Local pages that exist, for linking to the local version of a service when there is one.
+const localSlugs = new Set<string>((await getCollection('local')).map((e) => e.slug));
+const svcSlug = (href: string) => href.split('/').filter(Boolean).pop() ?? '';
+const localHref = (href: string) => {
+  const s = svcSlug(href);
+  if (localSlugs.has(`${townSlug}/${s}`)) return `/${townSlug}/${s}/`;
+  if (area.state === 'NV' && localSlugs.has(`las-vegas/${s}`)) return `/las-vegas/${s}/`;
+  return href;
+};
+
+// Reuse base sections only when they say nothing about another place (and no 1-hour promise for far towns).
+const otherPlaces = [
+  ...serviceAreas.filter((a) => a.slug !== townSlug).map((a) => a.name),
+  ...['High Desert', 'Inland Empire', 'Victor Valley'].filter((r) => r !== area.region),
+  ...(st === 'NV' ? ['California'] : ['Nevada', 'Las Vegas']),
+  ...(fast ? [] : ['1 hour', 'one hour']),
+];
+const placePattern = new RegExp(otherPlaces.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'i');
+const clean = (v: unknown) => !placePattern.test(JSON.stringify(v));
+const urgent = b.urgent && clean(b.urgent) ? b.urgent : undefined;
+const split = clean({ ...b.split, image: undefined }) ? b.split : undefined;
+const process = clean(b.process)
+  ? b.process
+  : [
+      { title: 'Call 24/7', text: 'Call 855-47-RAPID any time. Tell us what happened and we will walk you through the first steps.' },
+      { title: 'Assess the Problem', text: 'We find the source and explain what we found before any work starts.' },
+      { title: 'Fix & Mitigate', text: 'We repair the source and stop the damage from spreading.' },
+      { title: 'Dry, Restore & Document', text: 'We dry and restore what was affected and document everything for your insurance claim.' },
+    ];
+
+const site = Astro.site ?? new URL(Astro.url.origin);
+const pageUrl = new URL(Astro.url.pathname, site).toString();
+const townUrl = new URL(`/${townSlug}/`, site).toString();
+const locationsUrl = new URL('/locations/', site).toString();
+
+const speed = fast
+  ? `We respond in 1 hour or less across ${town} and the Victor Valley, day or night. Call 855-47-RAPID and a crew gets moving right away.`
+  : `We are on call 24/7 for ${town}. Call 855-47-RAPID and we will give you an arrival time right away and walk you through what to do until we get there.`;
+const faqs = [
+  ...d.faqs,
+  { q: `How fast can you get to my property in ${town}?`, a: speed },
+  { q: 'Do you work with my insurance company?', a: 'Yes. We work with all major insurance carriers and document the damage with photos and moisture readings to keep your claim organized and moving.' },
+];
+
+const siblings = [...plumbingServices, ...restorationServices].filter(
+  (s) => s.href !== d.service && localSlugs.has(`${townSlug}/${svcSlug(s.href)}`),
+);
+
+const farTrust = [
+  { value: '24/7', label: 'Emergency Response', text: `Nights, weekends and holidays across ${areaLabel}.`, tone: 'fire' as const },
+  { value: 'ONE', label: 'Call for Everything', text: 'We fix the plumbing and restore the damage it caused.', tone: 'water' as const },
+  { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' as const },
+  { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' as const },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: d.h1,
+  serviceType: b.navLabel,
+  description: d.description,
+  url: pageUrl,
+  areaServed: { '@type': 'City', name: `${town}, ${st}` },
+  provider: {
+    '@type': isPlumbing ? 'Plumber' : 'HomeAndConstructionBusiness',
+    name: business.name,
+    telephone: '+1-855-477-2743',
+    url: new URL('/', site).toString(),
+    openingHours: 'Mo-Su 00:00-23:59',
+  },
+};
+---
+
+<BaseLayout title={d.title} description={d.description}>
+  <Header
+    slot="header"
+    businessName={business.name}
+    nav={primaryNav}
+    utilityLinks={utilityLinks}
+    phoneDisplay={business.phoneDisplay}
+    phoneHref={business.phoneHref}
+  />
+
+  <InnerHero
+    crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Locations', href: '/locations/' },
+      { label: `${town}, ${st}`, href: `/${townSlug}/` },
+      { label: b.navLabel },
+    ]}
+    eyebrow={`${b.navLabel} · ${town}, ${st}`}
+    h1={d.h1}
+    h1Accent={d.h1Accent}
+    sub={d.heroSub}
+    bullets={[
+      fast ? 'On the way in 1 hour or less, 24/7' : `On call 24/7 across ${areaLabel}`,
+      'Plumbing repair and restoration in one call',
+      'We work with all major insurance carriers',
+    ]}
+    nowTitle={`Emergency in ${town}?`}
+    nowText={fast ? 'Call 24/7. A crew heads your way in 1 hour or less.' : 'Call 24/7. We will give you an arrival time right away.'}
+  />
+  {fast ? <TrustStrip /> : <TrustStrip items={farTrust} />}
+  <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
+  {urgent && <UrgentSteps heading={urgent.heading} intro={urgent.intro} steps={urgent.steps} />}
+  {split && (
+    <ServiceSplit
+      heading={split.heading}
+      accent={split.accent}
+      text={split.text}
+      points={split.points}
+      image={split.image}
+      imageAlt={split.imageAlt}
+      linkLabel={`${town} plumbing & restoration`}
+      linkHref={`/${townSlug}/`}
+    />
+  )}
+  <Process eyebrow="How It Works" headlineLead={b.processHeading} headlineAccent={b.processAccent} body="What happens from the moment you call." steps={process} />
+
+  <ProseSection
+    heading={`${b.navLabel} in ${town}, ${st === 'NV' ? 'Nevada' : 'CA'}`}
+    sideText={fast ? undefined : `Call 24/7 in ${town}. We will give you an arrival time right away.`}
+  >
+    <Content />
+  </ProseSection>
+
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} headingLead="What Customers Say About" headingAccent="Rapid Response" tags={b.reviewTags} limit={4} />
+  <FAQ headingLead={`${b.navLabel} ${town}`} headingAccent="FAQs" intro={`Common questions about ${b.navLabel.toLowerCase()} in ${town}, ${st}.`} items={faqs} />
+  <RelatedServices heading={`Related Services in ${town}`} hrefs={b.related} hrefFor={localHref} />
+
+  <section class="more-local" aria-labelledby="more-local-heading">
+    <div class="container">
+      <h2 id="more-local-heading">More Services in {town}, {st}</h2>
+      {siblings.length > 0 && (
+        <ul>
+          {siblings.map((s) => (
+            <li><a href={`/${townSlug}/${svcSlug(s.href)}/`}>{s.label} in {town}</a></li>
+          ))}
+        </ul>
+      )}
+      <p class="cross">
+        <a href={`/${townSlug}/`}>All plumbing &amp; restoration services in {town}</a> ·
+        <a href={d.service}>{b.navLabel} overview</a> ·
+        <a href="/locations/">All service areas</a>
+      </p>
+    </div>
+  </section>
+
+  <InspectionForm
+    eyebrow={`24/7 in ${town}`}
+    headingLead="Request Help in"
+    headingAccent={`${town} Today`}
+    lead={`Tell us what happened at your ${town} property. We will call you right back. If water is actively leaking, shut it off if you can and call now.`}
+    formName={`${town} ${b.navLabel} form`}
+    defaultCity={town}
+    defaultDamageType={b.formDamageType}
+    fastResponse={fast}
+    areaLabel={areaLabel}
+  />
+
+  <Footer slot="footer" />
+
+  <BreadcrumbSchema
+    items={[
+      { label: 'Home', url: new URL('/', site).toString() },
+      { label: 'Locations', url: locationsUrl },
+      { label: `${town}, ${st}`, url: townUrl },
+      { label: b.navLabel, url: pageUrl },
+    ]}
+  />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+</BaseLayout>
+
+<style>
+  .more-local {
+    background: #fff;
+    padding-block: var(--space-7);
+  }
+  .more-local h2 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    color: var(--color-fg);
+  }
+  .more-local ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .more-local a {
+    color: var(--color-water-dark);
+    font-weight: 600;
+  }
+  .cross {
+    margin: var(--space-5) 0 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    color: #6b7487;
+  }
+  @media (max-width: 900px) {
+    .more-local ul { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .more-local ul { grid-template-columns: 1fr; }
+  }
+</style>
