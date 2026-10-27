@@ -13,6 +13,7 @@ function payload(form: HTMLFormElement) {
     ...data,
     first_name: first,
     last_name: rest.join(' '),
+    address1: data.address ?? '', // GHL's standard contact address field
     form_name: form.dataset.formName ?? 'Website form',
     page_url: location.href,
     submitted_at: new Date().toISOString(),
