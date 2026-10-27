@@ -26,7 +26,7 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 - [ ] Commercial-job reviews
 
 ## Deploy (astro-deploy)
-- [ ] GitHub repo + Cloudflare deploy; `public/_redirects` handles the old Apple Valley/Adelanto URLs
+- [x] GitHub repo (scalekitbrandon/Rapid-Response-Plumbing-And-Restoration) pushed 2026-10-27. [ ] Cloudflare deploy + domain (see DEPLOY.md); `public/_redirects` handles the old Apple Valley/Adelanto URLs
 - [ ] Analytics + GHL tracking code
 - [ ] Google Search Console: verify, submit `sitemap-index.xml`, request indexing for the key pages
 - [ ] Google Business Profile: set the website link to the new homepage
