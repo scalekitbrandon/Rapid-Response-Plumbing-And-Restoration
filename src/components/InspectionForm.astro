@@ -22,6 +22,8 @@ interface Props {
   defaultCity?: string;
   /** false = do not promise "1 hour or less" (far service-area towns). */
   fastResponse?: boolean;
+  /** Where we serve, shown in the facts list. */
+  areaLabel?: string;
 }
 
 const {
@@ -34,6 +36,7 @@ const {
   defaultDamageType,
   defaultCity,
   fastResponse = true,
+  areaLabel = 'the High Desert',
 } = Astro.props;
 
 const bgVars = await fireWaterBg();
@@ -62,7 +65,7 @@ const live = FORMS_LIVE && LEAD_WEBHOOK.length > 0;
         <li><strong>24/7</strong> emergency response{fastResponse ? ', 1 hour or less' : ', on call around the clock'}</li>
         <li><strong>Free</strong> inspections, no obligation</li>
         <li><strong>All major</strong> insurance carriers</li>
-        <li><strong>Homes &amp; businesses</strong> across the High Desert</li>
+        <li><strong>Homes &amp; businesses</strong> across {areaLabel}</li>
       </ul>
 
       {reviewSummary.rating !== null && (

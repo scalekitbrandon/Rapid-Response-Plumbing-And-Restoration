@@ -24,24 +24,25 @@ export const business = {
   tagline: 'We Respond Fast. We Restore Right.',
 };
 
-export type Region = 'High Desert' | 'Inland Empire';
+export type Region = 'High Desert' | 'Inland Empire' | 'Nevada';
 
-export const regions: Region[] = ['High Desert', 'Inland Empire'];
+export const regions: Region[] = ['High Desert', 'Inland Empire', 'Nevada'];
 
-export const serviceAreas: { name: string; slug: string; region: Region; blurb: string }[] = [
-  { name: 'Victorville', slug: 'victorville', region: 'High Desert', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
-  { name: 'Apple Valley', slug: 'apple-valley', region: 'High Desert', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
-  { name: 'Hesperia', slug: 'hesperia', region: 'High Desert', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
-  { name: 'Adelanto', slug: 'adelanto', region: 'High Desert', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
-  { name: 'Helendale', slug: 'helendale', region: 'High Desert', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
-  { name: 'Barstow', slug: 'barstow', region: 'High Desert', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
-  { name: 'Yermo', slug: 'yermo', region: 'High Desert', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
-  { name: 'Newberry Springs', slug: 'newberry-springs', region: 'High Desert', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
-  { name: 'Daggett', slug: 'daggett', region: 'High Desert', blurb: 'Water damage, frozen pipes, well and supply line leaks, mold and fire damage for rural properties.' },
-  { name: 'San Bernardino', slug: 'san-bernardino', region: 'Inland Empire', blurb: 'Aging pipes, sewer line problems, water damage, mold and fire and smoke cleanup for homes and businesses.' },
-  { name: 'Rialto', slug: 'rialto', region: 'Inland Empire', blurb: 'Plumbing repairs, sewer and drain problems, water damage, flooding and mold for homes and rentals.' },
-  { name: 'Fontana', slug: 'fontana', region: 'Inland Empire', blurb: 'Residential and commercial water damage, slab leaks, sewer backups and warehouse restoration.' },
-  { name: 'Rancho Cucamonga', slug: 'rancho-cucamonga', region: 'Inland Empire', blurb: 'Leaks, slab leaks, water heaters, water damage, mold and wildfire smoke cleanup.' },
+export const serviceAreas: { name: string; slug: string; region: Region; state: 'CA' | 'NV'; blurb: string }[] = [
+  { name: 'Victorville', slug: 'victorville', region: 'High Desert', state: 'CA', blurb: 'Emergency water damage, flood cleanup, mold, sewage, fire damage and structural drying for homes and businesses.' },
+  { name: 'Apple Valley', slug: 'apple-valley', region: 'High Desert', state: 'CA', blurb: 'Residential and commercial water losses, flood damage, drying, demolition and property recovery.' },
+  { name: 'Hesperia', slug: 'hesperia', region: 'High Desert', state: 'CA', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
+  { name: 'Adelanto', slug: 'adelanto', region: 'High Desert', state: 'CA', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
+  { name: 'Helendale', slug: 'helendale', region: 'High Desert', state: 'CA', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
+  { name: 'Barstow', slug: 'barstow', region: 'High Desert', state: 'CA', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
+  { name: 'Yermo', slug: 'yermo', region: 'High Desert', state: 'CA', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
+  { name: 'Newberry Springs', slug: 'newberry-springs', region: 'High Desert', state: 'CA', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
+  { name: 'Daggett', slug: 'daggett', region: 'High Desert', state: 'CA', blurb: 'Water damage, frozen pipes, well and supply line leaks, mold and fire damage for rural properties.' },
+  { name: 'San Bernardino', slug: 'san-bernardino', region: 'Inland Empire', state: 'CA', blurb: 'Aging pipes, sewer line problems, water damage, mold and fire and smoke cleanup for homes and businesses.' },
+  { name: 'Rialto', slug: 'rialto', region: 'Inland Empire', state: 'CA', blurb: 'Plumbing repairs, sewer and drain problems, water damage, flooding and mold for homes and rentals.' },
+  { name: 'Fontana', slug: 'fontana', region: 'Inland Empire', state: 'CA', blurb: 'Residential and commercial water damage, slab leaks, sewer backups and warehouse restoration.' },
+  { name: 'Rancho Cucamonga', slug: 'rancho-cucamonga', region: 'Inland Empire', state: 'CA', blurb: 'Leaks, slab leaks, water heaters, water damage, mold and wildfire smoke cleanup.' },
+  { name: 'Las Vegas', slug: 'las-vegas', region: 'Nevada', state: 'NV', blurb: 'Plumbing, water damage, flooding, sewage, mold and fire restoration across the Las Vegas Valley.' },
 ];
 
 export const restorationServices: { label: string; href: string; icon: IconName; blurb: string }[] = [
@@ -99,3 +100,6 @@ export const damageTypes = [
   'Commercial property',
   'Not sure / other',
 ];
+
+/** Vegas service page URL for a California service href (e.g. /plumbing/drain-cleaning/ -> /las-vegas/drain-cleaning/). */
+export const vegasHref = (serviceHref: string) => `/las-vegas/${serviceHref.split('/').filter(Boolean).pop()}/`;

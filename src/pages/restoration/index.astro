@@ -65,7 +65,7 @@ const businessSchema = {
   url: new URL('/', site).toString(),
   telephone: '+1-855-477-2743',
   openingHours: 'Mo-Su 00:00-23:59',
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Restoration Services',
@@ -144,7 +144,7 @@ const businessSchema = {
     <p>
       When property damage happens, you need a <strong>restoration company in Victorville</strong> that answers the
       phone and shows up fast. Rapid Response Plumbing &amp; Restoration serves homes and businesses across
-      Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga, 24/7.
+      Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada, 24/7.
     </p>
     <h3>Every kind of property damage, one company</h3>
     <p>

@@ -125,4 +125,4 @@ A failed sewer line often pushes wastewater up through tubs, floor drains and to
 
 ### Sewer line repair across our service area
 
-We repair sewer lines for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID any time.
+We repair sewer lines for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas. Call 855-47-RAPID any time.

@@ -125,4 +125,4 @@ The most important step in mold remediation is the one many companies skip: fixi
 
 ### Mold remediation across the High Desert
 
-We remediate mold in homes, rentals and commercial properties across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID or request a free inspection below.
+We remediate mold in homes, rentals and commercial properties across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. Call 855-47-RAPID or request a free inspection below.

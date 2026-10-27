@@ -1,0 +1,16 @@
+---
+/*
+  Las Vegas service pages: /las-vegas/<service-slug>/. The hub (/las-vegas/) is the `las-vegas` town entry.
+*/
+import { getCollection } from 'astro:content';
+import VegasServicePageLayout from '../../layouts/VegasServicePageLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('vegas');
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+---
+
+<VegasServicePageLayout entry={entry} />

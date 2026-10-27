@@ -24,11 +24,11 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent('Victorville
 const faqs = [
   {
     q: 'What areas does Rapid Response serve?',
-    a: 'We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga in Southern California’s High Desert.',
+    a: 'We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada in Southern California’s High Desert.',
   },
   {
     q: 'Do you provide emergency service throughout the area?',
-    a: 'Yes. We are on call 24/7 across our entire service area. In the Victor Valley, crews are on the way in 1 hour or less. For Barstow, Yermo, Newberry Springs, Daggett and our Inland Empire communities, we give you an arrival time as soon as you call.',
+    a: 'Yes. We are on call 24/7 across our entire service area. In the Victor Valley, crews are on the way in 1 hour or less. For Barstow, Yermo, Newberry Springs, Daggett, our Inland Empire communities and Las Vegas, we give you an arrival time as soon as you call.',
   },
   {
     q: 'What if I am near one of these cities but not in it?',
@@ -51,13 +51,13 @@ const schema = {
   url: new URL('/', site).toString(),
   telephone: '+1-855-477-2743',
   openingHours: 'Mo-Su 00:00-23:59',
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA`, url: new URL(`/${a.slug}/`, site).toString() })),
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}`, url: new URL(`/${a.slug}/`, site).toString() })),
 };
 ---
 
 <BaseLayout
-  title="Service Areas: High Desert & Inland Empire | Rapid Response"
-  description="24/7 plumbing and restoration across the High Desert and Inland Empire: Victorville, Hesperia, Apple Valley, Barstow, San Bernardino, Fontana and more."
+  title="Service Areas: SoCal & Las Vegas | Rapid Response"
+  description="24/7 plumbing and restoration across the High Desert, the Inland Empire and Las Vegas: Victorville, Hesperia, San Bernardino, Fontana, Las Vegas and more."
 >
   <Header
     slot="header"
@@ -73,7 +73,7 @@ const schema = {
     eyebrow="Service Areas"
     h1="Our High Desert Service Areas"
     h1Accent="Service Areas"
-    sub="One local team for communities across the High Desert and the Inland Empire. Choose your city below for local service details, or call 855-47-RAPID any time."
+    sub="One team for communities across the High Desert, the Inland Empire and Las Vegas, Nevada. Choose your city below for local service details, or call 855-47-RAPID any time."
     bullets={[
       '24/7 emergency response across the High Desert',
       'Plumbing repair and restoration in one call',
@@ -115,6 +115,13 @@ const schema = {
       Down the Cajon Pass, we serve <a href="/san-bernardino/">San Bernardino</a>, <a href="/rialto/">Rialto</a>,
       <a href="/fontana/">Fontana</a> and <a href="/rancho-cucamonga/">Rancho Cucamonga</a>, 24/7. Call and we will give
       you an arrival time right away.
+    </p>
+    <h3>Las Vegas, Nevada</h3>
+    <p>
+      We also serve <a href="/las-vegas/">Las Vegas</a> and the surrounding valley, including Henderson, North Las Vegas
+      and Summerlin, with every plumbing and restoration service, from
+      <a href="/las-vegas/emergency-plumber/">emergency plumbing</a> to
+      <a href="/las-vegas/water-damage-restoration/">water damage restoration</a>. We are on call 24/7.
     </p>
     <h3>Every service, everywhere we work</h3>
     <p>

@@ -26,7 +26,7 @@ const year = new Date().getFullYear();
       <p class="phone-digits">{business.phoneDigits}</p>
       <ul class="meta">
         <li>Open 24 hours, 7 days a week</li>
-        <li>Serving the High Desert &amp; Inland Empire</li>
+        <li>Serving the High Desert, Inland Empire &amp; Las Vegas</li>
       </ul>
       {reviewSummary.rating !== null && (
         <a class="rating" href={business.googleReviewsUrl} target="_blank" rel="noopener">
@@ -53,7 +53,7 @@ const year = new Date().getFullYear();
     <nav class="col" aria-label="Service areas">
       <p class="heading">Service Areas</p>
       <ul class="areas">
-        {serviceAreas.map((a) => <li><a href={`/${a.slug}/`}>{a.name}, CA</a></li>)}
+        {serviceAreas.map((a) => <li><a href={`/${a.slug}/`}>{a.name}, {a.state}</a></li>)}
       </ul>
     </nav>
   </div>

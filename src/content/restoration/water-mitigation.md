@@ -125,4 +125,4 @@ Most water damage starts with plumbing. Because Rapid Response is a plumbing com
 
 ### Water mitigation across our service area
 
-We provide water mitigation and structural drying for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID any time.
+We provide water mitigation and structural drying for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas. Call 855-47-RAPID any time.

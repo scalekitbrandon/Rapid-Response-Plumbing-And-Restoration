@@ -8,9 +8,11 @@ import { plumbingServices, restorationServices } from '../data/site';
 interface Props {
   heading?: string;
   hrefs: string[];
+  /** Rewrites each link, e.g. to the Las Vegas version of the service. */
+  hrefFor?: (href: string) => string;
 }
 
-const { heading = 'Related Services', hrefs } = Astro.props;
+const { heading = 'Related Services', hrefs, hrefFor = (h: string) => h } = Astro.props;
 const all = [
   ...plumbingServices.map((s) => ({ ...s, group: 'Plumbing' })),
   ...restorationServices.map((s) => ({ ...s, group: 'Restoration' })),
@@ -25,7 +27,7 @@ const items = hrefs.map((h) => all.find((s) => s.href === h)).filter((s): s is (
       <ul>
         {items.map((s) => (
           <li>
-            <a href={s.href} class={s.group === 'Plumbing' ? 'plumb' : 'resto'}>
+            <a href={hrefFor(s.href)} class={s.group === 'Plumbing' ? 'plumb' : 'resto'}>
               <span class="group">{s.group}</span>
               <span class="label">{s.label}</span>
               <span class="go" aria-hidden="true">→</span>

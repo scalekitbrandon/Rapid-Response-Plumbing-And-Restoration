@@ -4,15 +4,18 @@
   (Plumbing and Restoration). Link text includes the town name, which ties each service page to the town.
 */
 import ServiceIcon from './ServiceIcon.astro';
-import { plumbingServices, restorationServices } from '../data/site';
+import { plumbingServices, restorationServices, vegasHref } from '../data/site';
 
 interface Props {
   town: string;
   zips: string[];
   mapQuery: string;
+  state?: 'CA' | 'NV';
 }
 
-const { town, zips, mapQuery } = Astro.props;
+const { town, zips, mapQuery, state = 'CA' } = Astro.props;
+// Nevada service links go to the Las Vegas versions of each service page.
+const link = (href: string) => (state === 'NV' ? vegasHref(href) : href);
 const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=11&output=embed`;
 ---
 
@@ -21,7 +24,7 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z
     <div class="head">
       <h2 id="town-services-heading">Plumbing &amp; Restoration Services <span class="accent">in {town}</span></h2>
       <p>
-        Every service we offer is available 24/7 in {town}, CA, including ZIP code{zips.length > 1 ? 's' : ''}
+        Every service we offer is available 24/7 in {town}, {state}, including ZIP code{zips.length > 1 ? 's' : ''}
         {' '}{zips.join(', ')}. Choose a service to learn more, or call and tell us what happened.
       </p>
     </div>
@@ -33,7 +36,7 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z
           <ul>
             {plumbingServices.map((s) => (
               <li>
-                <a href={s.href}>
+                <a href={link(s.href)}>
                   <span class="ico" aria-hidden="true"><ServiceIcon name={s.icon} /></span>
                   <span>{s.label} <span class="where">in {town}</span></span>
                   <span class="go" aria-hidden="true">→</span>
@@ -47,7 +50,7 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z
           <ul>
             {restorationServices.map((s) => (
               <li>
-                <a href={s.href}>
+                <a href={link(s.href)}>
                   <span class="ico" aria-hidden="true"><ServiceIcon name={s.icon} /></span>
                   <span>{s.label} <span class="where">in {town}</span></span>
                   <span class="go" aria-hidden="true">→</span>
@@ -61,7 +64,7 @@ const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z
       <div class="map">
         <iframe
           src={mapSrc}
-          title={`Map of ${town}, CA service area`}
+          title={`Map of ${town}, ${state} service area`}
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>

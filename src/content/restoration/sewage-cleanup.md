@@ -125,4 +125,4 @@ Storm runoff and surface flooding are also treated as contaminated. If water cam
 
 ### Sewage cleanup across our service area
 
-We provide sewage cleanup for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID any time.
+We provide sewage cleanup for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas. Call 855-47-RAPID any time.

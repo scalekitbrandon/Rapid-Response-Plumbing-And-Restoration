@@ -50,7 +50,7 @@ const site = Astro.site ?? new URL(Astro.url.origin);
     name={business.name}
     url={new URL('/', site).toString()}
     phone="+1-855-477-2743"
-    areaServed={serviceAreas.map((a) => `${a.name}, CA`)}
+    areaServed={serviceAreas.map((a) => `${a.name}, ${a.state}`)}
     logo={new URL('/icon-192.png', site).toString()}
     image={new URL('/og-image.jpg', site).toString()}
     sameAs={[business.googleReviewsUrl]}

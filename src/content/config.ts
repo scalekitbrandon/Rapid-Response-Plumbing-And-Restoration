@@ -75,6 +75,7 @@ const towns = defineCollection({
   type: 'content',
   schema: z.object({
     name: z.string(),
+    state: z.enum(['CA', 'NV']).default('CA'),
     title: z.string().max(65),
     description: z.string().min(120).max(165),
     heroSub: z.string(),
@@ -86,8 +87,29 @@ const towns = defineCollection({
     issuesIntro: z.string(),
     issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve', 'fire', 'mold', 'building', 'fan', 'home', 'flood']) })).length(4),
     faqs: z.array(faq).min(2), // town-specific FAQs, merged with shared ones in the layout
-    nearby: z.array(z.string()).min(2), // slugs of nearby towns
+    nearby: z.array(z.string()).default([]), // slugs of nearby towns (pages)
+    communities: z.array(z.string()).default([]), // nearby communities without their own page (shown as text)
   }),
 });
 
-export const collections = { plumbing, restoration, towns };
+// Las Vegas service pages render at /las-vegas/<slug>/ (slug matches the California service slug).
+// Each entry adds Nevada-specific hero, problems, FAQs and body copy. The layout reuses the base service's
+// generic sections (emergency checklist, split, process) only when they contain no California-specific claims.
+const vegas = defineCollection({
+  type: 'content',
+  schema: z.object({
+    service: z.string(), // base California service href, e.g. /plumbing/drain-cleaning/
+    keyword: z.string(),
+    title: z.string().max(65),
+    description: z.string().min(120).max(165),
+    h1: z.string(),
+    h1Accent: z.string(),
+    heroSub: z.string(),
+    issuesHeading: z.string(),
+    issuesIntro: z.string(),
+    issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve', 'fire', 'mold', 'building', 'fan', 'home', 'flood']) })).length(4),
+    faqs: z.array(faq).min(3),
+  }),
+});
+
+export const collections = { plumbing, restoration, towns, vegas };

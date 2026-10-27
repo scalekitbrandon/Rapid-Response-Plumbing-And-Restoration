@@ -286,7 +286,7 @@ const current = Astro.url.pathname;
   .dropdown-groups {
     left: auto;
     right: -120px;
-    min-width: 460px;
+    min-width: 600px;
     padding: var(--space-2) 0 var(--space-3);
   }
   .dropdown-groups ul {
@@ -301,7 +301,7 @@ const current = Astro.url.pathname;
   }
   .dd-cols {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   }
   .dd-head {
     margin: var(--space-2) 20px 4px;

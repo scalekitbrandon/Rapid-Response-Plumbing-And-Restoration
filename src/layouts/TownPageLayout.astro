@@ -32,6 +32,8 @@ const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await entry.render();
 const town = d.name;
+const st = d.state;
+const isNV = st === 'NV';
 
 const site = Astro.site ?? new URL(Astro.url.origin);
 const pageUrl = new URL(Astro.url.pathname, site).toString();
@@ -45,7 +47,7 @@ const speedAnswer = d.fastResponse
   : `Our crews are on call 24/7 for ${town}. Call 855-47-RAPID and we will give you an arrival time right away and walk you through what to do until we get there.`;
 
 const faqs = [
-  { q: `Do you provide plumbing and restoration services in ${town}?`, a: `Yes. Rapid Response provides 24/7 plumbing, water damage restoration, flood cleanup, mold remediation and fire and smoke damage cleanup for homes and businesses in ${town}, CA (${d.zips.join(', ')}).` },
+  { q: `Do you provide plumbing and restoration services in ${town}?`, a: `Yes. Rapid Response provides 24/7 plumbing, water damage restoration, flood cleanup, mold remediation and fire and smoke damage cleanup for homes and businesses in ${town}, ${st} (${d.zips.join(', ')}).` },
   { q: `How fast can you get to my property in ${town}?`, a: speedAnswer },
   ...d.faqs,
   { q: `Do you work with insurance for ${town} property damage claims?`, a: 'Yes. We work with all major insurance carriers and document the damage with photos and moisture readings to keep your claim organized and moving.' },
@@ -54,11 +56,11 @@ const faqs = [
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: `Plumbing & Restoration in ${town}, CA`,
+  name: `Plumbing & Restoration in ${town}, ${st}`,
   serviceType: 'Plumbing and property damage restoration',
   description: d.description,
   url: pageUrl,
-  areaServed: { '@type': 'City', name: `${town}, CA` },
+  areaServed: { '@type': 'City', name: `${town}, ${st}` },
   provider: {
     '@type': 'Plumber',
     name: business.name,
@@ -71,7 +73,9 @@ const serviceSchema = {
 // Trust strip for far towns: same proof points, without the 1-hour promise.
 const farTrust = [
   { value: '24/7', label: 'Emergency Response', text: 'Nights, weekends and holidays. A real person answers.', tone: 'fire' as const },
-  { value: 'LOCAL', label: 'High Desert Crews', text: `We make the drive to ${town} and know the area.`, tone: 'water' as const },
+  isNV
+    ? { value: 'ONE', label: 'Call for Everything', text: 'We fix the plumbing and restore the damage it caused.', tone: 'water' as const }
+    : { value: 'LOCAL', label: 'High Desert Crews', text: `We make the drive to ${town} and know the area.`, tone: 'water' as const },
   { value: 'FREE', label: 'Inspections', text: 'Know what you are dealing with before work starts.', tone: 'chrome' as const },
   { value: 'CLAIMS', label: 'Insurance Help', text: 'We work with all major insurance carriers and document the damage for your claim.', tone: 'fire' as const },
 ];
@@ -92,9 +96,9 @@ const bullets = d.fastResponse
   />
 
   <InnerHero
-    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations', href: '/locations/' }, { label: `${town}, CA` }]}
-    eyebrow={`Serving ${town}, CA`}
-    h1={`Plumbing & Restoration in ${town}, CA`}
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Locations', href: '/locations/' }, { label: `${town}, ${st}` }]}
+    eyebrow={`Serving ${town}, ${st}`}
+    h1={`Plumbing & Restoration in ${town}, ${st}`}
     h1Accent="Plumbing & Restoration"
     sub={d.heroSub}
     bullets={bullets}
@@ -102,23 +106,26 @@ const bullets = d.fastResponse
     nowText={d.fastResponse ? 'Call 24/7. A crew heads your way in 1 hour or less.' : `Call 24/7. We will give you an arrival time for ${town} right away.`}
   />
   {d.fastResponse ? <TrustStrip /> : <TrustStrip items={farTrust} />}
-  <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} />
+  <TownServices town={town} zips={d.zips} mapQuery={d.mapQuery} state={st} />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
 
   <ProseSection heading={d.bodyHeading} sideText={d.fastResponse ? undefined : `Call 24/7 for ${town}. We will give you an arrival time right away.`}>
     <Content />
   </ProseSection>
 
-  <RealWork />
+  {!isNV && <RealWork />}
   <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} limit={4} />
-  <FAQ headingLead={`${town}`} headingAccent="FAQs" intro={`Common questions from property owners in ${town}, CA.`} items={faqs} />
+  <FAQ headingLead={`${town}`} headingAccent="FAQs" intro={`Common questions from property owners in ${town}, ${st}.`} items={faqs} />
 
   <section class="nearby" aria-labelledby="nearby-heading">
     <div class="container">
-      <h2 id="nearby-heading">Also Serving Communities Near {town}</h2>
+      <h2 id="nearby-heading">{d.communities.length ? `Serving ${town} and the Surrounding Valley` : `Also Serving Communities Near ${town}`}</h2>
+      {d.communities.length > 0 && (
+        <p class="communities">We also serve {d.communities.slice(0, -1).join(', ')} and {d.communities[d.communities.length - 1]}.</p>
+      )}
       <ul>
         {nearby.map((a) => (
-          <li><a href={`/${a.slug}/`}>Plumbing &amp; Restoration in {a.name}, CA <span aria-hidden="true">→</span></a></li>
+          <li><a href={`/${a.slug}/`}>Plumbing &amp; Restoration in {a.name}, {a.state} <span aria-hidden="true">→</span></a></li>
         ))}
         <li><a href="/locations/">View all service areas <span aria-hidden="true">→</span></a></li>
       </ul>
@@ -133,6 +140,7 @@ const bullets = d.fastResponse
     formName={`${town} town page form`}
     defaultCity={town}
     fastResponse={d.fastResponse}
+    areaLabel={isNV ? 'the Las Vegas Valley' : serviceAreas.find((a) => a.slug === entry.slug)?.region === 'Inland Empire' ? 'the Inland Empire' : 'the High Desert'}
   />
 
   <Footer slot="footer" />
@@ -141,7 +149,7 @@ const bullets = d.fastResponse
     items={[
       { label: 'Home', url: new URL('/', site).toString() },
       { label: 'Locations', url: new URL('/locations/', site).toString() },
-      { label: `${town}, CA`, url: pageUrl },
+      { label: `${town}, ${st}`, url: pageUrl },
     ]}
   />
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
@@ -156,6 +164,11 @@ const bullets = d.fastResponse
     margin-bottom: var(--space-4);
     font-size: clamp(1.5rem, 2.6vw, 2rem);
     color: var(--color-fg);
+  }
+  .communities {
+    margin: calc(-1 * var(--space-2)) 0 var(--space-4);
+    font-size: 1.08rem;
+    color: #3a4356;
   }
   .nearby ul {
     display: grid;

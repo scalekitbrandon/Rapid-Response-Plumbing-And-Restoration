@@ -123,4 +123,4 @@ A slab leak does not just waste water. It soaks the concrete, wicks into carpet 
 
 ### Think you have a slab leak?
 
-Start with our quick meter check above, or call 855-47-RAPID any time. If you are not sure where the leak is, our [leak detection](/plumbing/leak-detection/) service will find it. We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga.
+Start with our quick meter check above, or call 855-47-RAPID any time. If you are not sure where the leak is, our [leak detection](/plumbing/leak-detection/) service will find it. We serve Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada.

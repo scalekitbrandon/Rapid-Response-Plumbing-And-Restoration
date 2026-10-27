@@ -62,14 +62,14 @@ const serviceSchema = {
   serviceType: d.navLabel,
   description: d.description,
   url: pageUrl,
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
   provider: {
     '@type': providerType,
     name: business.name,
     telephone: '+1-855-477-2743',
     url: new URL('/', site).toString(),
     openingHours: 'Mo-Su 00:00-23:59',
-    areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, CA` })),
+    areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
   },
 };
 ---
@@ -120,7 +120,7 @@ const serviceSchema = {
   />
   <FAQ headingLead={d.navLabel} headingAccent="FAQs" intro={`Common questions about ${d.navLabel.toLowerCase()} service in Victorville and the High Desert.`} items={d.faqs} />
   <RelatedServices hrefs={d.related} />
-  <AreaLinks heading={d.areasHeading} intro="Fast 24/7 response across Southern California's High Desert. Choose your city for local service details." service={d.navLabel} />
+  <AreaLinks heading={d.areasHeading} intro="Fast 24/7 response across Southern California's High Desert. Choose your city for local service details." service={d.navLabel} serviceHref={Astro.url.pathname} />
   <InspectionForm
     eyebrow="24/7 Service"
     headingLead={d.formHeading}

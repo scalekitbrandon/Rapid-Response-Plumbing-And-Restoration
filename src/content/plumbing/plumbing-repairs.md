@@ -112,4 +112,4 @@ Because Rapid Response is also a restoration company, we do not just fix the dri
 
 ### Plumbing repairs across our service area
 
-We handle plumbing repairs for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana and Rancho Cucamonga. Call 855-47-RAPID or send a request below.
+We handle plumbing repairs for homes, rentals and businesses across the High Desert and the Inland Empire, from Victorville, Hesperia and Apple Valley to San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas. Call 855-47-RAPID or send a request below.
