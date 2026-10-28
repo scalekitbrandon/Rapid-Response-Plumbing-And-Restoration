@@ -9,11 +9,9 @@ The customer gets this email immediately after submitting a form on the website.
 - **Subject:** `We got your request, {{contact.first_name}}. Help is on the way.`
 - **Preview text:** already built into the HTML ("We'll call you shortly. If water is still leaking…")
 - **From name:** `Rapid Response Plumbing & Restoration`
-- **From email / Reply-to:** use an inbox the client actually checks, because the email invites people to reply with photos.
+- **From email / Reply-to:** use an inbox the client actually checks, because the customers may reply to it.
   - The sending domain must be set up in GHL under **Settings → Email Services**, with a dedicated sending domain.
-- **Merge fields:** `{{contact.first_name}}`, `{{contact.address1}}`, `{{contact.city}}`
-  - These are filled by the workflow's Create/Update Contact step (`first_name`, `address1`, `city` from the webhook).
-  - Address is optional on the form, so the Property row can be blank. That's fine.
+- **Merge fields:** `{{contact.first_name}}` (filled by the workflow's Create/Update Contact step from the webhook's `first_name`).
 
 ## Setup in GHL
 1. **Marketing → Emails → Templates → + New → Code editor** (sometimes labeled "HTML" or "Import HTML").
@@ -34,11 +32,6 @@ Thanks for contacting Rapid Response Plumbing & Restoration. A member of our tea
 IS WATER STILL LEAKING OR DAMAGE SPREADING?
 Don't wait for our call. We're available 24/7 and on the way in 1 hour or less.
 Call 855-47-RAPID (855-477-2743)
-
-YOUR REQUEST
-Property: {{contact.address1}}
-City: {{contact.city}}
-Need to add details or photos? Just reply to this email.
 
 WHILE YOU WAIT
 1. Stop the water. If a pipe or fixture is leaking, shut off the main water valve.
