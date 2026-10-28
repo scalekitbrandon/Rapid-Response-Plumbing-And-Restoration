@@ -10,7 +10,7 @@ import type { IconName } from '../lib/icons';
  * TODO(client): create the GHL inbound webhook, paste its URL below, then set FORMS_LIVE = true.
  */
 export const FORMS_LIVE = true;
-export const LEAD_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/mCPAt01nhLYkOLgWnrhP/webhook-trigger/75ba7564-76b2-4f4c-9a08-9027fa1eaf4d';
+export const LEAD_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/mCPAt01nhLYkOLgWnrhP/webhook-trigger/b4ab8777-efa1-40fc-a0e1-ef6b9a21ad1d';
 
 export const business = {
   name: 'Rapid Response Plumbing & Restoration',
