@@ -10,10 +10,10 @@ General playbook: `~/Scale Kit - Visual Studio Code/SOP-astro-cloudflare-deploy.
 ## New domain: rapidresponseplumbingandrestoration.com
 - Bought on Hostinger 2026-10-27. On that date it had no DNS records and no email.
 - `site` in `astro.config.mjs` is set to it, so canonicals, the sitemap, robots and schema all use it.
-- **Setup:**
-  1. Add it to Cloudflare.
-  2. Switch the nameservers in Hostinger to Cloudflare's.
-  3. Add the domain and `www` as custom domains on the Worker.
+- **Live 2026-10-28.** Nameservers are `buck.ns.cloudflare.com` and `sara.ns.cloudflare.com` (set in Hostinger).
+- **Root domain:** a custom domain on the Worker.
+- **www:** not a Worker custom domain. Adding it through the Worker silently failed twice. Instead, a proxied `CNAME www → rapidresponseplumbingandrestoration.com` plus the Redirect Rule "www to root" (hostname equals www…, 301 to `concat("https://rapidresponseplumbingandrestoration.com", http.request.uri.path)`, query string preserved).
+- **Always Use HTTPS:** on. http and www each reach the https root in one 301.
 - If the client later wants email on this domain, add those records in Cloudflare DNS.
 
 ## Old domain: rapidresponsefloodrestoration.com (keep renewing it, never let it lapse)
