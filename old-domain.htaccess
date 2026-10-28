@@ -1,0 +1,10 @@
+# Paste at the TOP of public_html/.htaccess on the OLD domain (rapidresponsefloodrestoration.com, Hostinger),
+# above "# BEGIN WordPress". Sends every old URL to the same page on the new site with a permanent 301.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Old WordPress URLs that changed in the rebuild: go straight to the new page (one hop).
+RewriteRule ^property-restoration-apple-valley/?$ https://rapidresponseplumbingandrestoration.com/apple-valley/ [R=301,L]
+RewriteRule ^property-restoration-adelanto/?$ https://rapidresponseplumbingandrestoration.com/adelanto/ [R=301,L]
+# Everything else: same path on the new domain.
+RewriteRule ^(.*)$ https://rapidresponseplumbingandrestoration.com/$1 [R=301,L]
+</IfModule>

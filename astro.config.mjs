@@ -19,8 +19,8 @@ function hideNevadaCopy() {
 // an adapter (@astrojs/vercel, @astrojs/netlify, @astrojs/cloudflare)
 // when the hosting target is chosen. Defaults to static output.
 export default defineConfig({
-  // TODO(launch): switch to the final domain if the business moves to a new one for the rebrand.
-  site: 'https://rapidresponsefloodrestoration.com',
+  // New domain (2026-10-27). The old domain rapidresponsefloodrestoration.com 301s here page-for-page (see DEPLOY.md).
+  site: 'https://rapidresponseplumbingandrestoration.com',
   trailingSlash: 'always',
   // Inline page CSS to avoid render-blocking stylesheet requests (Lighthouse).
   build: { inlineStylesheets: 'always' },

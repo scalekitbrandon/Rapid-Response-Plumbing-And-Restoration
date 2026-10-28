@@ -9,7 +9,7 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 - [ ] **Reviews**: confirm the 8 Google reviews are from real customers (FTC fake-review rule)
 - [x] **"1 hour or less"**: client confirmed (2026-10-27) the promise applies to every page and every service area, including the Inland Empire and Las Vegas/Henderson. All town and local pages now promise it.
 - [ ] **Privacy Policy**: client or attorney review, add a contact email
-- [ ] **Domain**: confirm the final domain (`site` in `astro.config.mjs` is currently rapidresponsefloodrestoration.com)
+- [x] **Domain**: rapidresponseplumbingandrestoration.com (new, bought on Hostinger 2026-10-27). Old domain must 301 page-for-page, see DEPLOY.md
 
 - [ ] **Inland Empire + Daggett on the Google Business Profile**: add San Bernardino, Rialto, Fontana and Rancho Cucamonga to the GBP service areas so the profile matches the new town pages
 - [ ] **New page claims**: confirm sewer line repair methods (section repair vs. replacement, camera inspection), septic backup cleanup, and warehouse/sprinkler losses in Fontana
