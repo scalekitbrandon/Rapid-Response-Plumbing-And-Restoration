@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import llmsTxt from './src/integrations/llms-txt';
 import { NEVADA_LIVE } from './src/data/site.ts';
 
 // Nevada pages stay out of the sitemap until NEVADA_LIVE (see src/data/site.ts).
@@ -27,6 +28,7 @@ export default defineConfig({
   integrations: [
     sitemap({ filter: (page) => !page.includes('/thank-you/') && (NEVADA_LIVE || !nevadaPath.test(page)) }),
     mdx(),
+    llmsTxt(),
   ],
   markdown: { remarkPlugins: NEVADA_LIVE ? [] : [hideNevadaCopy] },
   output: 'static',
