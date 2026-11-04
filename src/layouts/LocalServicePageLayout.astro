@@ -25,8 +25,8 @@ import Reviews from '../components/Reviews.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import InspectionForm from '../components/InspectionForm.astro';
-import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, plumbingServices, restorationServices, allServiceAreas as serviceAreas, NEVADA_LIVE } from '../data/site';
+import { toSchemaFaqs } from '../data/faqs';
 
 interface Props {
   entry: CollectionEntry<'local'>;
@@ -51,7 +51,6 @@ const base = baseEntries.find((e) =>
 );
 if (!base) throw new Error(`Local page ${entry.slug}: no base service found for ${d.service}`);
 const b = base.data;
-const isPlumbing = base.collection === 'plumbing';
 
 // Local pages that exist, for linking to the local version of a service when there is one.
 const localSlugs = new Set<string>((await getCollection('local')).map((e) => e.slug));
@@ -82,10 +81,6 @@ const process = clean(b.process)
       { title: 'Dry, Restore & Document', text: 'We dry and restore what was affected and document everything for your insurance claim.' },
     ];
 
-const site = Astro.site ?? new URL(Astro.url.origin);
-const pageUrl = new URL(Astro.url.pathname, site).toString();
-const townUrl = new URL(`/${townSlug}/`, site).toString();
-const locationsUrl = new URL('/locations/', site).toString();
 
 const speed = `We respond in 1 hour or less across ${town}, day or night. Call 855-47-RAPID and a crew gets moving right away.`;
 const faqs = [
@@ -98,25 +93,10 @@ const siblings = [...plumbingServices, ...restorationServices].filter(
   (s) => s.href !== d.service && localSlugs.has(`${townSlug}/${svcSlug(s.href)}`),
 );
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: d.h1,
-  serviceType: b.navLabel,
-  description: d.description,
-  url: pageUrl,
-  areaServed: { '@type': 'City', name: `${town}, ${st}` },
-  provider: {
-    '@type': isPlumbing ? 'Plumber' : 'HomeAndConstructionBusiness',
-    name: business.name,
-    telephone: '+1-855-477-2743',
-    url: new URL('/', site).toString(),
-    openingHours: 'Mo-Su 00:00-23:59',
-  },
-};
 ---
 
-<BaseLayout title={d.title} description={d.description} noindex={st === 'NV' && !NEVADA_LIVE}>
+<BaseLayout
+  schema={{ kind: 'town', city: town, state: st, service: { name: d.h1, serviceType: b.navLabel, description: d.description }, breadcrumbs: [{ label: 'Home', path: '/' }, { label: 'Locations', path: '/locations/' }, { label: `${town}, ${st}`, path: `/${townSlug}/` }, { label: b.navLabel, path: Astro.url.pathname }], faqs: toSchemaFaqs(faqs) }} title={d.title} description={d.description} noindex={st === 'NV' && !NEVADA_LIVE}>
   <Header
     slot="header"
     businessName={business.name}
@@ -201,16 +181,6 @@ const serviceSchema = {
   />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema
-    items={[
-      { label: 'Home', url: new URL('/', site).toString() },
-      { label: 'Locations', url: locationsUrl },
-      { label: `${town}, ${st}`, url: townUrl },
-      { label: b.navLabel, url: pageUrl },
-    ]}
-  />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 </BaseLayout>
 
 <style>

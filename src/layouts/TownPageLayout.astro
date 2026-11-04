@@ -20,8 +20,8 @@ import RealWork from '../components/RealWork.astro';
 import Reviews from '../components/Reviews.astro';
 import FAQ from '../components/FAQ.astro';
 import InspectionForm from '../components/InspectionForm.astro';
-import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, allServiceAreas as serviceAreas, NEVADA_LIVE } from '../data/site';
+import { toSchemaFaqs } from '../data/faqs';
 
 interface Props {
   entry: CollectionEntry<'towns'>;
@@ -34,8 +34,6 @@ const town = d.name;
 const st = d.state;
 const isNV = st === 'NV';
 
-const site = Astro.site ?? new URL(Astro.url.origin);
-const pageUrl = new URL(Astro.url.pathname, site).toString();
 
 const nearby = d.nearby
   .map((slug) => serviceAreas.find((a) => a.slug === slug))
@@ -50,27 +48,11 @@ const faqs = [
   { q: `Do you work with insurance for ${town} property damage claims?`, a: 'Yes. We work with all major insurance carriers and document the damage with photos and moisture readings to keep your claim organized and moving.' },
 ];
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: `Plumbing & Restoration in ${town}, ${st}`,
-  serviceType: 'Plumbing and property damage restoration',
-  description: d.description,
-  url: pageUrl,
-  areaServed: { '@type': 'City', name: `${town}, ${st}` },
-  provider: {
-    '@type': 'Plumber',
-    name: business.name,
-    telephone: '+1-855-477-2743',
-    url: new URL('/', site).toString(),
-    openingHours: 'Mo-Su 00:00-23:59',
-  },
-};
-
 const bullets = ['On the way in 1 hour or less, 24/7', 'Plumbing repair and restoration in one call', 'We work with all major insurance carriers'];
 ---
 
-<BaseLayout title={d.title} description={d.description} noindex={isNV && !NEVADA_LIVE}>
+<BaseLayout
+  schema={{ kind: 'town', city: town, state: st, service: { name: `Plumbing & Restoration in ${town}, ${st}`, serviceType: 'Plumbing and property damage restoration', description: d.description }, breadcrumbs: [{ label: 'Home', path: '/' }, { label: 'Locations', path: '/locations/' }, { label: `${town}, ${st}`, path: Astro.url.pathname }], faqs: toSchemaFaqs(faqs) }} title={d.title} description={d.description} noindex={isNV && !NEVADA_LIVE}>
   <Header
     slot="header"
     businessName={business.name}
@@ -128,15 +110,6 @@ const bullets = ['On the way in 1 hour or less, 24/7', 'Plumbing repair and rest
   />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema
-    items={[
-      { label: 'Home', url: new URL('/', site).toString() },
-      { label: 'Locations', url: new URL('/locations/', site).toString() },
-      { label: `${town}, ${st}`, url: pageUrl },
-    ]}
-  />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 </BaseLayout>
 
 <style>

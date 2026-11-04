@@ -1,5 +1,7 @@
 ---
 import Analytics from '../components/Analytics.astro';
+import SchemaGraph from '../components/SchemaGraph.astro';
+import type { PageSchema } from '../lib/schema';
 import '../styles/tokens.css';
 
 interface Props {
@@ -11,9 +13,15 @@ interface Props {
   ogImage?: string;
   /** true = keep this page out of search results (thank-you pages, etc.). */
   noindex?: boolean;
+  /**
+   * JSON-LD for this page (see src/lib/schema.ts). Defaults to `home` on "/"
+   * and a plain `page` elsewhere — pass the real kind plus breadcrumbs/faqs.
+   */
+  schema?: PageSchema;
 }
 
-const { title, description = '', canonicalPath, ogImage, noindex = false } = Astro.props;
+const { title, description = '', canonicalPath, ogImage, noindex = false, schema } = Astro.props;
+const pageSchema: PageSchema = schema ?? { kind: Astro.url.pathname === '/' ? 'home' : 'page' };
 
 const canonicalURL = new URL(canonicalPath ?? Astro.url.pathname, Astro.site);
 const resolvedOgImage = new URL(ogImage ?? '/og-image.jpg', Astro.site).toString();
@@ -53,6 +61,7 @@ const resolvedOgImage = new URL(ogImage ?? '/og-image.jpg', Astro.site).toString
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
     {resolvedOgImage && <meta name="twitter:image" content={resolvedOgImage} />}
+    {!noindex && <SchemaGraph page={pageSchema} title={title} description={description} />}
   </head>
   <body>
     <slot name="header" />

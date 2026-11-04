@@ -10,11 +10,10 @@ import InnerHero from '../components/InnerHero.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import FAQ from '../components/FAQ.astro';
 import AreaLinks from '../components/AreaLinks.astro';
-import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, NEVADA_LIVE, footprint } from '../data/site';
 import { reviewSummary } from '../data/reviews';
+import { toSchemaFaqs } from '../data/faqs';
 
-const site = Astro.site ?? new URL(Astro.url.origin);
 
 const faqs = [
   { q: 'What number do I call?', a: 'Call 855-47-RAPID (855-477-2743) any time, day or night, for plumbing and property restoration help.' },
@@ -26,6 +25,7 @@ const faqs = [
 ---
 
 <BaseLayout
+  schema={{ kind: 'contact', breadcrumbs: [{ label: 'Home', path: '/' }, { label: 'Contact', path: '/contact-us/' }], faqs: toSchemaFaqs(faqs) }}
   title="Contact Rapid Response | 24/7 Plumbing & Restoration"
   description="Call Rapid Response Plumbing & Restoration 24/7 at 855-47-RAPID, or request service online. Serving Victorville, Hesperia, Apple Valley and the High Desert."
 >
@@ -89,8 +89,6 @@ const faqs = [
   <AreaLinks heading={`Serving ${footprint}`} intro="Choose your city for local service details." service="Plumbing and restoration" />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema items={[{ label: 'Home', url: new URL('/', site).toString() }, { label: 'Contact', url: new URL('/contact-us/', site).toString() }]} />
 </BaseLayout>
 
 <style>

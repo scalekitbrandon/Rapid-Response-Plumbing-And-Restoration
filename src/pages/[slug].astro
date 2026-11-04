@@ -21,7 +21,7 @@ const props = Astro.props;
 ---
 
 {props.kind === 'restoration' ? (
-  <ServicePageLayout entry={props.entry} category={{ label: 'Restoration', href: '/restoration/' }} providerType="HomeAndConstructionBusiness" />
+  <ServicePageLayout entry={props.entry} category={{ label: 'Restoration', href: '/restoration/' }} />
 ) : (
   <TownPageLayout entry={props.entry} />
 )}

@@ -14,11 +14,9 @@ import ProseSection from '../../components/ProseSection.astro';
 import Reviews from '../../components/Reviews.astro';
 import FAQ from '../../components/FAQ.astro';
 import InspectionForm from '../../components/InspectionForm.astro';
-import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
 import { primaryNav, utilityLinks, business, serviceAreas, areaList, NEVADA_LIVE } from '../../data/site';
+import { toSchemaFaqs } from '../../data/faqs';
 
-const site = Astro.site ?? new URL(Astro.url.origin);
-const pageUrl = new URL('/locations/', site).toString();
 const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent('Victorville, CA')}&z=9&output=embed`;
 
 const faqs = [
@@ -44,18 +42,10 @@ const faqs = [
   },
 ];
 
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'Plumber',
-  name: business.name,
-  url: new URL('/', site).toString(),
-  telephone: '+1-855-477-2743',
-  openingHours: 'Mo-Su 00:00-23:59',
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}`, url: new URL(`/${a.slug}/`, site).toString() })),
-};
 ---
 
 <BaseLayout
+  schema={{ kind: 'hub', items: serviceAreas.map((a) => ({ name: `${a.name}, ${a.state}`, path: `/${a.slug}/` })), breadcrumbs: [{ label: 'Home', path: '/' }, { label: 'Locations', path: '/locations/' }], faqs: toSchemaFaqs(faqs) }}
   title={NEVADA_LIVE ? 'Service Areas: SoCal & Las Vegas | Rapid Response' : 'Service Areas: High Desert & Inland Empire | Rapid Response'}
   description={NEVADA_LIVE ? '24/7 plumbing and restoration across the High Desert, the Inland Empire and Las Vegas: Victorville, Hesperia, San Bernardino, Fontana, Las Vegas and more.' : '24/7 plumbing and restoration across the High Desert and the Inland Empire: Victorville, Hesperia, Apple Valley, San Bernardino, Fontana and more.'}
 >
@@ -140,9 +130,6 @@ const schema = {
   <InspectionForm formName="Locations hub form" />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema items={[{ label: 'Home', url: new URL('/', site).toString() }, { label: 'Locations', url: pageUrl }]} />
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </BaseLayout>
 
 <style>

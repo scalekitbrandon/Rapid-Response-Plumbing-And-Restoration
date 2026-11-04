@@ -21,15 +21,13 @@ import Reviews from '../../components/Reviews.astro';
 import FAQ from '../../components/FAQ.astro';
 import AreaLinks from '../../components/AreaLinks.astro';
 import InspectionForm from '../../components/InspectionForm.astro';
-import BreadcrumbSchema from '../../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, restorationServices, serviceAreas, areaList } from '../../data/site';
+import { primaryNav, utilityLinks, business, restorationServices, areaList } from '../../data/site';
 import moldPpe from '../../assets/work/mold-remediation-ppe.jpg';
+import { toSchemaFaqs } from '../../data/faqs';
 
 const entries = await getCollection('restoration');
 const liveHrefs = entries.map((e) => `/${e.slug}/`);
 
-const site = Astro.site ?? new URL(Astro.url.origin);
-const pageUrl = new URL('/restoration/', site).toString();
 
 const faqs = [
   {
@@ -58,32 +56,10 @@ const faqs = [
   },
 ];
 
-const businessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HomeAndConstructionBusiness',
-  name: business.name,
-  url: new URL('/', site).toString(),
-  telephone: '+1-855-477-2743',
-  openingHours: 'Mo-Su 00:00-23:59',
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Restoration Services',
-    url: pageUrl,
-    itemListElement: restorationServices.map((s) => ({
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: s.label,
-        description: s.blurb,
-        ...(liveHrefs.includes(s.href) ? { url: new URL(s.href, site).toString() } : {}),
-      },
-    })),
-  },
-};
 ---
 
 <BaseLayout
+  schema={{ kind: 'hub', items: restorationServices.map((s) => ({ name: s.label, path: s.href })), breadcrumbs: [{ label: 'Home', path: '/' }, { label: 'Restoration', path: '/restoration/' }], faqs: toSchemaFaqs(faqs) }}
   title="Restoration Company in Victorville, CA | 24/7 | Rapid Response"
   description="Water, flood, fire, smoke or mold damage? Rapid Response is the High Desert's 24/7 restoration company, serving Victorville and nearby. Call 855-47-RAPID."
 >
@@ -183,12 +159,4 @@ const businessSchema = {
   />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema
-    items={[
-      { label: 'Home', url: new URL('/', site).toString() },
-      { label: 'Restoration', url: pageUrl },
-    ]}
-  />
-  <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
 </BaseLayout>

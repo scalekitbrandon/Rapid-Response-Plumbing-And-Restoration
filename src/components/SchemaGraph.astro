@@ -1,0 +1,28 @@
+---
+// Renders the page's single JSON-LD @graph. BaseLayout includes this on
+// every indexable page; pages pass `schema` to BaseLayout to pick their
+// page kind (home, service, town, about, contact, hub, blogPost, page).
+// See src/lib/schema.ts for what each kind emits.
+import { buildGraph, type PageSchema } from '../lib/schema';
+
+interface Props {
+  page: PageSchema;
+  title: string;
+  description?: string;
+}
+
+const { page, title, description } = Astro.props;
+
+const graph = buildGraph({
+  site: Astro.site ?? new URL(Astro.url.origin),
+  path: Astro.url.pathname,
+  title,
+  description,
+  page,
+});
+
+// Escape "<" so text in FAQs/reviews can never close the script tag early.
+const json = JSON.stringify(graph).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" set:html={json} />

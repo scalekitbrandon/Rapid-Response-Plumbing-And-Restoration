@@ -7,7 +7,7 @@
   - Useful content: emergency checklist, process, long-form body and FAQ (with FAQPage schema)
   - Proof: trust strip, real job photo, service-matched reviews
   - Internal links: breadcrumbs, related services, service area chips
-  - JSON-LD: Service (with provider and areaServed), BreadcrumbList, FAQPage (in FAQ.astro)
+  - JSON-LD: Service, BreadcrumbList and FAQPage via BaseLayout's `schema` prop (src/lib/schema.ts)
 */
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
@@ -25,16 +25,15 @@ import RelatedServices from '../components/RelatedServices.astro';
 import AreaLinks from '../components/AreaLinks.astro';
 import ProseSection from '../components/ProseSection.astro';
 import InspectionForm from '../components/InspectionForm.astro';
-import BreadcrumbSchema from '../components/BreadcrumbSchema.astro';
-import { primaryNav, utilityLinks, business, serviceAreas } from '../data/site';
+import { primaryNav, utilityLinks, business } from '../data/site';
+import { toSchemaFaqs } from '../data/faqs';
 
 interface Props {
   entry: CollectionEntry<'plumbing'> | CollectionEntry<'restoration'>;
   category: { label: string; href: string };
-  providerType: string; // schema.org type for the provider, e.g. "Plumber"
 }
 
-const { entry, category, providerType } = Astro.props;
+const { entry, category } = Astro.props;
 const isPlumbing = entry.collection === 'plumbing';
 // Per-category defaults: the cross-sell link under the split checklist, the hero call-card title and the form lead.
 const splitLink = entry.data.split.link ?? (isPlumbing
@@ -47,34 +46,16 @@ const formLead = isPlumbing
 const d = entry.data;
 const { Content } = await entry.render();
 
-const site = Astro.site ?? new URL(Astro.url.origin);
-const pageUrl = new URL(Astro.url.pathname, site).toString();
 const crumbs = [
   { label: 'Home', href: '/' },
   { label: category.label, href: category.href },
   { label: d.navLabel },
 ];
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: d.h1,
-  serviceType: d.navLabel,
-  description: d.description,
-  url: pageUrl,
-  areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
-  provider: {
-    '@type': providerType,
-    name: business.name,
-    telephone: '+1-855-477-2743',
-    url: new URL('/', site).toString(),
-    openingHours: 'Mo-Su 00:00-23:59',
-    areaServed: serviceAreas.map((a) => ({ '@type': 'City', name: `${a.name}, ${a.state}` })),
-  },
-};
 ---
 
-<BaseLayout title={d.title} description={d.description}>
+<BaseLayout
+  schema={{ kind: 'service', service: { name: d.h1, serviceType: d.navLabel, description: d.description }, breadcrumbs: [{ label: 'Home', path: '/' }, { label: category.label, path: category.href }, { label: d.navLabel, path: Astro.url.pathname }], faqs: toSchemaFaqs(d.faqs) }} title={d.title} description={d.description}>
   <Header
     slot="header"
     businessName={business.name}
@@ -132,13 +113,4 @@ const serviceSchema = {
   />
 
   <Footer slot="footer" />
-
-  <BreadcrumbSchema
-    items={[
-      { label: 'Home', url: new URL('/', site).toString() },
-      { label: category.label, url: new URL(category.href, site).toString() },
-      { label: d.navLabel, url: pageUrl },
-    ]}
-  />
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 </BaseLayout>
