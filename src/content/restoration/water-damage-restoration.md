@@ -1,13 +1,13 @@
 ---
-keyword: water damage restoration Victorville
-title: Water Damage Restoration in Victorville, CA | Rapid Response
+keyword: emergency water damage restoration Victorville
+title: Emergency Water Damage Restoration & Repair | Victorville CA
 description: Water damage from a leak or burst pipe? Rapid Response extracts water, dries and restores homes and businesses across Victorville 24/7. Call 855-47-RAPID.
 navLabel: Water Damage Restoration
 order: 1
 
 eyebrow: 24/7 Water Damage Restoration
-h1: Water Damage Restoration in Victorville, CA
-h1Accent: Water Damage Restoration
+h1: Emergency Water Damage Restoration & Repair in Victorville, CA
+h1Accent: Emergency Water Damage Restoration & Repair
 heroSub: Burst pipe, appliance leak or water through the ceiling? We extract the water, dry the structure, remove what cannot be saved and get your property ready for repairs, 24/7 across Victorville and the High Desert.
 heroBullets:
   - On the way in 1 hour or less, 24/7

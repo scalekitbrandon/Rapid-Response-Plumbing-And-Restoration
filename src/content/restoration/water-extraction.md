@@ -110,7 +110,7 @@ faqs:
   - q: Can't I just use a shop vac?
     a: A shop vac can pick up water sitting on tile, but it can't pull water out of carpet pad or from under the edges of the room. That trapped water is what leads to odors, delamination and mold. Professional extractors have far more suction and use weighted tools that reach the pad.
   - q: Do you remove the carpet during extraction?
-    a: Usually not right away. With clean water, [carpet can often be saved](/carpet-water-damage/) by extracting and drying it in place. Pad holds water and is often replaced. If the water came from a sewer or toilet backup, the carpet and pad are removed for health reasons.
+    a: Usually not right away. With clean water, carpet can often be saved by extracting and drying it in place. Pad holds water and is often replaced. If the water came from a sewer or toilet backup, the carpet and pad are removed for health reasons.
   - q: How long does water extraction take?
     a: Most single-room leaks take an hour or two to extract. A flooded house or a large commercial space can take most of a day. Drying comes after and usually takes several days.
   - q: Is emergency water removal covered by insurance?
@@ -141,7 +141,7 @@ Drying equipment can't keep up with standing water. Skip or rush extraction, and
 
 ### Clean, grey or contaminated water
 
-What the water came from changes the job. **Clean water** from a supply line or water heater can usually be extracted and dried in place. **Grey water** from a [washing machine or dishwasher](/appliance-leak-cleanup/) needs extraction plus cleaning. **Contaminated water** from a sewer or toilet backup means removing porous materials and disinfecting. For that, see our [sewage cleanup](/sewage-cleanup/) service.
+What the water came from changes the job. **Clean water** from a supply line or water heater can usually be extracted and dried in place, and [wet carpet can often be saved](/carpet-water-damage/). **Grey water** from a [washing machine or dishwasher](/appliance-leak-cleanup/) needs extraction plus cleaning. **Contaminated water** from a sewer or toilet backup means removing porous materials and disinfecting. For that, see our [sewage cleanup](/sewage-cleanup/) service.
 
 ### Homes and businesses on slab
 
