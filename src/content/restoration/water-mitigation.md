@@ -104,7 +104,7 @@ formAccent: Right Now
 formDamageType: Water damage / leak
 ---
 
-When water gets loose in a home or business, the clock starts. Within minutes it runs under flooring and into wall cavities. Within a day or two, wet materials can start to grow mold. **Water mitigation** is the work that stops that spread: extracting the water, removing what cannot be saved and drying the structure. Rapid Response provides water mitigation and structural drying in Victorville and across the High Desert 24/7.
+When water gets loose in a home or business, the clock starts. Within minutes it runs under flooring and into wall cavities. Within a day or two, wet materials can start to grow mold. **Water mitigation** is the work that stops that spread: [extracting the water](/water-extraction/), removing what cannot be saved and drying the structure. Rapid Response provides water mitigation and structural drying in Victorville and across the High Desert 24/7.
 
 ### Mitigation vs. restoration
 

@@ -77,10 +77,10 @@ reviewTags:
   - Burst Pipe
 areasHeading: Water Heater Repair Near You in the High Desert
 related:
+  - /water-heater-leak-cleanup/
   - /plumbing/emergency-plumber/
   - /plumbing/leak-detection/
   - /water-damage-restoration/
-  - /plumbing/repiping/
 
 faqs:
   - q: Should I repair or replace my water heater?
@@ -117,7 +117,7 @@ Not every water heater problem means you need a new unit. Thermostats, heating e
 
 ### When a water heater leaks
 
-Water heaters often sit in garages, hall closets or interior utility rooms. A slow leak can soak into drywall, baseboards and flooring for weeks, and a failed tank can release dozens of gallons at once. Because Rapid Response is also a [water damage restoration](/water-damage-restoration/) company, we check the surrounding area with moisture meters, remove materials that cannot be saved and dry everything properly. If water is spreading right now, call our [24/7 emergency plumber](/plumbing/emergency-plumber/) line.
+Water heaters often sit in garages, hall closets or interior utility rooms. A slow leak can soak into drywall, baseboards and flooring for weeks, and a failed tank can release dozens of gallons at once. Because Rapid Response is also a [water damage restoration](/water-damage-restoration/) company, we check the surrounding area with moisture meters, remove materials that cannot be saved and dry everything properly. See [water heater leak cleanup](/water-heater-leak-cleanup/) for how that works. If water is spreading right now, call our [24/7 emergency plumber](/plumbing/emergency-plumber/) line.
 
 ### Water heater service across the High Desert
 

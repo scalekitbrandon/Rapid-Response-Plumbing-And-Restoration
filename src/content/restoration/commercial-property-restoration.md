@@ -99,7 +99,7 @@ formAccent: Back Open
 formDamageType: Commercial property
 ---
 
-Damage at a commercial property is not just a repair. It is lost revenue, displaced tenants and a lot of people waiting for answers. Rapid Response provides **commercial restoration in Victorville** and across the High Desert, responding 24/7 to water, flood, fire, smoke and mold damage at offices, retail spaces, warehouses and rental properties.
+Damage at a commercial property is not just a repair. It is lost revenue, displaced tenants and a lot of people waiting for answers. Rapid Response provides **commercial restoration in Victorville** and across the High Desert, responding 24/7 to water, flood, fire, smoke and mold damage at offices, retail spaces, warehouses and rental properties. For houses, see [residential water damage restoration](/residential-water-damage-restoration/).
 
 ### Built for larger losses
 

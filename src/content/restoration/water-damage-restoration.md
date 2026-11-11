@@ -120,8 +120,8 @@ Surfaces can feel dry long before the materials underneath are. Drywall, subfloo
 
 ### The advantage of a plumbing and restoration company
 
-Most water damage starts with plumbing: a burst pipe, a failed water heater, a slab leak. With most companies, you need a plumber for the leak and a separate restoration crew for the damage. Rapid Response does both. We repair the source with our [emergency plumbing](/plumbing/emergency-plumber/) team and restore the damage in one visit. If we suspect a hidden leak, our [leak detection](/plumbing/leak-detection/) service finds it.
+Most water damage starts with plumbing: a burst pipe, a [failed water heater](/water-heater-leak-cleanup/), a slab leak. With most companies, you need a plumber for the leak and a separate restoration crew for the damage. Rapid Response does both. We repair the source with our [emergency plumbing](/plumbing/emergency-plumber/) team and restore the damage in one visit. If we suspect a hidden leak, our [leak detection](/plumbing/leak-detection/) service finds it.
 
 ### Residential and commercial water damage
 
-We restore homes, rentals, offices, retail spaces and other commercial properties across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. For larger losses from storms or major intrusion, see [flood damage restoration](/flood-damage/). If mold has already started, see [mold remediation](/mold-remediation/).
+We restore [homes and rentals](/residential-water-damage-restoration/), offices, retail spaces and other commercial properties across Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. For larger losses from storms or major intrusion, see [flood damage restoration](/flood-damage/). If mold has already started, see [mold remediation](/mold-remediation/).

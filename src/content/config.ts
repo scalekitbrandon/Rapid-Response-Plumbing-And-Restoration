@@ -48,6 +48,16 @@ const serviceSchema = ({ image }: { image: () => z.ZodTypeAny }) =>
     processAccent: z.string(),
     process: z.array(z.object({ title: z.string(), text: z.string() })).length(4),
 
+    // Optional job-photo grid (RealWork) shown after the long-form body
+    gallery: z
+      .object({
+        headingLead: z.string(),
+        headingAccent: z.string(),
+        body: z.string(),
+        photos: z.array(z.object({ image: image(), alt: z.string(), tag: z.string(), caption: z.string() })).min(2).max(8),
+      })
+      .optional(),
+
     // Long-form body heading (body comes from the Markdown)
     bodyHeading: z.string(),
 

@@ -25,6 +25,7 @@ import RelatedServices from '../components/RelatedServices.astro';
 import AreaLinks from '../components/AreaLinks.astro';
 import ProseSection from '../components/ProseSection.astro';
 import InspectionForm from '../components/InspectionForm.astro';
+import RealWork from '../components/RealWork.astro';
 import { primaryNav, utilityLinks, business } from '../data/site';
 import { toSchemaFaqs } from '../data/faqs';
 
@@ -90,6 +91,15 @@ const crumbs = [
   <ProseSection heading={d.bodyHeading}>
     <Content />
   </ProseSection>
+
+  {d.gallery && (
+    <RealWork
+      headlineLead={d.gallery.headingLead}
+      headlineAccent={d.gallery.headingAccent}
+      body={d.gallery.body}
+      photos={d.gallery.photos.map((p) => ({ src: p.image, alt: p.alt, tag: p.tag, caption: p.caption, tone: 'water' as const }))}
+    />
+  )}
 
   <Reviews
     googleReviewsUrl={business.googleReviewsUrl}

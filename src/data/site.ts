@@ -72,6 +72,11 @@ export const restorationServices: { label: string; href: string; icon: IconName;
   { label: 'Mold Remediation', href: '/mold-remediation/', icon: 'mold', blurb: 'Containment, removal and cleanup of mold, plus fixing the moisture problem that caused it.' },
   { label: 'Fire & Smoke Damage', href: '/fire-smoke-damage-restoration/', icon: 'fire', blurb: 'Soot and smoke cleanup, damaged material removal and cleanup of water left from firefighting.' },
   { label: 'Commercial Restoration', href: '/commercial-property-restoration/', icon: 'building', blurb: 'Water, flood, fire and mold restoration for offices, retail, warehouses and rentals.' },
+  { label: 'Water Extraction', href: '/water-extraction/', icon: 'drop', blurb: 'Emergency water removal from carpet, pad, tile and commercial floors with truck-mount and portable extractors.' },
+  { label: 'Water Heater Leak Cleanup', href: '/water-heater-leak-cleanup/', icon: 'heater', blurb: 'Cleanup and drying after a water heater leaks, plus repair or replacement of the heater on the same visit.' },
+  { label: 'Appliance Leak Cleanup', href: '/appliance-leak-cleanup/', icon: 'valve', blurb: 'Washer, dishwasher, ice maker and swamp cooler leaks dried out, with the failed line or valve replaced.' },
+  { label: 'Carpet Water Damage', href: '/carpet-water-damage/', icon: 'home', blurb: 'Wet carpet and pad extracted and dried, with a straight answer on whether the carpet can be saved.' },
+  { label: 'Residential Water Damage', href: '/residential-water-damage-restoration/', icon: 'home', blurb: 'Water damage restoration for houses, rentals and manufactured homes, with help through the insurance claim.' },
 ];
 
 // TODO(client): placeholder plumbing list. The current site has no plumbing services.
