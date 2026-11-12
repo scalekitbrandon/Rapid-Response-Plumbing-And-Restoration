@@ -19,12 +19,24 @@ const gaId = import.meta.env.PUBLIC_GA_ID || 'G-Z2SDSPSZJ4';
 
 {gaId && (
   <>
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
     <script is:inline define:vars={{ gaId }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', gaId);
+
+      // gtag.js (~170 KB) loads on the visitor's first scroll, tap, click, key or mouse move instead of at page load,
+      // so it stays off the critical path (Lighthouse "unused JavaScript"). Calls made before then queue in dataLayer
+      // and send once it loads. Trade-off: a visitor who leaves without touching the page at all is not counted.
+      var gaEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown', 'mousemove'];
+      function loadGa() {
+        gaEvents.forEach(function (t) { window.removeEventListener(t, loadGa, true); });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+        document.head.appendChild(s);
+      }
+      gaEvents.forEach(function (t) { window.addEventListener(t, loadGa, { capture: true, passive: true, once: true }); });
 
       function where(el) {
         if (el.closest('header')) return 'header';

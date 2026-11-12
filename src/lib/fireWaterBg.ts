@@ -7,7 +7,7 @@ import heroBg from '../assets/hero-bg.png';
 const widths = [640, 900, 1200, 1536];
 
 export async function fireWaterImages() {
-  const avif = await Promise.all(widths.map((width) => getImage({ src: heroBg, width, format: 'avif', quality: 40 })));
+  const avif = await Promise.all(widths.map((width) => getImage({ src: heroBg, width, format: 'avif', quality: 30 })));
   const webp = await Promise.all(widths.map((width) => getImage({ src: heroBg, width, format: 'webp', quality: 64 })));
   const srcset = (set: typeof avif) => set.map((img, i) => `${img.src} ${widths[i]}w`).join(', ');
   return {

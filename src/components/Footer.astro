@@ -19,7 +19,7 @@ const year = new Date().getFullYear();
   <div class="container top">
     <div class="brand">
       <a href="/" class="logo" aria-label={`${business.name} home`}>
-        <Picture src={logo} alt={business.name} width={110} height={110} densities={[1, 2]} formats={['avif']} fallbackFormat="webp" quality={45} loading="lazy" decoding="async" />
+        <Picture src={logo} alt={business.name} width={110} height={110} densities={[1, 2]} formats={['avif']} fallbackFormat="webp" quality={32} loading="lazy" decoding="async" />
       </a>
       <p class="tagline">{business.tagline}</p>
       <a class="phone" href={business.phoneHref}>{business.phoneDisplay}</a>
