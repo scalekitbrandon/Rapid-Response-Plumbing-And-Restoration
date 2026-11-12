@@ -41,14 +41,12 @@ const resolvedOgImage = new URL(ogImage ?? '/og-image.jpg', Astro.site).toString
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Preload the heading + body font files so they are ready at first paint (prevents headline reflow/CLS).
-         If Google updates these file URLs, the preload just goes unused; the stylesheet below still works. -->
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/saira/v23/memhYa2wxmKQyNkiV50dulWP7s95AqZ6zbvQfS2svGaA.woff2" />
-    <link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/barlow/v13/7cHqv4kjgoGqM7E3t-4s51ostz0rdg.woff2" />
-    <!-- Blocking on purpose: non-blocking fonts caused layout shift (CLS 0.145) as headings reflowed. -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,800&family=Saira:ital,wdth,wght@1,112.5,700;1,112.5,800;1,112.5,900&display=swap" />
+    <!-- Fonts are self-hosted (public/fonts, @font-face below) so nothing render-blocks on Google.
+         Preload the heading + body files so they are ready at first paint (prevents headline reflow/CLS). -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/saira-italic-var.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-400.woff2" />
+    <!-- Button weight: without it the hero CTAs shift when Barlow 700 swaps in. -->
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/barlow-700.woff2" />
     {description && <meta name="description" content={description} />}
 
     <meta property="og:type" content="website" />
@@ -73,6 +71,57 @@ const resolvedOgImage = new URL(ogImage ?? '/og-image.jpg', Astro.site).toString
 </html>
 
 <style is:global>
+  /* Latin subsets of Barlow + Saira from Google Fonts, self-hosted. */
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/barlow-400.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('/fonts/barlow-500.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/fonts/barlow-600.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/fonts/barlow-700.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  @font-face {
+    font-family: 'Barlow';
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url('/fonts/barlow-800-italic.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  /* Variable file (weight 700-900 used), served at the 112.5% width Google Fonts set for it. */
+  @font-face {
+    font-family: 'Saira';
+    font-style: italic;
+    font-weight: 700 900;
+    font-stretch: 112.5%;
+    font-display: swap;
+    src: url('/fonts/saira-italic-var.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
   * {
     box-sizing: border-box;
   }
