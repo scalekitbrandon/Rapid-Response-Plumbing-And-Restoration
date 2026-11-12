@@ -5,7 +5,7 @@ import { areaList } from '../data/site';
   then a 3-column grid of icon + big two-line title + "View More". The last cell is the call button.
   Layout was inspired by a reference screenshot (structure only). Colors, fonts and copy are Rapid Response's.
 */
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import van from '../assets/van-wrap.png';
 
 type IconName = 'water' | 'fire' | 'mold' | 'plumbing' | 'commercial';
@@ -52,12 +52,16 @@ const {
         <p>{body}</p>
       </div>
       <div class="intro-media">
-        <Image
+        <Picture
           src={van}
           alt="Rapid Response Plumbing & Restoration service van"
-          widths={[480, 720, 960]}
-          sizes="(max-width: 900px) 100vw, 560px"
-          format="webp"
+          widths={[400, 560, 720, 960, 1120]}
+          sizes="(max-width: 1000px) calc(100vw - 48px), 560px"
+          formats={['avif']}
+          fallbackFormat="webp"
+          quality={40}
+          loading="lazy"
+          decoding="async"
         />
       </div>
     </div>

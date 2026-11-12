@@ -46,15 +46,20 @@ const bgImg = await fireWaterImages();
 ---
 
 <section class="inner-hero">
-  <img
-    class="bg-img"
-    src={bgImg.desktop}
-    srcset={`${bgImg.mobile} 900w, ${bgImg.desktop} 1920w`}
-    sizes="100vw"
-    alt=""
-    fetchpriority="high"
-    loading="eager"
-  />
+  <picture>
+    <source type="image/avif" srcset={bgImg.avifSrcset} sizes="100vw" />
+    <img
+      class="bg-img"
+      src={bgImg.fallback}
+      srcset={bgImg.webpSrcset}
+      sizes="100vw"
+      alt=""
+      width={bgImg.width}
+      height={bgImg.height}
+      fetchpriority="high"
+      loading="eager"
+    />
+  </picture>
   <div class="overlay" aria-hidden="true"></div>
   <div class="container layout">
     <div class="copy">

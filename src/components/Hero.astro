@@ -4,8 +4,7 @@
   a welcome line, a tagline, and two pill CTAs (call + estimate).
   Layout was copied from a reference screenshot (structure only). Colors, fonts and copy are Rapid Response's.
 */
-import { getImage } from 'astro:assets';
-import heroBg from '../assets/hero-bg.png';
+import { fireWaterImages } from '../lib/fireWaterBg';
 
 interface Props {
   eyebrow?: string;
@@ -37,20 +36,25 @@ const {
   estimateHref = '/#request-inspection',
 } = Astro.props;
 
-const bg = await getImage({ src: heroBg, width: 1920, format: 'webp', quality: 72 });
-const bgMobile = await getImage({ src: heroBg, width: 900, format: 'webp', quality: 68 });
+// AVIF first with a WebP fallback (shared with the inner heroes and pop sections, so it downloads once).
+const bg = await fireWaterImages();
 ---
 
 <section class="hero">
-  <img
-    class="hero-bg"
-    src={bg.src}
-    srcset={`${bgMobile.src} 900w, ${bg.src} 1920w`}
-    sizes="100vw"
-    alt=""
-    fetchpriority="high"
-    loading="eager"
-  />
+  <picture>
+    <source type="image/avif" srcset={bg.avifSrcset} sizes="100vw" />
+    <img
+      class="hero-bg"
+      src={bg.fallback}
+      srcset={bg.webpSrcset}
+      sizes="100vw"
+      alt=""
+      width={bg.width}
+      height={bg.height}
+      fetchpriority="high"
+      loading="eager"
+    />
+  </picture>
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="container hero-inner">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}

@@ -4,7 +4,7 @@
   Layout was copied from a reference screenshot (structure only). Colors, fonts and copy are Rapid Response's.
   Desktop dropdowns open on hover/focus. Mobile uses a toggle button with accordion submenus.
 */
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import logo from '../assets/logo.png';
 
 interface NavChild {
@@ -65,7 +65,7 @@ const current = Astro.url.pathname;
   <div class="main-bar">
     <div class="container main-inner">
       <a class="logo" href="/" aria-label={`${businessName} home`}>
-        <Image src={logo} alt={businessName} width={150} height={150} densities={[1, 2]} loading="eager" />
+        <Picture src={logo} alt={businessName} width={150} height={150} widths={[104, 150, 208, 300]} sizes="(max-width: 1024px) 104px, 150px" formats={['avif']} fallbackFormat="webp" quality={45} loading="eager" />
       </a>
 
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
