@@ -42,6 +42,8 @@ export const allServiceAreas: { name: string; slug: string; region: Region; stat
   { name: 'Hesperia', slug: 'hesperia', region: 'High Desert', state: 'CA', blurb: 'Plumbing failures, water intrusion, flooded properties, mold, sewage backups, smoke and fire losses.' },
   { name: 'Adelanto', slug: 'adelanto', region: 'High Desert', state: 'CA', blurb: 'Water damage, flooding, moisture problems, sewage losses, mold, smoke and fire damage.' },
   { name: 'Helendale', slug: 'helendale', region: 'High Desert', state: 'CA', blurb: '24/7 water damage, flooding, drying, mold, sewage, fire and smoke cleanup.' },
+  { name: 'Oak Hills', slug: 'oak-hills', region: 'High Desert', state: 'CA', blurb: 'Frozen pipes, septic backups, hidden line leaks, water damage and wildfire smoke cleanup on large lots.' },
+  { name: 'Phelan', slug: 'phelan', region: 'High Desert', state: 'CA', blurb: 'Freeze damage, water heater leaks, septic backups, roof leaks, mold and fire damage in Phelan and Piñon Hills.' },
   { name: 'Barstow', slug: 'barstow', region: 'High Desert', state: 'CA', blurb: 'Water extraction, structural drying, flood cleanup, material removal and commercial restoration.' },
   { name: 'Yermo', slug: 'yermo', region: 'High Desert', state: 'CA', blurb: 'Water damage, flooding, drying, contaminated water cleanup and fire damage response.' },
   { name: 'Newberry Springs', slug: 'newberry-springs', region: 'High Desert', state: 'CA', blurb: 'Water losses, flooded properties, drying, cleanup, demolition, mold and fire damage.' },
@@ -58,7 +60,7 @@ export const allServiceAreas: { name: string; slug: string; region: Region; stat
 export const serviceAreas = allServiceAreas.filter((a) => NEVADA_LIVE || a.state !== 'NV');
 
 /** The town list used in body copy, e.g. "We serve {areaList}." */
-export const areaList = `Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, ${
+export const areaList = `Victorville, Apple Valley, Hesperia, Adelanto, Oak Hills, Phelan, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, ${
   NEVADA_LIVE ? 'Fontana, Rancho Cucamonga and Las Vegas, Nevada' : 'Fontana and Rancho Cucamonga'
 }`;
 /** Short label for the whole footprint. */
@@ -75,7 +77,7 @@ export const restorationServices: { label: string; href: string; icon: IconName;
   { label: 'Water Extraction', href: '/water-extraction/', icon: 'drop', blurb: 'Emergency water removal from carpet, pad, tile and commercial floors with truck-mount and portable extractors.' },
   { label: 'Water Heater Leak Cleanup', href: '/water-heater-leak-cleanup/', icon: 'heater', blurb: 'Cleanup and drying after a water heater leaks, plus repair or replacement of the heater on the same visit.' },
   { label: 'Appliance Leak Cleanup', href: '/appliance-leak-cleanup/', icon: 'valve', blurb: 'Washer, dishwasher, ice maker and swamp cooler leaks dried out, with the failed line or valve replaced.' },
-  { label: 'Carpet Water Damage', href: '/carpet-water-damage/', icon: 'home', blurb: 'Wet carpet and pad extracted and dried, with a straight answer on whether the carpet can be saved.' },
+  { label: 'Carpet & Floor Water Damage', href: '/carpet-water-damage/', icon: 'home', blurb: 'Wet carpet, pad and hard floors extracted and dried, with a straight answer on what can be saved.' },
   { label: 'Residential Water Damage', href: '/residential-water-damage-restoration/', icon: 'home', blurb: 'Water damage restoration for houses, rentals and manufactured homes, with help through the insurance claim.' },
 ];
 

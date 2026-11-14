@@ -1,13 +1,13 @@
 ---
-keyword: carpet water damage cleanup Victorville
-title: Carpet Water Damage Cleanup in Victorville, CA | 24/7
-description: Wet carpet after a leak or flood? Rapid Response extracts, dries and saves carpet when it can be saved, 24/7 in the High Desert. Call 855-47-RAPID.
-navLabel: Carpet Water Damage
+keyword: carpet and floor water damage cleanup Victorville
+title: Carpet & Floor Water Damage Cleanup | Victorville, CA | 24/7
+description: Wet carpet or floors after a leak? Rapid Response extracts, dries and saves flooring when it can be saved, 24/7 in Victorville. Call 855-47-RAPID.
+navLabel: Carpet & Floor Water Damage
 order: 11
 
-eyebrow: 24/7 Carpet Water Damage Cleanup
-h1: Carpet Water Damage Cleanup in Victorville, CA
-h1Accent: Carpet Water Damage Cleanup
+eyebrow: 24/7 Carpet & Floor Water Damage Cleanup
+h1: Carpet & Floor Water Damage Cleanup in Victorville, CA
+h1Accent: Carpet & Floor Water Damage Cleanup
 heroSub: Wet carpet can often be saved if the water was clean and it gets dried within a day or two. Wait longer, or let the pad stay soaked, and it starts to smell, separate and grow mold. We extract the carpet and pad, dry the floor underneath and tell you straight whether it can stay.
 heroBullets:
   - On site in 1 hour or less, day or night
@@ -92,12 +92,12 @@ gallery:
       tag: Pad Removal
       caption: Wet pad pulled so the slab underneath can dry
 
-bodyHeading: Carpet Water Damage Cleanup in Victorville and the High Desert
+bodyHeading: Carpet & Floor Water Damage Cleanup in Victorville and the High Desert
 
 reviewTags:
   - Water Damage
   - Flood
-areasHeading: Carpet Water Damage Cleanup Near You
+areasHeading: Carpet & Floor Water Damage Cleanup Near You
 related:
   - /water-extraction/
   - /appliance-leak-cleanup/
@@ -143,8 +143,12 @@ Most High Desert homes have carpet laid over a concrete slab. Concrete holds moi
 
 Low outdoor humidity in the High Desert helps materials release moisture, but a closed-up house with the AC or heat running doesn't dry carpet and pad on its own. Commercial dehumidifiers and air movers control the drying, and moisture readings show when the job is done. Our [water extraction](/water-extraction/) crew handles the first step, pulling as much water as possible out of the carpet and pad before drying starts.
 
+### Tile, vinyl plank, laminate and wood floors
+
+Hard floors hide water instead of soaking it up. Water runs through the seams of vinyl plank and laminate, under baseboards and into the subfloor or slab, while the surface looks fine. Laminate swells at the edges and does not shrink back. Wood floors cup as the boards take on moisture from below. Tile usually survives, but water can sit under it and in the grout lines. **Floor water damage cleanup** starts with moisture meters across the whole room, not just the wet spot. From there we extract what we can, dry the floor in place when the material allows it, and pull up only the flooring or subflooring that cannot be saved so the slab or subfloor underneath can dry.
+
 ### Where the water came from matters
 
 Carpet damage almost always starts somewhere else: a [washing machine or dishwasher leak](/appliance-leak-cleanup/), a failed water heater, a burst pipe or a toilet overflow. Because we're a plumbing company too, we fix the source on the same visit. If the carpet was wet long enough for mold to start, our [mold remediation](/mold-remediation/) team takes care of it.
 
-We clean up carpet water damage in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga.
+We clean up carpet and floor water damage in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana and Rancho Cucamonga.

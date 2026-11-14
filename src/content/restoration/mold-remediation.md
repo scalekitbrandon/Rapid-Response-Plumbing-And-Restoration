@@ -87,6 +87,8 @@ related:
 faqs:
   - q: Do I need professional mold remediation for a small area?
     a: Small surface spots on non-porous materials can sometimes be cleaned. But visible mold is often a sign of more growth behind walls or under flooring, and of a moisture problem that needs fixing. If the area is larger than a few square feet, keeps coming back or follows water damage, professional remediation is the safer choice.
+  - q: What is the difference between mold mitigation and mold remediation?
+    a: Mitigation is the first response. It stops the water, contains the area and keeps mold from spreading. Remediation is the full job, which covers removing affected materials, cleaning what stays and drying the structure. Most water-related mold jobs need both, and we do both.
   - q: Can mold come back after cleanup?
     a: Yes, if the moisture that caused it is not fixed. That is why we find and repair the source, whether it is a leak, a slab leak or water damage that was never dried, before and during remediation.
   - q: Do you handle mold after water damage?
@@ -118,6 +120,10 @@ Remediation is more than wiping a surface. A proper job includes:
 - **Selective demolition** of drywall, insulation and materials that cannot be cleaned
 - **Cleaning** of remaining surfaces in the affected area
 - **Moisture control** so the conditions that grew the mold are gone
+
+### Mold removal, cleaning and mitigation after water damage
+
+People search for this work under a lot of names: mold removal, mold cleaning, mold mitigation, mold damage restoration. On a real job they are steps of the same project. **Mitigation** stops the problem from growing by cutting off the water and sealing off the affected room. **Removal** takes out drywall, insulation, pad and trim that mold has grown into. **Cleaning** treats the framing, subfloor and hard surfaces that stay. **Restoration** dries the structure and gets the space ready to rebuild. When mold follows a leak or a flood, we handle every step, so you are not hiring one company to tear out and another to dry.
 
 ### Fix the source or it comes back
 

@@ -121,6 +121,6 @@ We identify the type of water first, so the cleanup is safe and done right.
 
 Flood water travels under flooring, behind baseboards and up into drywall and insulation. We map moisture throughout the affected area, remove what cannot be saved, clean and sanitize, and run drying equipment until readings confirm the structure is dry. If water damage is limited to a leak inside the home, see [water damage restoration](/water-damage-restoration/). If mold has started, see [mold remediation](/mold-remediation/).
 
-### Residential and commercial flood cleanup
+### Emergency flood cleanup for homes and businesses
 
-We handle flood cleanup for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. For businesses, see our [commercial restoration](/commercial-property-restoration/) services. If a plumbing failure caused the flood, our [emergency plumbers](/plumbing/emergency-plumber/) can repair it on the same visit.
+We handle flood cleanup for homes, rentals and businesses in Victorville, Apple Valley, Hesperia, Adelanto, Helendale, Barstow, Yermo, Newberry Springs and Daggett, plus San Bernardino, Rialto, Fontana, Rancho Cucamonga and Las Vegas, Nevada. For offices, warehouses and multi-unit buildings, see our [commercial flood restoration](/commercial-property-restoration/) services. If a plumbing failure caused the flood, our [emergency plumbers](/plumbing/emergency-plumber/) can repair it on the same visit.

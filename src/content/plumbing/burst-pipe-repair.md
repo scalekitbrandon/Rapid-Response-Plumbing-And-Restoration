@@ -116,7 +116,7 @@ People do not expect frozen pipes in the desert, but High Desert winter nights r
 
 Once the water is off, we find the break and check the lines around it, since a freeze or corrosion problem often affects more than one spot. We repair the damaged section or fitting and pressure-test the line before turning the water back on. If the pipes are failing in more than one place, we will talk you through [repiping](/plumbing/repiping/) options.
 
-### Do not let the water damage sit
+### Burst pipe water damage cleanup
 
 The repair is only half the job. Water from a burst pipe spreads under flooring, wicks up drywall and drips into the rooms below. Because we are also a restoration company, we start [water mitigation and structural drying](/water-mitigation/) right away, then handle any [water damage restoration](/water-damage-restoration/) the home needs. If the water is still running and you cannot find the shut-off, call our [24/7 emergency plumber](/plumbing/emergency-plumber/) line.
 

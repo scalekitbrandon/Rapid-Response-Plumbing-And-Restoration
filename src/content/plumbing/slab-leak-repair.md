@@ -117,7 +117,7 @@ There is no one-size-fits-all fix. Depending on where the leak is and the condit
 
 We explain the options and what each involves before any work begins.
 
-### Do not forget the water damage
+### Slab leak water damage restoration
 
 A slab leak does not just waste water. It soaks the concrete, wicks into carpet pad, swells laminate and wood flooring and climbs into the bottom of drywall. Left wet, those materials can warp and grow mold. Because Rapid Response is also a [water damage restoration](/water-damage-restoration/) company, we measure moisture throughout the affected area, dry it properly and document it for your insurance carrier.
 

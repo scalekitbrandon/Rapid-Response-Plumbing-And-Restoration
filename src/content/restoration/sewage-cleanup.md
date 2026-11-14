@@ -115,7 +115,7 @@ Restoration professionals classify water by contamination level. Sewage falls in
 - **Workers wear protective equipment**, and the area is contained when needed
 - **The structure is dried** and verified with moisture readings so odors and mold do not follow
 
-### Fixing the cause
+### Sewage and septic backup cleanup
 
 Most sewage backups come from a clogged or damaged line: grease and wipes in the main, roots in an old sewer pipe, a cracked line under the slab or a full septic system. Cleaning up without fixing the cause just sets up the next backup. Our plumbers handle [drain cleaning](/plumbing/drain-cleaning/) and [sewer line repair](/plumbing/sewer-line-repair/), so the same team stops the backup and cleans up after it.
 

@@ -105,6 +105,10 @@ Damage at a commercial property is not just a repair. It is lost revenue, displa
 
 Commercial losses often involve more square footage, more water and more moving pieces than a typical home. We bring extraction and drying equipment sized for larger spaces and plan the work so unaffected areas stay protected and usable whenever possible.
 
+### Commercial water damage and flood restoration
+
+Water is the most common commercial loss we see. A supply line fails over a weekend, a sprinkler head discharges, a roof drain backs up during a monsoon storm, or runoff pushes under a dock door. **Commercial water damage restoration** starts the same way every time: stop the source, extract standing water, find where it traveled with moisture meters and dry the structure. **Commercial flood restoration** adds a step. Storm and surface water is treated as contaminated, so porous materials it touched are removed and the area is cleaned and sanitized before drying. In multi-unit buildings, we check the units next to and below the loss, since water rarely stays in one suite.
+
 ### Communication that keeps recovery moving
 
 A commercial loss usually has several stakeholders: the owner, the property manager, tenants and one or more insurance carriers. We keep the restoration side organized with:
