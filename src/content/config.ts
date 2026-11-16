@@ -58,6 +58,21 @@ const serviceSchema = ({ image }: { image: () => z.ZodTypeAny }) =>
       })
       .optional(),
 
+    // Optional YouTube job video (JobVideo) + VideoObject schema. Facts must match the video on YouTube.
+    video: z
+      .object({
+        youtubeId: z.string(),
+        title: z.string(), // the YouTube title, word for word
+        description: z.string(), // short summary of what the video shows
+        uploadDate: z.string(), // ISO 8601 with offset, from YouTube
+        durationSeconds: z.number().int().positive(),
+        headingLead: z.string(),
+        headingAccent: z.string(),
+        body: z.string(),
+        steps: z.array(z.string()).default([]),
+      })
+      .optional(),
+
     // Long-form body heading (body comes from the Markdown)
     bodyHeading: z.string(),
 

@@ -26,6 +26,7 @@ import AreaLinks from '../components/AreaLinks.astro';
 import ProseSection from '../components/ProseSection.astro';
 import InspectionForm from '../components/InspectionForm.astro';
 import RealWork from '../components/RealWork.astro';
+import JobVideo from '../components/JobVideo.astro';
 import { primaryNav, utilityLinks, business } from '../data/site';
 import { toSchemaFaqs } from '../data/faqs';
 
@@ -56,7 +57,7 @@ const crumbs = [
 ---
 
 <BaseLayout
-  schema={{ kind: 'service', service: { name: d.h1, serviceType: d.navLabel, description: d.description }, breadcrumbs: [{ label: 'Home', path: '/' }, { label: category.label, path: category.href }, { label: d.navLabel, path: Astro.url.pathname }], faqs: toSchemaFaqs(d.faqs) }} title={d.title} description={d.description}>
+  schema={{ kind: 'service', service: { name: d.h1, serviceType: d.navLabel, description: d.description }, breadcrumbs: [{ label: 'Home', path: '/' }, { label: category.label, path: category.href }, { label: d.navLabel, path: Astro.url.pathname }], faqs: toSchemaFaqs(d.faqs), video: d.video && { youtubeId: d.video.youtubeId, name: d.video.title, description: d.video.description, uploadDate: d.video.uploadDate, durationSeconds: d.video.durationSeconds } }} title={d.title} description={d.description}>
   <Header
     slot="header"
     businessName={business.name}
@@ -70,6 +71,16 @@ const crumbs = [
   <TrustStrip />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
   {d.urgent && <UrgentSteps heading={d.urgent.heading} intro={d.urgent.intro} steps={d.urgent.steps} />}
+  {d.video && (
+    <JobVideo
+      youtubeId={d.video.youtubeId}
+      title={d.video.title}
+      headingLead={d.video.headingLead}
+      headingAccent={d.video.headingAccent}
+      body={d.video.body}
+      steps={d.video.steps}
+    />
+  )}
   <ServiceSplit
     heading={d.split.heading}
     accent={d.split.accent}

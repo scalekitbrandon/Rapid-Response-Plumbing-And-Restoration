@@ -44,6 +44,17 @@ interface PageBase {
   showReviews?: boolean;
   /** Primary image for the page. */
   image?: string;
+  /** A YouTube video rendered on the page (JobVideo). */
+  video?: VideoInput;
+}
+
+export interface VideoInput {
+  youtubeId: string;
+  name: string;
+  description: string;
+  /** ISO 8601 with offset. */
+  uploadDate: string;
+  durationSeconds: number;
 }
 
 export type PageSchema =
@@ -355,8 +366,26 @@ export function buildGraph({ site, path, title, description, page, business = de
     });
   }
 
+  const v = page.video;
+  if (v) {
+    graph.push({
+      '@type': 'VideoObject',
+      '@id': `${url}#video`,
+      name: v.name,
+      description: v.description,
+      thumbnailUrl: [`https://i.ytimg.com/vi/${v.youtubeId}/hqdefault.jpg`],
+      uploadDate: v.uploadDate,
+      duration: `PT${v.durationSeconds}S`,
+      embedUrl: `https://www.youtube.com/embed/${v.youtubeId}`,
+      url: `https://www.youtube.com/shorts/${v.youtubeId}`,
+      publisher: ref(ids.org),
+      isPartOf: ref(ids.webpage),
+    });
+  }
+
   graph.push({
     '@type': PAGE_TYPE[page.kind],
+    video: v ? ref(`${url}#video`) : undefined,
     '@id': ids.webpage,
     url,
     name: title,

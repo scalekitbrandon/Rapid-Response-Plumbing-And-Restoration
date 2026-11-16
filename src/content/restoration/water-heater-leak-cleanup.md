@@ -36,6 +36,20 @@ issues:
     title: Rusted-Out Tank Bottoms
     text: An older tank that rusts through can seep for weeks before the slow leak finally gives way.
 
+video:
+  youtubeId: M7pbWDgLZ7M
+  title: Hot Water Heater Leak Cleanup in Victorville, CA | Rapid Response Plumbing & Restoration
+  description: A Victorville water heater leak, start to finish. Rapid Response stopped the leak, dried out the water damage it caused and fully replaced the water heater.
+  uploadDate: '2026-11-16T08:44:23-08:00'
+  durationSeconds: 17
+  headingLead: A Victorville Water Heater Leak,
+  headingAccent: Fixed Start to Finish
+  body: This homeowner's water heater started leaking. One crew handled the whole job, in this order.
+  steps:
+    - Stopped the leak by shutting off the water and making the heater safe.
+    - Cleaned up the water damage, pulling out the water and drying the wet floors and walls before mold could start.
+    - Replaced the water heater, taking out the failed tank and installing a brand new one.
+
 urgent:
   heading: Water Heater Just Leaked? Start Here
   intro: These steps keep the spill from getting bigger while our crew drives over.

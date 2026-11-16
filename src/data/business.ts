@@ -151,7 +151,7 @@ export const business: Business = {
   hours: [{ days: EVERY_DAY, opens: '00:00', closes: '23:59' }],
   areaServed: serviceAreas.map((a) => ({ name: a.name, containedIn: a.state })),
   // TODO(client): add confirmed Facebook, Yelp, BBB, Instagram and other profile URLs.
-  sameAs: [site.googleReviewsUrl],
+  sameAs: [site.googleReviewsUrl, 'https://www.youtube.com/@RapidResponseHD'],
   contactPoints: [{ telephone: '+1-855-477-2743', contactType: 'customer service', availableLanguage: ['English'] }],
   services: [...plumbingServices, ...restorationServices].map((s) => ({
     name: s.label,
