@@ -14,6 +14,20 @@ heroBullets:
   - We also fix the plumbing that caused it
   - We work with all major insurance carriers
 
+video:
+  youtubeId: ZMljmZcsbg0
+  title: 'Garage Wall Leak Water Damage | Emergency Water Damage Restoration in Victorville CA'
+  description: A hidden leak inside a Victorville garage wall soaked the drywall and started mold on the framing. Rapid Response opened the wall and set up structural drying.
+  uploadDate: '2026-11-17'
+  durationSeconds: 28
+  headingLead: A Hidden Garage Wall Leak,
+  headingAccent: Caught and Dried Out
+  body: A water line inside this garage wall, next to the laundry hookups, leaked out of sight until the drywall was soaked and mold had started on the framing. Here is what we did.
+  steps:
+    - Cut out the wet drywall along the bottom of the wall to expose the damage.
+    - Opened the wall along the leaking line so it could be repaired.
+    - Set up air movers and a commercial dehumidifier to dry the framing before the wall is rebuilt.
+
 issuesHeading: Common Causes of Water Damage
 issuesIntro: Most water damage we see across Victorville, Apple Valley and Hesperia starts inside the home. Whatever the source, the faster the water is removed and the structure is dried, the less has to be torn out.
 issues:
