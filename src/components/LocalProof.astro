@@ -1,0 +1,153 @@
+---
+/*
+  LocalProof: a real job in this town and/or a real Google review from a customer here.
+  Renders nothing unless the page's frontmatter has `job` or `review`.
+  Both must come from the client's records and Google profile, word for word for reviews.
+  Never fill these with invented or "example" content.
+*/
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  town: string;
+  job?: { heading: string; area: string; when?: string; problem: string; work: string; result: string; photos: { image: ImageMetadata; alt: string }[] };
+  review?: { name: string; text: string; area?: string; service?: string };
+  reviewsUrl: string;
+}
+
+const { town, job, review, reviewsUrl } = Astro.props;
+---
+
+{(job || review) && (
+  <section class="proof" aria-labelledby="proof-heading">
+    <div class="container">
+      <span class="eyebrow">{job ? `A Recent Job in ${town}` : `From a ${town} Customer`}</span>
+      <h2 id="proof-heading">{job ? job.heading : `What a ${town} customer said`}</h2>
+      <div class:list={['grid', { single: !job || !review }]}>
+        {job && (
+          <article class="job">
+            <p class="meta">{job.area}{job.when ? ` · ${job.when}` : ''}</p>
+            <dl>
+              <dt>What happened</dt>
+              <dd>{job.problem}</dd>
+              <dt>What we did</dt>
+              <dd>{job.work}</dd>
+              <dt>The result</dt>
+              <dd>{job.result}</dd>
+            </dl>
+            {job.photos.length > 0 && (
+              <div class="photos">
+                {job.photos.map((p) => (
+                  <Picture src={p.image} alt={p.alt} formats={['avif', 'webp']} quality={40} widths={[360, 720]} sizes="(max-width: 720px) 100vw, 360px" />
+                ))}
+              </div>
+            )}
+          </article>
+        )}
+        {review && (
+          <figure class="review">
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>{review.text}</blockquote>
+            <figcaption>
+              {review.name}{review.area ? `, ${review.area}` : `, ${town}`}{review.service ? ` · ${review.service}` : ''}
+              <a href={reviewsUrl} rel="noopener" target="_blank">Read it on Google</a>
+            </figcaption>
+          </figure>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .proof {
+    background: #f2f8ff;
+    padding-block: var(--space-8);
+  }
+  .eyebrow {
+    display: block;
+    margin-bottom: var(--space-2);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-water-dark);
+  }
+  h2 {
+    margin-bottom: var(--space-6);
+    font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
+  .grid.single {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 820px;
+  }
+  .job,
+  .review {
+    margin: 0;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: #fff;
+  }
+  .meta {
+    margin: 0 0 var(--space-3);
+    font-weight: 700;
+    color: var(--color-water-dark);
+  }
+  dl { margin: 0; }
+  dt {
+    margin-top: var(--space-3);
+    font-weight: 700;
+    color: var(--color-fg);
+  }
+  dd {
+    margin: var(--space-1) 0 0;
+    line-height: 1.6;
+    color: #3a4356;
+  }
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .photos :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+  .stars {
+    color: #f5b400;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+  }
+  blockquote {
+    margin: var(--space-3) 0;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: #2a3245;
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px var(--space-3);
+    font-weight: 700;
+    color: var(--color-fg);
+  }
+  figcaption a {
+    font-weight: 600;
+    color: var(--color-water-dark);
+  }
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>

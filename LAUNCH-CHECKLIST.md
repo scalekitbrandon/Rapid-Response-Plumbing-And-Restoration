@@ -19,6 +19,12 @@ Performance 86–99 on all audited pages. 0 broken internal links, 0 duplicate t
 - [ ] **Henderson** is covered by the same Nevada license + Las Vegas GBP items above (add Henderson as a GBP service area)
 - [ ] **Las Vegas: claims to confirm**: Henderson / North Las Vegas / Summerlin coverage, condo/HOA work, tankless service, and polybutylene repiping
 
+## Local proof for town pages (from the client, 2026-11-18)
+The Hesperia, Apple Valley and San Bernardino service pages have empty `job` and `review` slots (src/content/local/<town>/<service>.md). They stay hidden until filled with real data. Never invent them.
+- [ ] One real job per town: neighborhood or cross streets (no address), month, what happened, what we did, the result, and 1 to 3 photos taken at that job
+- [ ] One real Google review per town from a customer who lives there, copied word for word, with the name as shown on Google
+- [ ] Confirm the photo package folders: the City Photo Package dealt photos into towns in rotation, so the folder names don't show where each job was
+
 ## Nice to have
 - [ ] CSLB license # (add to the footer), IICRC or other certifications, years in business, job count
 - [ ] Transparent-background logo (the current one is cropped to a circle)

@@ -1,43 +1,90 @@
 ---
 service: "/water-damage-restoration/"
 keyword: "water damage restoration San Bernardino"
-title: "Water Damage Restoration in San Bernardino, CA | Rapid Response"
+title: "Water Damage Restoration in San Bernardino, CA"
 description: "Water damage in San Bernardino? Rapid Response extracts water, dries and restores homes and businesses 24/7, on the way in 1 hour or less. Call 855-47-RAPID."
 h1: "Water Damage Restoration in San Bernardino, CA"
 h1Accent: "Water Damage Restoration"
-heroSub: "Old pipe leak, sewer backup, storm runoff off the foothills or water from a fire? We extract the water, dry the structure and get your San Bernardino property ready for repairs, 24/7."
+heroSub: "A flooded crawl space under an older home, a sewer backup in a rental or a storm that sent water through the back door? We extract, dry and restore San Bernardino homes and businesses, 24/7."
 issuesHeading: "What Causes Water Damage in San Bernardino"
-issuesIntro: "San Bernardino's older housing and foothill location create a mix of water damage we see often."
+issuesIntro: "San Bernardino's older housing, foothill storms and large number of rentals shape the water damage we see in the city."
 issues:
   - icon: pipe
-    title: "Leaks From Aging Pipes"
-    text: "Galvanized and older copper lines in established neighborhoods that corrode and leak."
-  - icon: flood
-    title: "Foothill Storm Runoff"
-    text: "Heavy rain coming off the San Bernardino Mountains into yards, garages and homes."
+    title: "Old Pipe Failures"
+    text: "Galvanized supply lines that rust through and burst in walls and crawl spaces in homes built before the 1960s."
   - icon: drain
     title: "Sewer Backups"
-    text: "Older sewer lines cracked by age and roots, pushing wastewater into the home."
-  - icon: building
-    title: "Multi-Unit Leaks"
-    text: "Apartment and duplex leaks that spread into neighboring units."
+    text: "Root-filled clay laterals and clogged stacks push sewage into tubs and floor drains. That's Category 3 water that needs full sanitizing."
+  - icon: flood
+    title: "Storm Water"
+    text: "Heavy winter storms send water off the foothills and through older streets. It finds low doorways, garages and crawl space vents."
+  - icon: fire
+    title: "Firefighting Water"
+    text: "Even small house fires leave a lot of water behind from hoses. In the foothills, fire season can bring smoke and water damage together."
+homes:
+  heading: "How San Bernardino Homes Take On Water"
+  intro: "How a home was built decides where the water goes. San Bernardino has a wider range of construction than most Inland Empire cities, from early 1900s homes on raised floors to 2000s two-story tracts."
+  items:
+    - title: "Raised wood floors over a crawl space"
+      text: "Common in older homes near downtown. Water drains through the floor into the crawl space and soaks the subfloor and joists. We dry from below and check for standing water under the house."
+    - title: "Plaster and lath walls"
+      text: "Older homes often have plaster instead of drywall. It holds water longer and can loosen from the lath. It needs different drying than drywall does."
+    - title: "Slab-on-grade post-war tracts"
+      text: "Water spreads across the slab under carpet and into bottom plates. It's usually faster to dry than a crawl space home, but slab leaks keep the floor wet from below."
+    - title: "Multi-unit buildings"
+      text: "Duplexes, fourplexes and apartments share walls, ceilings and plumbing stacks. One leak can reach several units, and each one needs its own moisture map."
+neighborhoods:
+  heading: "Water Damage Calls Across San Bernardino"
+  intro: "We restore properties in every part of San Bernardino. What we see depends on the age and type of building."
+  list:
+    - name: "Downtown and the older central neighborhoods"
+      note: "Raised-floor homes and older commercial buildings. Crawl space flooding and plaster wall damage."
+    - name: "Del Rosa"
+      note: "Post-war homes in the foothills, in an area hit hard by the 2003 Old Fire. Supply line failures and storm water from higher ground."
+    - name: "Verdemont"
+      note: "Newer two-story homes in the north end. Upstairs bathroom and laundry leaks that come through the ceiling below."
+    - name: "Shandin Hills"
+      note: "Hillside homes where storm runoff can reach lower rooms and garages."
+    - name: "Near Cal State San Bernardino"
+      note: "Apartments and student rentals. Overflows and leaks that spread between units."
+    - name: "Westside neighborhoods"
+      note: "Established homes and rentals. Sewer backups and old pipe failures."
+process:
+  - title: "Stop the Source"
+    text: "Our plumbers stop the water, whether it's a burst line, a water heater or a sewer backup, so the damage doesn't keep growing."
+  - title: "Check the Whole Structure"
+    text: "We map moisture in walls, floors and ceilings, and in crawl spaces and neighboring units when needed. Then we photograph everything for the claim."
+  - title: "Extract and Remove"
+    text: "We pull out standing water, including from crawl spaces, and remove wet materials that can't be saved. Sewage-soaked materials are removed and disposed of properly."
+  - title: "Dry, Sanitize and Restore"
+    text: "Dehumidifiers and air movers run until readings confirm dry. Contaminated areas are sanitized before repairs begin."
 faqs:
-  - q: "Do older San Bernardino homes have more water damage?"
-    a: "Older galvanized and copper pipes corrode and leak more often, and older sewer lines crack and back up. We repair the plumbing and restore the damage."
-  - q: "Can you help after storm water came in from the foothills?"
-    a: "Yes. Storm runoff is treated as contaminated. We extract it, remove affected porous materials, sanitize and dry the structure."
-  - q: "Do you work with San Bernardino landlords?"
-    a: "Yes. We work with landlords and property managers on rentals and multi-unit buildings."
+  - q: "Water went through my floor into the crawl space. Can you dry that?"
+    a: "Yes. We extract standing water from the crawl space, dry the subfloor and joists from below, and check for damage to insulation and ductwork under the house."
+  - q: "I'm a landlord. Can you work with my tenants?"
+    a: "Yes. We coordinate access with tenants, document the damage in each unit and keep you updated throughout the job."
+  - q: "Can plaster walls be dried, or do they have to come out?"
+    a: "Plaster can often be dried in place. It takes longer than drywall and needs careful monitoring. If it has separated from the lath, that section may need repair."
+  - q: "Do you handle water damage after a fire?"
+    a: "Yes. We clean up firefighting water and handle smoke and soot damage too. See our fire and smoke damage restoration service."
 ---
 
-Rapid Response provides **water damage restoration in San Bernardino**, on call 24/7 for homes, rentals and businesses. We extract the water, dry the structure, remove what cannot be saved and document the loss for your insurance claim.
+Water damage in San Bernardino often looks different from what we see up in the High Desert. Older homes on raised floors, plaster walls, clay sewer lines and a lot of multi-unit rentals mean water travels in more directions. Rapid Response provides **water damage restoration in San Bernardino** around the clock, with crews on the way in 1 hour or less.
 
-### Older homes, older plumbing
+### Crawl spaces and raised floors
 
-Many San Bernardino neighborhoods were built decades ago, and their galvanized and copper supply lines and clay or cast iron sewer lines are wearing out. That means pinhole leaks inside walls and sewer backups that need [sewage cleanup](/sewage-cleanup/) as well as drying.
+Many of San Bernardino's older homes sit on raised wood floors over a crawl space. When a pipe bursts or a toilet overflows, water soaks through the subfloor and pools underneath. It can't be seen from inside the house, but it keeps the joists and subfloor wet and can cause mold and rot. We extract the crawl space and dry the floor from below, not just the carpet on top.
 
-### Foothill storms
+### Sewer backups in older neighborhoods
 
-When heavy rain hits the San Bernardino Mountains, runoff comes down fast into foothill neighborhoods. We handle the extraction, sanitizing and [water mitigation and structural drying in San Bernardino](/san-bernardino/water-mitigation/). If a plumbing failure caused the damage, our [San Bernardino emergency plumbers](/san-bernardino/emergency-plumber/) repair it on the same job.
+Root intrusion in old clay laterals is one of the most common causes of sewage backups we see in San Bernardino. When it happens, sewage comes up through the lowest drains in the home. That's a contaminated loss. We extract, remove porous materials, disinfect and dry. Our plumbers clear the line so it doesn't happen again the next morning.
 
-Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less, 24/7.
+### Storms off the foothills
+
+San Bernardino sits right below the San Bernardino Mountains, and heavy winter storms send water down through the foothill neighborhoods fast. In areas that burned in past fire seasons, runoff can carry mud and debris with it. We handle the extraction and cleanup and dry the structure.
+
+### Plumbing and restoration under one roof
+
+Our [San Bernardino emergency plumbers](/san-bernardino/emergency-plumber/) repair the source, and our restoration team handles [water mitigation and structural drying in San Bernardino](/san-bernardino/water-mitigation/). If moisture has sat too long, see [mold remediation in San Bernardino](/san-bernardino/mold-remediation/). For smoke and soot, see [fire and smoke damage restoration](/fire-smoke-damage-restoration/).
+
+Call 855-47-RAPID any time. In San Bernardino, a crew is on the way in 1 hour or less.

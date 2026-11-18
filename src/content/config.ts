@@ -121,7 +121,7 @@ const towns = defineCollection({
 // reuses the base service's generic sections only when they contain nothing specific to another place.
 const local = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     service: z.string(), // base California service href, e.g. /plumbing/drain-cleaning/
     keyword: z.string(),
     title: z.string().max(65),
@@ -133,6 +133,35 @@ const local = defineCollection({
     issuesIntro: z.string(),
     issues: z.array(z.object({ title: z.string(), text: z.string(), icon: z.enum(['pipe', 'drop', 'heater', 'slab', 'drain', 'toilet', 'freeze', 'valve', 'fire', 'mold', 'building', 'fan', 'home', 'flood']) })).length(4),
     faqs: z.array(faq).min(3),
+
+    // Local detail (optional; priority towns use all of them). Facts here must be true of this town.
+    // "Homes and pipes": what the housing stock is and what fails in it.
+    homes: z
+      .object({ heading: z.string(), intro: z.string(), items: z.array(z.object({ title: z.string(), text: z.string() })).min(3).max(6) })
+      .optional(),
+    // Neighborhoods / parts of town, each with a note on what we see there.
+    neighborhoods: z
+      .object({ heading: z.string(), intro: z.string(), list: z.array(z.object({ name: z.string(), note: z.string() })).min(4).max(10) })
+      .optional(),
+    // Town-specific process. Replaces the base service's steps, which repeat on every town's version.
+    process: z.array(z.object({ title: z.string(), text: z.string() })).length(4).optional(),
+    // A real job in this town. Only from the client's job records; never invented. Renders only when set.
+    job: z
+      .object({
+        heading: z.string(), // e.g. "Slab leak under a Mission Crest kitchen"
+        area: z.string(), // neighborhood or part of town, no street address
+        when: z.string().optional(), // e.g. "March 2026"
+        problem: z.string(),
+        work: z.string(),
+        result: z.string(),
+        photos: z.array(z.object({ image: image(), alt: z.string() })).max(3).default([]),
+      })
+      .optional(),
+    // A real Google review from a customer in this town, word for word from the client's profile.
+    // Never invent, edit or paraphrase. Renders only when set.
+    review: z
+      .object({ name: z.string(), text: z.string(), area: z.string().optional(), service: z.string().optional() })
+      .optional(),
   }),
 });
 

@@ -8,7 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "check:schema": "node scripts/check-schema.mjs dist"
+    "check:schema": "node scripts/check-schema.mjs dist",
+    "postbuild": "node scripts/check-uniqueness.mjs dist",
+    "check:unique": "node scripts/check-uniqueness.mjs dist"
   },
   "dependencies": {
     "astro": "^4.0.0",

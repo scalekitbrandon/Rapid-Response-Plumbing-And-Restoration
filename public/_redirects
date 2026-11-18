@@ -9,3 +9,12 @@
 /fire-damage-restoration /fire-smoke-damage-restoration/ 301
 /sitemap_index.xml /sitemap-index.xml 301
 /sitemap.xml /sitemap-index.xml 301
+# Henderson service pages merged into the Henderson town page (2026-11-18): far from the CA base, no call volume.
+/henderson/emergency-plumber/ /henderson/ 301
+/henderson/emergency-plumber /henderson/ 301
+/henderson/mold-remediation/ /henderson/ 301
+/henderson/mold-remediation /henderson/ 301
+/henderson/water-damage-restoration/ /henderson/ 301
+/henderson/water-damage-restoration /henderson/ 301
+/henderson/water-mitigation/ /henderson/ 301
+/henderson/water-mitigation /henderson/ 301

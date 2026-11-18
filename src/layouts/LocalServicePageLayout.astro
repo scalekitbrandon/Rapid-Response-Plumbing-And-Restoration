@@ -9,6 +9,10 @@
   - Links: Home › Locations › Town › Service breadcrumbs, related services (local version when it exists),
     sibling local pages in the same town, the town hub, and the base service page.
   - JSON-LD: Service (areaServed = this town), BreadcrumbList, FAQPage (in FAQ.astro).
+  - Priority-town pages (frontmatter has `homes`) are fully local: their own process steps, homes/pipes and
+    neighborhood sections, and optional real job + review slots. They skip the base page's emergency
+    checklist and split, which repeat word for word on every town's version of the service.
+  - Every town page must stay >= 70% original (scripts/check-uniqueness.mjs runs after each build).
 */
 import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
@@ -25,6 +29,8 @@ import Reviews from '../components/Reviews.astro';
 import FAQ from '../components/FAQ.astro';
 import RelatedServices from '../components/RelatedServices.astro';
 import InspectionForm from '../components/InspectionForm.astro';
+import LocalDetail from '../components/LocalDetail.astro';
+import LocalProof from '../components/LocalProof.astro';
 import { primaryNav, utilityLinks, business, plumbingServices, restorationServices, allServiceAreas as serviceAreas, NEVADA_LIVE } from '../data/site';
 import { toSchemaFaqs } from '../data/faqs';
 
@@ -70,9 +76,12 @@ const otherPlaces = [
 ];
 const placePattern = new RegExp(otherPlaces.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'i');
 const clean = (v: unknown) => !placePattern.test(JSON.stringify(v));
-const urgent = b.urgent && clean(b.urgent) ? b.urgent : undefined;
-const split = clean({ ...b.split, image: undefined }) ? b.split : undefined;
-const process = clean(b.process)
+const fullyLocal = Boolean(d.homes);
+const urgent = !fullyLocal && b.urgent && clean(b.urgent) ? b.urgent : undefined;
+const split = !fullyLocal && clean({ ...b.split, image: undefined }) ? b.split : undefined;
+const process = d.process
+  ? d.process
+  : clean(b.process)
   ? b.process
   : [
       { title: 'Call 24/7', text: 'Call 855-47-RAPID any time. Tell us what happened and we will walk you through the first steps.' },
@@ -126,6 +135,7 @@ const siblings = [...plumbingServices, ...restorationServices].filter(
   />
   <TrustStrip />
   <IssueGrid heading={d.issuesHeading} intro={d.issuesIntro} issues={d.issues} />
+  <LocalDetail town={town} homes={d.homes} neighborhoods={d.neighborhoods} />
   {urgent && <UrgentSteps heading={urgent.heading} intro={urgent.intro} steps={urgent.steps} />}
   {split && (
     <ServiceSplit
@@ -147,7 +157,8 @@ const siblings = [...plumbingServices, ...restorationServices].filter(
     <Content />
   </ProseSection>
 
-  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} headingLead="What Customers Say About" headingAccent="Rapid Response" tags={b.reviewTags} limit={4} />
+  <LocalProof town={town} job={d.job} review={d.review} reviewsUrl={business.googleReviewsUrl} />
+  <Reviews googleReviewsUrl={business.googleReviewsUrl} writeReviewUrl={business.reviewUrl} headingLead="What Customers Say About" headingAccent="Rapid Response" tags={b.reviewTags} limit={fullyLocal ? 2 : 4} />
   <FAQ headingLead={`${b.navLabel} ${town}`} headingAccent="FAQs" intro={`Common questions about ${b.navLabel.toLowerCase()} in ${town}, ${st}.`} items={faqs} />
   <RelatedServices heading={`Related Services in ${town}`} hrefs={b.related} hrefFor={localHref} />
 
