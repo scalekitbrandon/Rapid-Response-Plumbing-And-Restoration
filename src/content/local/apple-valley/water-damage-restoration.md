@@ -81,7 +81,7 @@ Apple Valley's monsoon storms are short and heavy. On lots that slope toward the
 
 ### When the leak was running for days
 
-In Sun City, and anywhere owners travel, we see supply line leaks that ran for a day or more before anyone found them. Those jobs need fast extraction and careful moisture mapping because water reaches farther into walls and subfloor. If you're seeing musty smells or spots after a long leak, see [mold remediation in Apple Valley](/apple-valley/mold-remediation/).
+In Sun City, and anywhere owners travel, we see supply line leaks that ran for a day or more before anyone found them. Those jobs need fast [water extraction](/water-extraction/) and careful moisture mapping because water reaches farther into walls and subfloor. If you're seeing musty smells or spots after a long leak, see [mold remediation in Apple Valley](/apple-valley/mold-remediation/).
 
 ### One company for the leak and the damage
 

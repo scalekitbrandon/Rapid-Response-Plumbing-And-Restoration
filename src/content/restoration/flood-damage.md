@@ -101,7 +101,7 @@ formAccent: Started Now
 formDamageType: Flooding
 ---
 
-Flood water causes damage the moment it enters a building and keeps causing it every hour it stays. Rapid Response provides **flood damage restoration in Victorville** and across the High Desert, around the clock, with crews ready to extract water, remove damaged materials and dry the structure fast.
+Flood water causes damage the moment it enters a building and keeps causing it every hour it stays. Rapid Response provides **flood damage restoration in Victorville** and across the High Desert, around the clock, with crews ready to handle [water extraction](/water-extraction/), remove damaged materials and dry the structure fast.
 
 ### Flooding in the High Desert
 

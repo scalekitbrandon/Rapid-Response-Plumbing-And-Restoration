@@ -81,7 +81,7 @@ Root intrusion in old clay laterals is one of the most common causes of sewage b
 
 ### Storms off the foothills
 
-San Bernardino sits right below the San Bernardino Mountains, and heavy winter storms send water down through the foothill neighborhoods fast. In areas that burned in past fire seasons, runoff can carry mud and debris with it. We handle the extraction and cleanup and dry the structure.
+San Bernardino sits right below the San Bernardino Mountains, and heavy winter storms send water down through the foothill neighborhoods fast. In areas that burned in past fire seasons, runoff can carry mud and debris with it. We handle the [water extraction](/water-extraction/) and cleanup and dry the structure.
 
 ### Plumbing and restoration under one roof
 

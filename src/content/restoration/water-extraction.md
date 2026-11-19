@@ -1,16 +1,16 @@
 ---
-keyword: emergency water removal Victorville
-title: Emergency Water Removal & Extraction in Victorville, CA
-description: Standing water in your home or business? Rapid Response removes it with truck-mount and portable extractors, 24/7 in the High Desert. Call 855-47-RAPID.
+keyword: water extraction service Victorville
+title: Water Extraction Service in Victorville, CA | 24/7
+description: Need water extraction service? Rapid Response pulls standing water out of floors, carpet and pad 24/7 in the High Desert, in 1 hour or less. Call 855-47-RAPID.
 navLabel: Water Extraction
 order: 9
 
-eyebrow: 24/7 Water Extraction Service
-h1: Emergency Water Removal & Extraction in Victorville, CA
-h1Accent: Emergency Water Removal & Extraction
+eyebrow: 24/7 Emergency Water Removal
+h1: 24/7 Water Extraction Service in Victorville, CA
+h1Accent: Water Extraction Service
 heroSub: Every gallon left on the floor keeps soaking into carpet pad, baseboards and subfloor. Our crews bring extractors powerful enough to pull water out of carpet and pad, not just off the surface, and we can be at your door in 1 hour or less, any time of day.
 heroBullets:
-  - Truck-mount and portable extraction units
+  - Hard-floor wands and weighted carpet extraction
   - Arrives in 1 hour or less, nights and weekends included
   - Leak repaired by our own plumbers
 
@@ -28,7 +28,7 @@ issues:
     text: Water slips through the seams and sits on the slab under the planks. We remove the water we can reach and check whether the boards have to come up.
   - icon: building
     title: Commercial Floors
-    text: Offices, retail floors and warehouses with large open areas, where truck-mounted units move the most water in the least time.
+    text: Offices, retail floors and warehouses with large open areas. We extract section by section so the wet area stops spreading.
   - icon: flood
     title: Standing Water in Rooms
     text: Inches of water from a burst line or overflow. Submersible pumps take out the bulk, then extractors finish the floor.
@@ -51,7 +51,7 @@ split:
   accent: Every Job Is Won or Lost
   text: Pulling water out with an extractor is far faster than waiting for it to evaporate. Every gallon we extract on day one is a gallon the dehumidifiers never have to deal with, and that often decides whether carpet, pad and drywall can stay or have to be thrown out.
   points:
-    - Truck-mount units for large losses, portable units for upper rooms
+    - Hard-floor wands for tile, so water comes out of the grout lines
     - Weighted extraction to pull water from deep in carpet pad
     - Moisture meter checks to find the edge of the wet area
     - Source stopped and repaired by our own plumbing crew
@@ -75,6 +75,10 @@ gallery:
   headingAccent: On the Job
   body: Photos from our own water removal jobs. Hard floors get a squeegee wand, carpet gets weighted extraction, and every room gets a moisture check before we leave.
   photos:
+    - image: ../../assets/work/tile-floor-dehumidifier-air-movers.jpg
+      alt: Dehumidifier and low-profile air movers drying a tile living room floor after water extraction, with cabinet drawers pulled out to dry
+      tag: After Extraction
+      caption: Drying set up on tile, with cabinet drawers pulled to dry inside
     - image: ../../assets/work/tile-floor-squeegee-extraction.jpg
       alt: Technician pulling water off wet kitchen tile with a stainless hard-floor extraction wand, with water stains at the base of the cabinets
       tag: Hard Floors
@@ -123,18 +127,17 @@ formAccent: Call for Extraction
 formDamageType: Flooding
 ---
 
-When water is on the floor, the first hour matters more than the next three days. That's when it is still sitting on top of the flooring and hasn't soaked deep into the pad, wicked up the drywall or spread into the next room. Rapid Response provides **emergency water removal in Victorville** and across the High Desert 24/7, and we bring the equipment to pull out as much as possible on the first visit.
+When water is on the floor, the first hour matters more than the next three days. That's when it is still sitting on top of the flooring and hasn't soaked deep into the pad, wicked up the drywall or spread into the next room. Rapid Response provides **water extraction service in Victorville** and across the High Desert 24/7, and we bring the equipment to pull out as much as possible on the first visit.
 
 ### Extraction removes water. Drying removes moisture.
 
 These are two separate jobs, and the order matters. **Extraction** physically removes liquid water from floors, carpet and pad with suction. **Drying** uses air movers and dehumidifiers to pull the remaining moisture out of wood, drywall and concrete.
 
-Drying equipment can't keep up with standing water. Skip or rush extraction, and drying takes days longer, costs more and leaves more materials that have to be torn out. Good water extraction service is what makes the [structural drying](/water-mitigation/) afterward work.
+Drying equipment can't keep up with standing water. Skip or rush extraction, and drying takes days longer, costs more and leaves more materials that have to be torn out. Good emergency water removal is what makes the [structural drying](/water-mitigation/) afterward work.
 
 ### The equipment we use
 
-- **Truck-mounted extractors** for big losses, with hoses run into the house so the noise and exhaust stay outside
-- **Portable extractors** for upstairs rooms, apartments and places a truck can't reach
+- **Extractors and hard-floor wands** for tile, sealed concrete and commercial floors
 - **Submersible pumps** for standing water more than an inch or two deep
 - **Weighted extraction tools** that press on the carpet and pull water out of the pad underneath
 - **Moisture meters** to find where the water went, so we extract and dry the whole wet area and not only the obvious puddle

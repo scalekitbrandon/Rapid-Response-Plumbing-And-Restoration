@@ -81,6 +81,6 @@ Apple Valley's desert air helps, but it can't reach water inside a wall cavity o
 
 ### Fix the leak, then dry it
 
-If the water is still coming, our [Apple Valley emergency plumbers](/apple-valley/emergency-plumber/) find and repair it first, often while the extraction crew works. When drying is complete, [water damage restoration in Apple Valley](/apple-valley/water-damage-restoration/) handles the repairs. If the leak ran long enough for growth to start, see [mold remediation in Apple Valley](/apple-valley/mold-remediation/).
+If the water is still coming, our [Apple Valley emergency plumbers](/apple-valley/emergency-plumber/) find and repair it first, often while the [water extraction](/water-extraction/) crew works. When drying is complete, [water damage restoration in Apple Valley](/apple-valley/water-damage-restoration/) handles the repairs. If the leak ran long enough for growth to start, see [mold remediation in Apple Valley](/apple-valley/mold-remediation/).
 
 Call 855-47-RAPID any time. In Apple Valley, a crew is on the way in 1 hour or less.

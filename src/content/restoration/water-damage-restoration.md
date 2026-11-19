@@ -122,7 +122,7 @@ Water damage does not wait. Once water gets loose inside a home or business, it 
 Restoration is more than drying a wet floor. A complete water damage restoration job includes:
 
 - **Finding and stopping the source** of the water
-- **Emergency water extraction** from floors, carpet and lower levels
+- **Emergency [water extraction](/water-extraction/)** from floors, carpet and lower levels
 - **Moisture mapping** with meters to find water hidden in walls and under flooring
 - **Selective removal** of drywall, flooring, trim and insulation that cannot be saved
 - **Structural drying** with air movers and dehumidifiers until materials reach dry standards

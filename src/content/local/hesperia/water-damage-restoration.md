@@ -81,7 +81,7 @@ Large parts of Hesperia were never connected to a sewer main, and the city's own
 
 ### Storm water on graded lots
 
-Hesperia doesn't get much rain, but summer monsoon cells and the odd winter storm can drop a lot at once. On lots graded toward the house or along unpaved roads, that runoff finds the garage door and the slab edge. We extract it, pull wet materials and dry the structure, then show you where the water came in so you can regrade or add a berm.
+Hesperia doesn't get much rain, but summer monsoon cells and the odd winter storm can drop a lot at once. On lots graded toward the house or along unpaved roads, that runoff finds the garage door and the slab edge. We handle the [water extraction](/water-extraction/), pull wet materials and dry the structure, then show you where the water came in so you can regrade or add a berm.
 
 ### Before mold sets in
 

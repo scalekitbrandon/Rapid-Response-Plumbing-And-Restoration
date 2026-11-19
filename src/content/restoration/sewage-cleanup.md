@@ -121,7 +121,7 @@ Most sewage backups come from a clogged or damaged line: grease and wipes in the
 
 ### Contaminated flood water
 
-Storm runoff and surface flooding are also treated as contaminated. If water came in from outside, see our [flood damage restoration](/flood-damage/) services. For clean-water leaks, see [water mitigation and structural drying](/water-mitigation/).
+Storm runoff and surface flooding are also treated as contaminated. If water came in from outside, see our [flood damage restoration](/flood-damage/) services. For clean-water leaks, see our [water extraction service](/water-extraction/) and [water mitigation and structural drying](/water-mitigation/).
 
 ### Sewage cleanup across our service area
 

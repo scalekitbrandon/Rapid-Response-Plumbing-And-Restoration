@@ -77,7 +77,7 @@ A lot of San Bernardino homes, especially older ones near downtown, have raised 
 
 ### Heat speeds up mold
 
-San Bernardino gets hot in summer, and a warm, closed house with wet drywall is the right environment for mold to start within days. That's why we set up extraction and drying on the first visit, not the next day. If a leak has already sat for a while, see [mold remediation in San Bernardino](/san-bernardino/mold-remediation/).
+San Bernardino gets hot in summer, and a warm, closed house with wet drywall is the right environment for mold to start within days. That's why we set up [water extraction](/water-extraction/) and drying on the first visit, not the next day. If a leak has already sat for a while, see [mold remediation in San Bernardino](/san-bernardino/mold-remediation/).
 
 ### Fix it, dry it, document it
 

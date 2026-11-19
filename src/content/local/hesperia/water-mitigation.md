@@ -73,7 +73,7 @@ Water mitigation is the work that keeps a small leak from becoming a full rebuil
 
 ### Fast extraction matters more here than you'd think
 
-Many Hesperia homes have particleboard: manufactured home floors, cabinet bases and older stair treads. Particleboard swells and falls apart when it stays wet. Getting the water out in the first few hours is often the difference between drying a floor and replacing it. That's why we start extraction the moment we arrive.
+Many Hesperia homes have particleboard: manufactured home floors, cabinet bases and older stair treads. Particleboard swells and falls apart when it stays wet. Getting the water out in the first few hours is often the difference between drying a floor and replacing it. That's why we start [water extraction](/water-extraction/) the moment we arrive.
 
 ### Freeze breaks, dried right
 
