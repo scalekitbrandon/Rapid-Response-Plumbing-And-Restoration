@@ -1,7 +1,7 @@
 ---
 keyword: water extraction service Victorville
 title: Water Extraction Service in Victorville, CA | 24/7
-description: Need water extraction service? Rapid Response pulls standing water out of floors, carpet and pad 24/7 in the High Desert, in 1 hour or less. Call 855-47-RAPID.
+description: Need water extraction service? Rapid Response pulls standing water from floors, carpet and pad 24/7, on the way in 1 hour or less. Call 855-47-RAPID.
 navLabel: Water Extraction
 order: 9
 
